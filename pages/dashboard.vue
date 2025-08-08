@@ -1,0 +1,702 @@
+<template>
+  <div
+    class="min-h-screen bg-gradient-to-br from-off-white via-white to-off-white dark:from-gray-darkest dark:via-gray-dark dark:to-gray-darkest transition-all duration-500 relative"
+  >
+    <!-- Background pattern -->
+    <div
+      class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"
+    ></div>
+    <div class="relative z-10">
+      <!-- Header -->
+      <header
+        class="glass-strong border-b border-white/20 dark:border-white/10 sticky top-0 z-50"
+      >
+        <div class="max-w-7xl mx-auto px-6 py-6">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-xl flex items-center justify-center shadow-lg"
+              >
+                <svg
+                  class="w-6 h-6 text-white dark:text-black"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  ></path>
+                </svg>
+              </div>
+              <div>
+                <h1 class="text-2xl font-light text-gradient">Dashboard</h1>
+                <p class="text-sm text-gray-medium dark:text-gray-light">
+                  {{ currentDate }}
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center space-x-4">
+              <button
+                class="p-3 glass rounded-xl text-gray-medium hover:text-black dark:hover:text-white transition-all duration-300 hover:scale-105"
+              >
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                  ></path>
+                </svg>
+              </button>
+              <NuxtLink to="/" class="btn btn-outline px-4 py-2 text-sm">
+                ← Accueil
+              </NuxtLink>
+              <ClientOnly>
+                <PatreonButton
+                  size="sm"
+                  variant="outline"
+                  label="Guide Patreon"
+                />
+              </ClientOnly>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Welcome message -->
+        <div class="mb-8 text-center">
+          <h2
+            class="text-2xl md:text-3xl font-light text-black dark:text-white mb-2"
+          >
+            Bonjour ! 👋
+          </h2>
+          <p class="text-gray-medium dark:text-gray-light">
+            Voici votre progression du jour
+          </p>
+        </div>
+
+        <!-- Quick Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <!-- Calories -->
+          <div
+            class="card-metric p-6 group cursor-pointer relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <h3
+                  class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider"
+                >
+                  Calories
+                </h3>
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="w-5 h-5 text-black dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-4xl font-light text-black dark:text-white mb-2">
+                {{ dailyStats.calories || "0" }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-medium"
+              >
+                kcal consommées
+              </p>
+            </div>
+          </div>
+
+          <!-- Poids -->
+          <div
+            class="card-metric p-6 group cursor-pointer relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-warning/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <h3
+                  class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider"
+                >
+                  Poids
+                </h3>
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="w-5 h-5 text-black dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-4xl font-light text-black dark:text-white mb-2">
+                {{ dailyStats.weight || "0" }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-medium"
+              >
+                kg ce matin
+              </p>
+            </div>
+          </div>
+
+          <!-- Pas -->
+          <div
+            class="card-metric p-6 group cursor-pointer relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <h3
+                  class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider"
+                >
+                  Pas
+                </h3>
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="w-5 h-5 text-black dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-4xl font-light text-black dark:text-white mb-2">
+                {{ dailyStats.steps?.toLocaleString() || "0" }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-medium"
+              >
+                pas aujourd'hui
+              </p>
+            </div>
+          </div>
+
+          <!-- Entraînement -->
+          <div
+            class="card-metric p-6 group cursor-pointer relative overflow-hidden"
+          >
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between mb-4">
+                <h3
+                  class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider"
+                >
+                  Entraînement
+                </h3>
+                <div
+                  class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+                >
+                  <svg
+                    class="w-5 h-5 text-black dark:text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    ></path>
+                  </svg>
+                </div>
+              </div>
+              <div class="text-4xl font-light text-black dark:text-white mb-2">
+                {{ dailyStats.workout ? "Oui" : "Non" }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-medium"
+              >
+                {{ dailyStats.workoutName || "Pas d'entraînement" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Input Form -->
+        <div class="card p-8 mb-12 relative overflow-hidden">
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-error"
+          ></div>
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-light text-gradient mb-2">
+                Saisie quotidienne
+              </h2>
+              <p class="text-gray-medium dark:text-gray-light">
+                Renseignez vos données du jour
+              </p>
+            </div>
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-success to-warning rounded-2xl flex items-center justify-center shadow-lg"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <form @submit.prevent="saveDailyData" class="space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- Calories et Macros -->
+              <div class="space-y-6">
+                <div class="flex items-center space-x-3 mb-6">
+                  <div
+                    class="w-8 h-8 bg-gradient-to-br from-success to-success/70 rounded-lg flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-medium text-black dark:text-white">
+                    Nutrition
+                  </h3>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Calories totales</label
+                    >
+                    <input
+                      v-model.number="formData.calories"
+                      type="number"
+                      placeholder="2000"
+                      class="input-modern"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Protéines (g)</label
+                    >
+                    <input
+                      v-model.number="formData.proteins"
+                      type="number"
+                      placeholder="150"
+                      class="input-modern"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Glucides (g)</label
+                    >
+                    <input
+                      v-model.number="formData.carbs"
+                      type="number"
+                      placeholder="200"
+                      class="input-modern"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Lipides (g)</label
+                    >
+                    <input
+                      v-model.number="formData.fats"
+                      type="number"
+                      placeholder="80"
+                      class="input-modern"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <!-- Poids et Activité -->
+              <div class="space-y-6">
+                <div class="flex items-center space-x-3 mb-6">
+                  <div
+                    class="w-8 h-8 bg-gradient-to-br from-warning to-warning/70 rounded-lg flex items-center justify-center"
+                  >
+                    <svg
+                      class="w-4 h-4 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
+                      ></path>
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-medium text-black dark:text-white">
+                    Métriques physiques
+                  </h3>
+                </div>
+                <div class="space-y-4">
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Poids (kg)</label
+                    >
+                    <input
+                      v-model.number="formData.weight"
+                      type="number"
+                      step="0.1"
+                      placeholder="70.5"
+                      class="input-modern"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                      >Nombre de pas</label
+                    >
+                    <input
+                      v-model.number="formData.steps"
+                      type="number"
+                      placeholder="8000"
+                      class="input-modern"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Entraînement -->
+            <div class="space-y-6">
+              <div class="flex items-center space-x-3 mb-6">
+                <div
+                  class="w-8 h-8 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-lg flex items-center justify-center"
+                >
+                  <svg
+                    class="w-4 h-4 text-white dark:text-black"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <h3 class="text-lg font-medium text-black dark:text-white">
+                  Entraînement
+                </h3>
+              </div>
+
+              <div class="glass-strong p-6 rounded-2xl">
+                <label class="flex items-center space-x-4 cursor-pointer group">
+                  <div class="relative">
+                    <input
+                      v-model="formData.workout"
+                      type="checkbox"
+                      class="w-6 h-6 text-success border-2 border-gray-light dark:border-gray-medium rounded-lg focus:ring-2 focus:ring-success/20 transition-all duration-300"
+                    />
+                    <div
+                      class="absolute inset-0 bg-success/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    ></div>
+                  </div>
+                  <span
+                    class="text-black dark:text-white font-medium group-hover:text-success transition-colors duration-300"
+                    >J'ai fait un entraînement aujourd'hui</span
+                  >
+                </label>
+
+                <div v-if="formData.workout" class="mt-6 animate-fade-in">
+                  <label
+                    class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3"
+                    >Nom de l'entraînement</label
+                  >
+                  <input
+                    v-model="formData.workoutName"
+                    type="text"
+                    placeholder="Push (Pectoraux, Épaules, Triceps)"
+                    class="input-modern"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-center">
+              <button
+                type="submit"
+                class="btn btn-primary px-12 py-4 text-lg relative overflow-hidden group"
+              >
+                <span class="relative z-10 flex items-center space-x-2">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                  <span>Sauvegarder la journée</span>
+                </span>
+                <div
+                  class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                ></div>
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Progress Overview -->
+        <div class="card p-8 relative overflow-hidden">
+          <div
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning via-error to-success"
+          ></div>
+
+          <div class="flex items-center justify-between mb-8">
+            <div>
+              <h2 class="text-2xl font-light text-gradient mb-2">
+                Tendances hebdomadaires
+              </h2>
+              <p class="text-gray-medium dark:text-gray-light">
+                Vos moyennes sur 7 jours
+              </p>
+            </div>
+            <div
+              class="w-16 h-16 bg-gradient-to-br from-error to-success rounded-2xl flex items-center justify-center shadow-lg"
+            >
+              <svg
+                class="w-8 h-8 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div
+              class="glass-strong p-6 rounded-xl text-center group hover-lift"
+            >
+              <div
+                class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-success transition-colors duration-300"
+              >
+                {{ weeklyAverages.calories }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-semibold"
+              >
+                Calories moyenne
+              </p>
+            </div>
+            <div
+              class="glass-strong p-6 rounded-xl text-center group hover-lift"
+            >
+              <div
+                class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-warning transition-colors duration-300"
+              >
+                {{ weeklyAverages.weight }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-semibold"
+              >
+                Poids moyen (kg)
+              </p>
+            </div>
+            <div
+              class="glass-strong p-6 rounded-xl text-center group hover-lift"
+            >
+              <div
+                class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-error transition-colors duration-300"
+              >
+                {{ weeklyAverages.steps?.toLocaleString() }}
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-semibold"
+              >
+                Pas moyens
+              </p>
+            </div>
+            <div
+              class="glass-strong p-6 rounded-xl text-center group hover-lift"
+            >
+              <div
+                class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-black dark:group-hover:text-white transition-colors duration-300"
+              >
+                {{ weeklyAverages.workouts }}/7
+              </div>
+              <p
+                class="text-sm text-gray-medium dark:text-gray-light font-semibold"
+              >
+                Entraînements
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+// Data réactive pour le formulaire (sans .value pour éviter les erreurs SSR)
+const formData = reactive<{
+  calories: number | null;
+  proteins: number | null;
+  carbs: number | null;
+  fats: number | null;
+  weight: number | null;
+  steps: number | null;
+  workout: boolean;
+  workoutName: string;
+}>({
+  calories: null,
+  proteins: null,
+  carbs: null,
+  fats: null,
+  weight: null,
+  steps: null,
+  workout: false,
+  workoutName: "",
+});
+
+// Stats quotidiennes (mock data pour le MVP)
+const dailyStats = reactive({
+  calories: 1850,
+  weight: 72.3,
+  steps: 8450,
+  workout: true,
+  workoutName: "Push - Pectoraux & Épaules",
+});
+
+// Moyennes hebdomadaires (mock data)
+const weeklyAverages = reactive({
+  calories: 1920,
+  weight: 72.1,
+  steps: 8200,
+  workouts: 4,
+});
+
+// Date actuelle
+const currentDate = computed(() => {
+  return new Date().toLocaleDateString("fr-FR", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+});
+
+// Fonction pour sauvegarder les données
+const saveDailyData = () => {
+  // TODO: Intégration avec Supabase
+  console.log("Données sauvegardées:", { ...formData });
+
+  // Mise à jour des stats quotidiennes
+  dailyStats.calories = formData.calories ?? 0;
+  dailyStats.weight = formData.weight ?? 0;
+  dailyStats.steps = formData.steps ?? 0;
+  dailyStats.workout = formData.workout;
+  dailyStats.workoutName = formData.workoutName || "";
+
+  // Reset du formulaire
+  Object.assign(formData, {
+    calories: null,
+    proteins: null,
+    carbs: null,
+    fats: null,
+    weight: null,
+    steps: null,
+    workout: false,
+    workoutName: "",
+  });
+
+  // Feedback utilisateur (client uniquement)
+  if (process.client) {
+    alert("Données sauvegardées avec succès !");
+  }
+};
+
+// SEO
+useHead({
+  title: "Dashboard - Système Fluide",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Trackez quotidiennement vos calories, poids, pas et entraînements pour une progression optimale",
+    },
+  ],
+});
+</script>
