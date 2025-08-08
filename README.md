@@ -181,3 +181,4 @@ Check the [Nuxt deployment documentation](https://nuxt.com/docs/getting-started/
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+# systeme-fluide
