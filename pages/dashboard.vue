@@ -7,69 +7,6 @@
       class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"
     ></div>
     <div class="relative z-10">
-      <!-- Header -->
-      <header
-        class="glass-strong border-b border-white/20 dark:border-white/10 sticky top-0 z-50"
-      >
-        <div class="max-w-7xl mx-auto px-6 py-6">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-              <div
-                class="w-12 h-12 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-xl flex items-center justify-center shadow-lg"
-              >
-                <svg
-                  class="w-6 h-6 text-white dark:text-black"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                  ></path>
-                </svg>
-              </div>
-              <div>
-                <h1 class="text-2xl font-light text-gradient">Dashboard</h1>
-                <p class="text-sm text-gray-medium dark:text-gray-light">
-                  {{ currentDate }}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-4">
-              <button
-                class="p-3 glass rounded-xl text-gray-medium hover:text-black dark:hover:text-white transition-all duration-300 hover:scale-105"
-              >
-                <svg
-                  class="w-6 h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  ></path>
-                </svg>
-              </button>
-              <NuxtLink to="/" class="btn btn-outline px-4 py-2 text-sm">
-                ← Accueil
-              </NuxtLink>
-              <ClientOnly>
-                <PatreonButton
-                  size="sm"
-                  variant="outline"
-                  label="Guide Patreon"
-                />
-              </ClientOnly>
-            </div>
-          </div>
-        </div>
-      </header>
 
       <main class="max-w-7xl mx-auto px-6 py-8">
         <!-- Welcome message -->

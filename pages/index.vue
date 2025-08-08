@@ -8,19 +8,7 @@
     ></div>
     <div class="relative z-10">
       <!-- Hero Section -->
-      <section class="relative overflow-hidden min-h-[420px] md:min-h-[480px]">
-        <!-- Banner background -->
-        <img
-          :src="bannerUrl"
-          alt="Système Fluide — bannière principale"
-          class="absolute inset-0 w-full h-full object-cover object-center opacity-90 pointer-events-none select-none z-0"
-          loading="eager"
-          fetchpriority="high"
-        />
-        <!-- Readability overlay -->
-        <div
-          class="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-black/60 dark:from-black/70 dark:via-black/40 dark:to-black/70 z-[1]"
-        ></div>
+      <section class="relative overflow-hidden">
         <!-- Floating elements -->
         <div
           class="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 rounded-full blur-3xl animate-pulse"
@@ -29,14 +17,14 @@
           class="absolute top-40 right-20 w-48 h-48 bg-gradient-to-br from-success/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"
         ></div>
 
-        <div class="max-w-7xl mx-auto px-6 py-24 relative z-[2]">
+        <div class="max-w-7xl mx-auto px-6 py-24 relative">
           <div class="text-center">
             <div class="inline-block">
-              <h1
-                class="text-5xl md:text-7xl font-light text-gradient mb-6 animate-fade-in"
-              >
-                Système Fluide
-              </h1>
+              <img
+                src="/ban.png"
+                alt="Système Fluide"
+                class="mx-auto mb-6 animate-fade-in max-h-20 md:max-h-28"
+              />
               <div
                 class="h-1 bg-gradient-to-r from-transparent via-black dark:via-white to-transparent rounded-full mb-8 animate-fade-in delay-300"
               ></div>
@@ -64,13 +52,6 @@
               <NuxtLink to="/about" class="btn btn-outline px-10 py-5 text-lg">
                 En savoir plus
               </NuxtLink>
-              <ClientOnly>
-                <PatreonButton
-                  size="md"
-                  variant="outline"
-                  label="Guide Patreon"
-                />
-              </ClientOnly>
             </div>
 
             <!-- Stats preview -->
@@ -168,7 +149,8 @@
                 Calories & Macros
               </h3>
               <p class="text-gray-medium dark:text-gray-light leading-relaxed">
-                Suis tes totals caloriques & macronutriments
+                Suivez vos calories totales et macronutriments (protéines,
+                glucides, lipides)
               </p>
             </div>
 
@@ -197,7 +179,7 @@
                 Poids corporel
               </h3>
               <p class="text-gray-medium dark:text-gray-light leading-relaxed">
-                Enregistre ton poids quotidiennement pour suivre l'évolution
+                Enregistrez votre poids quotidiennement pour suivre l'évolution
               </p>
             </div>
 
@@ -223,10 +205,10 @@
               <h3
                 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-black dark:group-hover:text-white transition-colors duration-300"
               >
-                Steps quotidiens
+                Pas quotidiens
               </h3>
               <p class="text-gray-medium dark:text-gray-light leading-relaxed">
-                Comptez vos steps pour maintenir un niveau d'activité optimal
+                Comptez vos pas pour maintenir un niveau d'activité optimal
               </p>
             </div>
 
@@ -448,16 +430,7 @@
           <!-- Social proof -->
           <div
             class="mt-16 flex justify-center items-center space-x-8 opacity-60"
-          >
-            <div class="text-center">
-              <div class="text-2xl font-light text-white dark:text-black">
-                ⭐⭐⭐⭐⭐
-              </div>
-              <div class="text-sm text-gray-light dark:text-gray-medium mt-1">
-                4.9/5 sur 2,340+ avis
-              </div>
-            </div>
-          </div>
+          ></div>
         </div>
       </section>
     </div>
@@ -465,8 +438,6 @@
 </template>
 
 <script setup lang="ts">
-// Vite will transform this import into a URL at build time
-import bannerUrl from "~/assets/banner.png";
 useHead({
   title: "Système Fluide - Excellence physique accessible à tous",
   meta: [
