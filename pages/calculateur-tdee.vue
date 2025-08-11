@@ -166,25 +166,105 @@
       </div>
 
       <!-- Info Section -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div class="card p-6">
-          <h3 class="text-xl font-medium text-black dark:text-white mb-4">
+          <h2 class="text-xl font-medium text-black dark:text-white mb-4">
             Qu'est-ce que le TDEE ?
-          </h3>
+          </h2>
           <p class="text-gray-medium dark:text-gray-light leading-relaxed">
-            Le TDEE (Total Daily Energy Expenditure) représente le nombre total de calories que votre corps brûle en une journée, incluant votre métabolisme de base et vos activités.
+            Le TDEE (Total Daily Energy Expenditure) représente le nombre total de calories que votre corps brûle en une journée, incluant votre métabolisme de base et vos activités physiques.
           </p>
         </div>
 
         <div class="card p-6">
-          <h3 class="text-xl font-medium text-black dark:text-white mb-4">
-            Formules utilisées
-          </h3>
+          <h2 class="text-xl font-medium text-black dark:text-white mb-4">
+            Formules scientifiques utilisées
+          </h2>
           <ul class="text-gray-medium dark:text-gray-light space-y-2">
-            <li>• Mifflin-St Jeor (recommandée)</li>
-            <li>• Harris-Benedict (classique)</li>
-            <li>• Katch-McArdle (si % masse grasse)</li>
+            <li>• <strong>Mifflin-St Jeor</strong> (recommandée, précision ±10%)</li>
+            <li>• <strong>Harris-Benedict</strong> (classique, validée scientifiquement)</li>
+            <li>• <strong>Katch-McArdle</strong> (si % masse grasse connu)</li>
           </ul>
+        </div>
+      </div>
+
+      <!-- SEO Content Section -->
+      <div class="space-y-8 mb-12">
+        <!-- Why Use This Calculator -->
+        <div class="card p-8">
+          <h2 class="text-2xl font-medium text-black dark:text-white mb-6">
+            Pourquoi utiliser notre calculateur TDEE gratuit ?
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-medium dark:text-gray-light">
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-3">Précision scientifique</h3>
+              <p class="leading-relaxed">
+                Utilise les formules les plus précises validées par la recherche scientifique, avec calcul automatique du BMR (métabolisme basal) et multiplication par votre niveau d'activité.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-3">Résultats complets</h3>
+              <p class="leading-relaxed">
+                Obtenez non seulement votre TDEE, mais aussi votre IMC, poids idéal selon 4 formules, potentiel musculaire maximum et recommandations de macronutriments personnalisées.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-3">Gratuit et sans inscription</h3>
+              <p class="leading-relaxed">
+                Aucun compte requis, calcul instantané et résultats détaillés immédiatement disponibles. Interface moderne et responsive pour tous vos appareils.
+              </p>
+            </div>
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-3">Intégration fitness</h3>
+              <p class="leading-relaxed">
+                Vos résultats s'intègrent parfaitement dans votre suivi Système Fluide pour un tracking optimal de vos 4 métriques essentielles.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="card p-8">
+          <h2 class="text-2xl font-medium text-black dark:text-white mb-6">
+            Questions fréquentes sur le calcul TDEE
+          </h2>
+          <div class="space-y-6">
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-2">
+                Quelle est la différence entre BMR et TDEE ?
+              </h3>
+              <p class="text-gray-medium dark:text-gray-light leading-relaxed">
+                Le BMR (métabolisme basal) est le nombre de calories brûlées au repos. Le TDEE inclut le BMR plus les calories brûlées par vos activités quotidiennes et exercices.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-2">
+                À quelle fréquence recalculer mon TDEE ?
+              </h3>
+              <p class="text-gray-medium dark:text-gray-light leading-relaxed">
+                Recalculez votre TDEE lorsque votre poids change de plus de 2-3kg ou que votre niveau d'activité physique évolue significativement.
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-2">
+                Comment utiliser mon TDEE pour perdre du poids ?
+              </h3>
+              <p class="text-gray-medium dark:text-gray-light leading-relaxed">
+                Pour perdre du poids, consommez 10-20% de calories en moins que votre TDEE. Notre calculateur propose automatiquement des recommandations pour la sèche (-20%).
+              </p>
+            </div>
+            
+            <div>
+              <h3 class="text-lg font-medium text-black dark:text-white mb-2">
+                Quelle formule BMR choisir ?
+              </h3>
+              <p class="text-gray-medium dark:text-gray-light leading-relaxed">
+                Mifflin-St Jeor est la plus précise pour la majorité des personnes. Katch-McArdle est plus précise si vous connaissez votre pourcentage de masse grasse.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -271,11 +351,122 @@ const calculateTDEE = () => {
 }
 
 useHead({
-  title: 'Calculateur TDEE - Système Fluide',
+  title: 'Calculateur TDEE Gratuit - Calcul Besoins Caloriques Précis | Système Fluide',
   meta: [
     {
       name: 'description',
-      content: 'Calculez vos besoins caloriques quotidiens avec précision grâce aux formules scientifiques reconnues. Intégré à votre système de progression Système Fluide.'
+      content: 'Calculateur TDEE gratuit et précis. Calculez vos besoins caloriques quotidiens avec les formules Mifflin-St Jeor, Harris-Benedict et Katch-McArdle. BMR, IMC, poids idéal et macros inclus.'
+    },
+    {
+      name: 'keywords',
+      content: 'calculateur TDEE, calcul calories, besoins caloriques, BMR, métabolisme basal, IMC, poids idéal, macronutriments, nutrition, fitness'
+    },
+    {
+      property: 'og:title',
+      content: 'Calculateur TDEE Gratuit - Calcul Besoins Caloriques Précis'
+    },
+    {
+      property: 'og:description',
+      content: 'Calculez vos besoins caloriques quotidiens avec précision. Formules scientifiques validées, calcul BMR, IMC et recommandations macros personnalisées.'
+    },
+    {
+      property: 'og:type',
+      content: 'website'
+    },
+    {
+      property: 'og:url',
+      content: 'https://votre-domaine.com/calculateur-tdee'
+    },
+    {
+      name: 'twitter:card',
+      content: 'summary_large_image'
+    },
+    {
+      name: 'twitter:title',
+      content: 'Calculateur TDEE Gratuit - Calcul Besoins Caloriques Précis'
+    },
+    {
+      name: 'twitter:description',
+      content: 'Calculez vos besoins caloriques quotidiens avec précision. Formules scientifiques validées.'
+    },
+    {
+      name: 'robots',
+      content: 'index, follow'
+    },
+    {
+      name: 'author',
+      content: 'Système Fluide'
+    }
+  ],
+  link: [
+    {
+      rel: 'canonical',
+      href: 'https://votre-domaine.com/calculateur-tdee'
+    }
+  ],
+  script: [
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Calculateur TDEE Gratuit",
+        "description": "Calculateur TDEE gratuit et précis pour calculer vos besoins caloriques quotidiens avec les formules scientifiques Mifflin-St Jeor, Harris-Benedict et Katch-McArdle",
+        "url": "https://votre-domaine.com/calculateur-tdee",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Any",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "EUR"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "Système Fluide",
+          "url": "https://votre-domaine.com"
+        },
+        "featureList": [
+          "Calcul TDEE avec formules scientifiques",
+          "Calcul BMR (métabolisme basal)",
+          "Calcul IMC et classification",
+          "Estimation poids idéal (4 formules)",
+          "Potentiel musculaire maximum",
+          "Recommandations macronutriments"
+        ]
+      })
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Quelle est la différence entre BMR et TDEE ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Le BMR (métabolisme basal) est le nombre de calories brûlées au repos. Le TDEE inclut le BMR plus les calories brûlées par vos activités quotidiennes et exercices."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "À quelle fréquence recalculer mon TDEE ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Recalculez votre TDEE lorsque votre poids change de plus de 2-3kg ou que votre niveau d'activité physique évolue significativement."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Comment utiliser mon TDEE pour perdre du poids ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Pour perdre du poids, consommez 10-20% de calories en moins que votre TDEE. Notre calculateur propose automatiquement des recommandations pour la sèche (-20%)."
+            }
+          }
+        ]
+      })
     }
   ]
 })

@@ -1,5 +1,11 @@
 <template>
-  <div
+  <div v-if="pending" class="min-h-screen flex items-center justify-center">
+    <div class="text-center">
+      <div class="text-2xl font-light text-gradient mb-4">Calcul en cours...</div>
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white mx-auto"></div>
+    </div>
+  </div>
+  <div v-else-if="results && userProfile"
     class="min-h-screen bg-gradient-to-br from-white via-off-white to-white dark:from-gray-darkest dark:via-gray-dark dark:to-gray-darkest transition-all duration-500 relative overflow-hidden"
   >
     <!-- Background pattern -->
@@ -14,7 +20,7 @@
           Vos Résultats TDEE
         </h1>
         <p class="text-lg text-gray-medium dark:text-gray-light">
-          {{ userProfile.gender === 'male' ? 'Homme' : 'Femme' }} • {{ userProfile.age }} ans • {{ userProfile.weight }} kg • {{ userProfile.height }} cm
+          {{ userProfile?.gender === 'male' ? 'Homme' : 'Femme' }} • {{ userProfile?.age }} ans • {{ userProfile?.weight }} kg • {{ userProfile?.height }} cm
         </p>
       </div>
 
@@ -58,7 +64,7 @@
                   :key="activity.level"
                   :class="[
                     'flex justify-between items-center p-4 rounded-xl transition-all duration-300',
-                    activity.multiplier === userProfile.activityLevel
+                    activity.multiplier === userProfile?.activityLevel
                       ? 'bg-gradient-to-r from-black/10 to-gray-darkest/5 dark:from-white/10 dark:to-white/5 shadow-md border-2 border-black/20 dark:border-white/20'
                       : 'bg-gray-light/20 dark:bg-gray-medium/20'
                   ]"
@@ -317,25 +323,39 @@ interface Results {
   }
 }
 
+// Désactiver SSR pour éviter les erreurs de query parsing
+definePageMeta({
+  ssr: false
+})
+
 const route = useRoute()
+const pending = ref(true)
 
-// Parse query parameters
-const userProfile: UserProfile = {
-  gender: route.query.gender as 'male' | 'female',
-  age: Number(route.query.age),
-  weight: Number(route.query.weight),
-  height: Number(route.query.height),
-  activityLevel: Number(route.query.activity),
-  bodyFat: route.query.bodyFat ? Number(route.query.bodyFat) : undefined
-}
+// Parse query parameters avec protection client-side
+const userProfile = ref<UserProfile | null>(null)
 
-// Validate required parameters
-if (!userProfile.gender || !userProfile.age || !userProfile.weight || !userProfile.height || !userProfile.activityLevel) {
-  throw createError({
-    statusCode: 400,
-    statusMessage: 'Paramètres manquants'
-  })
-}
+onMounted(() => {
+  // Parse seulement côté client
+  const profile: UserProfile = {
+    gender: route.query.gender as 'male' | 'female',
+    age: Number(route.query.age),
+    weight: Number(route.query.weight),
+    height: Number(route.query.height),
+    activityLevel: Number(route.query.activity),
+    bodyFat: route.query.bodyFat ? Number(route.query.bodyFat) : undefined
+  }
+
+  // Validate required parameters
+  if (!profile.gender || !profile.age || !profile.weight || !profile.height || !profile.activityLevel) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Paramètres manquants'
+    })
+  }
+
+  userProfile.value = profile
+  pending.value = false
+})
 
 // Activity levels for breakdown display
 const activityBreakdown = [
@@ -468,38 +488,72 @@ const calculateMacros = (calories: number, weight: number) => {
   }
 }
 
-// Calculate all results
-const bmrResult = calculateBMR(userProfile)
-const bmiResult = calculateBMI(userProfile.weight, userProfile.height)
-const idealWeightResult = calculateIdealWeight(userProfile)
-const maxMuscularResult = calculateMaxMuscularPotential(userProfile)
+// Calculate all results - computed pour réactivité
+const results = computed<Results | null>(() => {
+  if (!userProfile.value) return null
+  
+  const profile = userProfile.value
+  const bmrResult = calculateBMR(profile)
+  const bmiResult = calculateBMI(profile.weight, profile.height)
+  const idealWeightResult = calculateIdealWeight(profile)
+  const maxMuscularResult = calculateMaxMuscularPotential(profile)
 
-const results: Results = {
-  bmr: bmrResult.bmr,
-  bmrFormula: bmrResult.formula,
-  tdee: bmrResult.bmr * userProfile.activityLevel,
-  bmi: bmiResult.bmi,
-  bmiCategory: bmiResult.category,
-  idealWeight: {
-    min: idealWeightResult.min,
-    max: idealWeightResult.max
-  },
-  idealWeightFormulas: idealWeightResult.formulas,
-  maxMuscularPotential: maxMuscularResult,
-  macros: {
-    maintenance: calculateMacros(bmrResult.bmr * userProfile.activityLevel, userProfile.weight),
-    cutting: calculateMacros(bmrResult.bmr * userProfile.activityLevel * 0.8, userProfile.weight),
-    bulking: calculateMacros(bmrResult.bmr * userProfile.activityLevel * 1.15, userProfile.weight)
-  }
-}
-
-useHead({
-  title: 'Résultats TDEE - Système Fluide',
-  meta: [
-    {
-      name: 'description',
-      content: `Vos résultats TDEE personnalisés: ${Math.round(results.tdee)} calories par jour. BMR, IMC, poids idéal et recommandations macronutriments.`
+  return {
+    bmr: bmrResult.bmr,
+    bmrFormula: bmrResult.formula,
+    tdee: bmrResult.bmr * profile.activityLevel,
+    bmi: bmiResult.bmi,
+    bmiCategory: bmiResult.category,
+    idealWeight: {
+      min: idealWeightResult.min,
+      max: idealWeightResult.max
+    },
+    idealWeightFormulas: idealWeightResult.formulas,
+    maxMuscularPotential: maxMuscularResult,
+    macros: {
+      maintenance: calculateMacros(bmrResult.bmr * profile.activityLevel, profile.weight),
+      cutting: calculateMacros(bmrResult.bmr * profile.activityLevel * 0.8, profile.weight),
+      bulking: calculateMacros(bmrResult.bmr * profile.activityLevel * 1.15, profile.weight)
     }
-  ]
+  }
 })
+
+// Meta tags optimisées pour CSR - seulement si les résultats sont disponibles
+watch([results, userProfile], () => {
+  if (results.value && userProfile.value) {
+    useHead({
+      title: `Vos Résultats TDEE: ${Math.round(results.value.tdee)} Calories/Jour | BMR ${Math.round(results.value.bmr)} | Système Fluide`,
+      meta: [
+        {
+          name: 'description',
+          content: `Résultats TDEE personnalisés: ${Math.round(results.value.tdee)} calories/jour, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)} (${results.value.bmiCategory}), poids idéal ${results.value.idealWeight.min}-${results.value.idealWeight.max}kg. Macronutriments optimisés inclus.`
+        },
+        {
+          name: 'keywords',
+          content: `TDEE ${Math.round(results.value.tdee)} calories, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)}, poids idéal, macronutriments, ${userProfile.value.gender === 'male' ? 'homme' : 'femme'} ${userProfile.value.age} ans`
+        },
+        {
+          property: 'og:title',
+          content: `Résultats TDEE: ${Math.round(results.value.tdee)} Calories par Jour`
+        },
+        {
+          property: 'og:description',
+          content: `TDEE: ${Math.round(results.value.tdee)} cal/jour • BMR: ${Math.round(results.value.bmr)} • IMC: ${results.value.bmi.toFixed(1)} • Poids idéal: ${results.value.idealWeight.min}-${results.value.idealWeight.max}kg`
+        },
+        {
+          property: 'og:type',
+          content: 'website'
+        },
+        {
+          name: 'robots',
+          content: 'noindex, follow'
+        },
+        {
+          name: 'author',
+          content: 'Système Fluide'
+        }
+      ]
+    })
+  }
+}, { immediate: true })
 </script>
