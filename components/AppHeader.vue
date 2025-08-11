@@ -200,6 +200,7 @@ const toggleColorMode = () => {
 const navLinks = [
   { to: "/", label: "Accueil" },
   { to: "/about", label: "À propos" },
+  { to: "/pyramides-helms", label: "Pyramides de Helms" },
   { to: "/calculateur-tdee", label: "Calculateur TDEE" },
   { to: "/team", label: "Équipe" },
   { to: "/dashboard", label: "Dashboard" },

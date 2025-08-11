@@ -10,7 +10,7 @@
 
       <main class="max-w-7xl mx-auto px-6 py-8">
         <!-- Welcome message -->
-        <div class="mb-8 text-center">
+        <div class="mb-8 text-center animate-fade-in">
           <h2
             class="text-2xl md:text-3xl font-light text-black dark:text-white mb-2"
           >
@@ -22,7 +22,7 @@
         </div>
 
         <!-- Quick Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 animate-fade-in delay-300">
           <!-- Calories -->
           <div
             class="card-metric p-6 group cursor-pointer relative overflow-hidden"
@@ -197,7 +197,7 @@
         </div>
 
         <!-- Input Form -->
-        <div class="card p-8 mb-12 relative overflow-hidden">
+        <div class="card p-8 mb-12 relative overflow-hidden animate-fade-in delay-500">
           <div
             class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-error"
           ></div>
@@ -449,7 +449,7 @@
         </div>
 
         <!-- Progress Overview -->
-        <div class="card p-8 relative overflow-hidden">
+        <div class="card p-8 relative overflow-hidden animate-fade-in delay-700">
           <div
             class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning via-error to-success"
           ></div>
@@ -637,3 +637,33 @@ useHead({
   ],
 });
 </script>
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+</style>

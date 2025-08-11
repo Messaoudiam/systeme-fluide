@@ -33,7 +33,7 @@
       </section>
 
       <!-- Qui sommes-nous Section -->
-      <section class="py-12 relative">
+      <section class="py-12 relative animate-fade-in delay-500">
         <!-- Background pattern -->
         <div
           class="absolute inset-0 bg-gradient-to-b from-transparent via-black/5 to-transparent dark:via-white/5"
@@ -355,7 +355,7 @@
       </section>
 
       <!-- CTA Section -->
-      <section class="py-12 relative overflow-hidden">
+      <section class="py-12 relative overflow-hidden animate-fade-in delay-700">
         <!-- Gradient background -->
         <div
           class="absolute inset-0 bg-gradient-to-r from-black via-gray-darkest to-black dark:from-white dark:via-off-white dark:to-white"

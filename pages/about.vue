@@ -251,6 +251,123 @@
       </div>
     </section>
 
+    <!-- Podcast Section -->
+    <section class="py-24 relative overflow-hidden">
+      <!-- Gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-br from-success/5 via-warning/5 to-error/5 dark:from-success/10 dark:via-warning/10 dark:to-error/10"></div>
+      
+      <!-- Floating elements -->
+      <div class="absolute top-10 right-1/4 w-48 h-48 bg-gradient-to-br from-success/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-10 left-1/3 w-32 h-32 bg-gradient-to-br from-warning/20 to-transparent rounded-full blur-3xl animate-pulse delay-500"></div>
+      
+      <div class="max-w-6xl mx-auto px-6 relative">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-5xl font-light text-gradient mb-8">
+            Podcasts Référence
+          </h2>
+          <div class="w-32 h-1 bg-gradient-to-r from-success via-warning to-error rounded-full mx-auto mb-8"></div>
+          <p class="text-xl text-gray-medium dark:text-gray-light max-w-4xl mx-auto leading-relaxed">
+            Plongez dans l'univers du <strong class="text-gradient">Système Fluide</strong>
+            avec les podcasts <strong class="text-black dark:text-white">NRJTRO & TOXICITY</strong>
+          </p>
+        </div>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Podcast Info -->
+          <div class="space-y-8">
+            <!-- Platform Links -->
+            <div class="space-y-4">
+              <h4 class="text-lg font-medium text-black dark:text-white text-center mb-6">Écoutez sur vos plateformes préférées</h4>
+              
+              <!-- Spotify -->
+              <div class="flex justify-center">
+                <a 
+                  href="https://open.spotify.com/show/0x4XQr2Jn3N0dHjMjBFSG7" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="btn btn-primary px-8 py-4 text-lg relative overflow-hidden group"
+                >
+                  <span class="relative z-10 flex items-center space-x-3">
+                    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.6 0 12 0zm5.5 17.3c-.2.3-.6.4-.9.2-2.5-1.5-5.7-1.9-9.4-1 -.4.1-.8-.2-.9-.6-.1-.4.2-.8.6-.9 4.1-.9 7.7-.5 10.6 1.2.3.2.4.7.2 1zm1.3-2.9c-.3.4-.8.5-1.2.2-2.8-1.7-7.1-2.2-10.4-1.2-.5.1-1-.2-1.1-.7-.1-.5.2-1 .7-1.1 3.8-1.1 8.5-.6 11.8 1.4.4.2.5.8.2 1.2zm.1-3c-3.4-2-9-2.2-12.2-1.2-.6.2-1.2-.2-1.4-.8-.2-.6.2-1.2.8-1.4 3.7-1.1 10.1-.9 14 1.4.5.3.7 1 .4 1.5-.3.5-1 .7-1.5.4z"/>
+                    </svg>
+                    <span>Écouter sur Spotify</span>
+                  </span>
+                  <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </a>
+              </div>
+              
+              <!-- YouTube Section -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <!-- NRJTRO -->
+                <a 
+                  href="https://www.youtube.com/playlist?list=PLMWmRNk3IkgsqnJJawBToepeU-3SU44u6" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="card p-6 hover-lift group"
+                >
+                  <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-success to-warning rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-success transition-colors duration-300">NRJTRO</h5>
+                      <p class="text-sm text-gray-medium dark:text-gray-light">Conversations intimes & vraies</p>
+                      <p class="text-xs text-gray-medium dark:text-gray-light mt-1">Transformation personnelle</p>
+                    </div>
+                  </div>
+                </a>
+                
+                <!-- Toxicity -->
+                <a 
+                  href="https://www.youtube.com/playlist?list=PLMWmRNk3IkgtbSd1n1rrbQKl3KAlLQHpY" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="card p-6 hover-lift group"
+                >
+                  <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-error to-purple-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-error transition-colors duration-300">TOXICITY</h5>
+                      <p class="text-sm text-gray-medium dark:text-gray-light">Critique moderne du fitness</p>
+                      <p class="text-xs text-gray-medium dark:text-gray-light mt-1">Philosophie & méthodes</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              
+              <p class="text-center text-sm text-gray-medium dark:text-gray-light mt-4">
+                Choisissez votre format : audio sur Spotify ou vidéo sur YouTube
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Connection to Pyramids -->
+        <div class="mt-16 text-center">
+          <div class="glass-strong p-8 rounded-2xl max-w-2xl mx-auto">
+            <h4 class="text-xl font-medium text-black dark:text-white mb-4">
+              🎯 Connexion avec le Système Fluide
+            </h4>
+            <p class="text-gray-medium dark:text-gray-light leading-relaxed">
+              Lucas Gouiffes a démocratisé les 
+              <NuxtLink to="/pyramides-helms" class="text-gradient font-medium hover:underline">
+                pyramides de Helms
+              </NuxtLink>
+              dans le monde francophone, concepts fondamentaux intégrés dans notre application 
+              pour vous guider vers l'excellence physique.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ Section -->
     <section class="py-24 relative">
       <!-- Background pattern -->
