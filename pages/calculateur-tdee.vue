@@ -9,7 +9,7 @@
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 py-12">
       <!-- Header Section -->
-      <div class="text-center mb-12">
+      <div class="text-center mb-12 animate-fade-in">
         <h1 class="text-4xl md:text-5xl font-light text-gradient mb-6">
           Calculateur TDEE
         </h1>
@@ -19,7 +19,7 @@
       </div>
 
       <!-- Main Calculator Form -->
-      <div class="card p-8 mb-8">
+      <div class="card p-8 mb-8 animate-fade-in delay-300">
         <form @submit.prevent="calculateTDEE" class="space-y-8">
           <!-- Gender Selection -->
           <div class="space-y-3">
@@ -166,7 +166,7 @@
       </div>
 
       <!-- Info Section -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 animate-fade-in delay-500">
         <div class="card p-6">
           <h2 class="text-xl font-medium text-black dark:text-white mb-4">
             Qu'est-ce que le TDEE ?
@@ -189,7 +189,7 @@
       </div>
 
       <!-- SEO Content Section -->
-      <div class="space-y-8 mb-12">
+      <div class="space-y-8 mb-12 animate-fade-in delay-700">
         <!-- Why Use This Calculator -->
         <div class="card p-8">
           <h2 class="text-2xl font-medium text-black dark:text-white mb-6">
@@ -471,3 +471,33 @@ useHead({
   ]
 })
 </script>
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+</style>

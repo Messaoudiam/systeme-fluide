@@ -15,7 +15,7 @@
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
       <!-- Header -->
-      <div class="text-center mb-8">
+      <div class="text-center mb-8 animate-fade-in">
         <h1 class="text-4xl md:text-5xl font-light text-gradient mb-4">
           Vos Résultats TDEE
         </h1>
@@ -25,14 +25,14 @@
       </div>
 
       <!-- Back Button -->
-      <div class="mb-8">
+      <div class="mb-8 animate-fade-in delay-300">
         <NuxtLink to="/calculateur-tdee" class="btn btn-outline px-6 py-3">
           ← Nouveau calcul
         </NuxtLink>
       </div>
 
       <!-- Main Results Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 animate-fade-in delay-500">
         <!-- Main TDEE Card -->
         <div class="lg:col-span-2">
           <div class="card p-8">
@@ -130,148 +130,13 @@
             </div>
           </div>
 
-          <!-- Ideal Weight Range -->
-          <div class="card p-6">
-            <h3 class="text-lg font-medium text-black dark:text-white mb-4">
-              Poids Idéal Estimé
-            </h3>
-            <div class="text-2xl font-light text-gradient mb-2">
-              {{ results.idealWeight.min }}-{{ results.idealWeight.max }} kg
-            </div>
-            <div class="text-xs text-gray-medium dark:text-gray-light">
-              Basé sur différentes formules scientifiques
-            </div>
-          </div>
         </div>
       </div>
 
-      <!-- Detailed Metrics -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-        <!-- Ideal Weight Formulas -->
-        <div class="card p-6">
-          <h3 class="text-xl font-medium text-black dark:text-white mb-6">
-            Formules de Poids Idéal
-          </h3>
-          <div class="space-y-4">
-            <div v-for="formula in results.idealWeightFormulas" :key="formula.name" class="flex justify-between items-center">
-              <div>
-                <div class="font-medium text-black dark:text-white">
-                  {{ formula.name }}
-                </div>
-                <div class="text-sm text-gray-medium dark:text-gray-light">
-                  {{ formula.year }}
-                </div>
-              </div>
-              <div class="text-lg font-medium text-black dark:text-white">
-                {{ formula.weight }} kg
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Maximum Muscular Potential -->
-        <div class="card p-6">
-          <h3 class="text-xl font-medium text-black dark:text-white mb-6">
-            Potentiel Musculaire Maximum
-          </h3>
-          <div class="space-y-4">
-            <div class="text-center p-4 bg-gradient-to-r from-black/5 to-gray-darkest/5 dark:from-white/5 dark:to-white/5 rounded-xl">
-              <div class="text-2xl font-light text-gradient mb-1">
-                {{ results.maxMuscularPotential.at5Percent }} kg
-              </div>
-              <div class="text-sm text-gray-medium dark:text-gray-light">
-                à 5% de masse grasse
-              </div>
-            </div>
-            <div class="text-center">
-              <div class="text-lg font-medium text-black dark:text-white">
-                {{ results.maxMuscularPotential.at10Percent }} kg à 10%
-              </div>
-              <div class="text-lg font-medium text-black dark:text-white">
-                {{ results.maxMuscularPotential.at15Percent }} kg à 15%
-              </div>
-            </div>
-            <div class="text-xs text-gray-medium dark:text-gray-light text-center">
-              Formule Martin Berkhan
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Macronutrients Recommendations -->
-      <div class="card p-8">
-        <h3 class="text-2xl font-medium text-black dark:text-white mb-8 text-center">
-          Recommandations de Macronutriments
-        </h3>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Maintenance -->
-          <div class="text-center p-6 bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-2xl">
-            <h4 class="text-lg font-medium text-black dark:text-white mb-4">
-              Maintenance
-            </h4>
-            <div class="text-2xl font-light text-gradient mb-4">
-              {{ Math.round(results.tdee) }} cal/jour
-            </div>
-            <div class="space-y-2 text-sm">
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.maintenance.protein }}g</span> protéines
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.maintenance.fats }}g</span> lipides
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.maintenance.carbs }}g</span> glucides
-              </div>
-            </div>
-          </div>
-
-          <!-- Cutting -->
-          <div class="text-center p-6 bg-gradient-to-br from-orange-50 to-orange-100 dark:from-orange-900/20 dark:to-orange-800/20 rounded-2xl">
-            <h4 class="text-lg font-medium text-black dark:text-white mb-4">
-              Sèche (-20%)
-            </h4>
-            <div class="text-2xl font-light text-gradient mb-4">
-              {{ Math.round(results.tdee * 0.8) }} cal/jour
-            </div>
-            <div class="space-y-2 text-sm">
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.cutting.protein }}g</span> protéines
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.cutting.fats }}g</span> lipides
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.cutting.carbs }}g</span> glucides
-              </div>
-            </div>
-          </div>
-
-          <!-- Bulking -->
-          <div class="text-center p-6 bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl">
-            <h4 class="text-lg font-medium text-black dark:text-white mb-4">
-              Prise de masse (+15%)
-            </h4>
-            <div class="text-2xl font-light text-gradient mb-4">
-              {{ Math.round(results.tdee * 1.15) }} cal/jour
-            </div>
-            <div class="space-y-2 text-sm">
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.bulking.protein }}g</span> protéines
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.bulking.fats }}g</span> lipides
-              </div>
-              <div class="text-gray-dark dark:text-gray-light">
-                <span class="font-medium">{{ results.macros.bulking.carbs }}g</span> glucides
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
 
       <!-- Integration CTA -->
-      <div class="mt-12 card p-8 text-center">
+      <div class="mt-12 card p-8 text-center animate-fade-in delay-700">
         <h3 class="text-2xl font-medium text-black dark:text-white mb-4">
           Prêt à intégrer ces données ?
         </h3>
@@ -302,25 +167,6 @@ interface Results {
   tdee: number
   bmi: number
   bmiCategory: string
-  idealWeight: {
-    min: number
-    max: number
-  }
-  idealWeightFormulas: Array<{
-    name: string
-    year: string
-    weight: number
-  }>
-  maxMuscularPotential: {
-    at5Percent: number
-    at10Percent: number
-    at15Percent: number
-  }
-  macros: {
-    maintenance: { protein: number; fats: number; carbs: number }
-    cutting: { protein: number; fats: number; carbs: number }
-    bulking: { protein: number; fats: number; carbs: number }
-  }
 }
 
 // Désactiver SSR pour éviter les erreurs de query parsing
@@ -406,88 +252,6 @@ const calculateBMI = (weight: number, height: number) => {
   return { bmi, category }
 }
 
-// Ideal Weight Calculations
-const calculateIdealWeight = (profile: UserProfile) => {
-  const { gender, height } = profile
-  const heightInches = height / 2.54
-  
-  // Hamwi Formula
-  let hamwi: number
-  if (gender === 'male') {
-    hamwi = 48 + 2.7 * (heightInches - 60)
-  } else {
-    hamwi = 45.5 + 2.2 * (heightInches - 60)
-  }
-  
-  // Devine Formula
-  let devine: number
-  if (gender === 'male') {
-    devine = 50 + 2.3 * (heightInches - 60)
-  } else {
-    devine = 45.5 + 2.3 * (heightInches - 60)
-  }
-  
-  // Robinson Formula
-  let robinson: number
-  if (gender === 'male') {
-    robinson = 52 + 1.9 * (heightInches - 60)
-  } else {
-    robinson = 49 + 1.7 * (heightInches - 60)
-  }
-  
-  // Miller Formula
-  let miller: number
-  if (gender === 'male') {
-    miller = 56.2 + 1.41 * (heightInches - 60)
-  } else {
-    miller = 53.1 + 1.36 * (heightInches - 60)
-  }
-  
-  const weights = [hamwi, devine, robinson, miller]
-  
-  return {
-    min: Math.round(Math.min(...weights)),
-    max: Math.round(Math.max(...weights)),
-    formulas: [
-      { name: 'Hamwi', year: '1964', weight: Math.round(hamwi) },
-      { name: 'Devine', year: '1974', weight: Math.round(devine) },
-      { name: 'Robinson', year: '1983', weight: Math.round(robinson) },
-      { name: 'Miller', year: '1983', weight: Math.round(miller) }
-    ]
-  }
-}
-
-// Maximum Muscular Potential (Martin Berkhan formula)
-const calculateMaxMuscularPotential = (profile: UserProfile) => {
-  const { height } = profile
-  const heightInches = height / 2.54
-  
-  // Base calculation at 5% body fat
-  const at5Percent = Math.round(2.205 * (heightInches - 70) + 86.4)
-  const at10Percent = Math.round(at5Percent * 1.1)
-  const at15Percent = Math.round(at5Percent * 1.18)
-  
-  return {
-    at5Percent,
-    at10Percent,
-    at15Percent
-  }
-}
-
-// Macronutrients calculation
-const calculateMacros = (calories: number, weight: number) => {
-  // 30/35/35 split (protein/fat/carbs)
-  const proteinCals = calories * 0.30
-  const fatCals = calories * 0.35
-  const carbCals = calories * 0.35
-  
-  return {
-    protein: Math.round(proteinCals / 4), // 4 cal per gram
-    fats: Math.round(fatCals / 9), // 9 cal per gram
-    carbs: Math.round(carbCals / 4) // 4 cal per gram
-  }
-}
-
 // Calculate all results - computed pour réactivité
 const results = computed<Results | null>(() => {
   if (!userProfile.value) return null
@@ -495,26 +259,13 @@ const results = computed<Results | null>(() => {
   const profile = userProfile.value
   const bmrResult = calculateBMR(profile)
   const bmiResult = calculateBMI(profile.weight, profile.height)
-  const idealWeightResult = calculateIdealWeight(profile)
-  const maxMuscularResult = calculateMaxMuscularPotential(profile)
 
   return {
     bmr: bmrResult.bmr,
     bmrFormula: bmrResult.formula,
     tdee: bmrResult.bmr * profile.activityLevel,
     bmi: bmiResult.bmi,
-    bmiCategory: bmiResult.category,
-    idealWeight: {
-      min: idealWeightResult.min,
-      max: idealWeightResult.max
-    },
-    idealWeightFormulas: idealWeightResult.formulas,
-    maxMuscularPotential: maxMuscularResult,
-    macros: {
-      maintenance: calculateMacros(bmrResult.bmr * profile.activityLevel, profile.weight),
-      cutting: calculateMacros(bmrResult.bmr * profile.activityLevel * 0.8, profile.weight),
-      bulking: calculateMacros(bmrResult.bmr * profile.activityLevel * 1.15, profile.weight)
-    }
+    bmiCategory: bmiResult.category
   }
 })
 
@@ -526,11 +277,11 @@ watch([results, userProfile], () => {
       meta: [
         {
           name: 'description',
-          content: `Résultats TDEE personnalisés: ${Math.round(results.value.tdee)} calories/jour, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)} (${results.value.bmiCategory}), poids idéal ${results.value.idealWeight.min}-${results.value.idealWeight.max}kg. Macronutriments optimisés inclus.`
+          content: `Résultats TDEE personnalisés: ${Math.round(results.value.tdee)} calories/jour, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)} (${results.value.bmiCategory}).`
         },
         {
           name: 'keywords',
-          content: `TDEE ${Math.round(results.value.tdee)} calories, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)}, poids idéal, macronutriments, ${userProfile.value.gender === 'male' ? 'homme' : 'femme'} ${userProfile.value.age} ans`
+          content: `TDEE ${Math.round(results.value.tdee)} calories, BMR ${Math.round(results.value.bmr)}, IMC ${results.value.bmi.toFixed(1)}, ${userProfile.value.gender === 'male' ? 'homme' : 'femme'} ${userProfile.value.age} ans`
         },
         {
           property: 'og:title',
@@ -538,7 +289,7 @@ watch([results, userProfile], () => {
         },
         {
           property: 'og:description',
-          content: `TDEE: ${Math.round(results.value.tdee)} cal/jour • BMR: ${Math.round(results.value.bmr)} • IMC: ${results.value.bmi.toFixed(1)} • Poids idéal: ${results.value.idealWeight.min}-${results.value.idealWeight.max}kg`
+          content: `TDEE: ${Math.round(results.value.tdee)} cal/jour • BMR: ${Math.round(results.value.bmr)} • IMC: ${results.value.bmi.toFixed(1)}`
         },
         {
           property: 'og:type',
@@ -557,3 +308,33 @@ watch([results, userProfile], () => {
   }
 }, { immediate: true })
 </script>
+
+<style scoped>
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.delay-700 {
+  animation-delay: 0.7s;
+}
+</style>
