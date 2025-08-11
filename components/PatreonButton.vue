@@ -40,7 +40,7 @@ interface Props {
 
 const { href, label, size, variant } = withDefaults(defineProps<Props>(), {
   href: "https://www.patreon.com/posts/guide-complet-le-134710204?source=storefront",
-  label: "Guide complet — Le Système Fluide",
+  label: "Guide complet du Système Fluide",
   size: "md",
   variant: "outline",
 });

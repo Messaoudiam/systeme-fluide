@@ -57,6 +57,13 @@ export default {
           600: '#c53030',
           900: '#7f1d1d'
         },
+        info: {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          500: '#3b82f6',
+          600: '#2563eb',
+          900: '#1e3a8a'
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

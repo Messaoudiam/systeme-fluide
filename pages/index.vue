@@ -40,15 +40,7 @@
             <div
               class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 animate-fade-in delay-700"
             >
-              <NuxtLink
-                to="/dashboard"
-                class="btn btn-primary px-10 py-5 text-lg shadow-2xl relative group overflow-hidden"
-              >
-                <span class="relative z-10">Commencer le tracking</span>
-                <div
-                  class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                ></div>
-              </NuxtLink>
+              <PatreonButton size="lg" variant="primary" />
               <NuxtLink to="/about" class="btn btn-outline px-10 py-5 text-lg">
                 En savoir plus
               </NuxtLink>
@@ -260,7 +252,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16">
               <div class="card p-8 text-left group">
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-success to-success/70 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
                 >
                   <svg
                     class="w-6 h-6 text-white"
@@ -289,7 +281,7 @@
 
               <div class="card p-8 text-left group">
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-warning to-warning/70 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
                 >
                   <svg
                     class="w-6 h-6 text-white"
@@ -318,7 +310,7 @@
 
               <div class="card p-8 text-left group">
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-error to-error/70 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
                 >
                   <svg
                     class="w-6 h-6 text-white"
@@ -347,10 +339,10 @@
 
               <div class="card p-8 text-left group">
                 <div
-                  class="w-12 h-12 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+                  class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
                 >
                   <svg
-                    class="w-6 h-6 text-white dark:text-black"
+                    class="w-6 h-6 text-white"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"

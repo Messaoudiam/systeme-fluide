@@ -154,9 +154,6 @@
               La feuille de route complète pour progresser à vie, tout en évitant les erreurs classiques. Vous gagnez des années de tâtonnements.
             </p>
             <div class="mt-6 flex justify-center">
-              <div class="px-4 py-2 bg-success/10 text-success rounded-full text-sm font-medium">
-                Idéal pour commencer
-              </div>
             </div>
           </div>
 
@@ -171,9 +168,6 @@
               Des directions claires et un système de progression illimité. Débloquez enfin votre progression et maintenez vos résultats durablement.
             </p>
             <div class="mt-6 flex justify-center">
-              <div class="px-4 py-2 bg-warning/10 text-warning rounded-full text-sm font-medium">
-                Optimisez vos résultats
-              </div>
             </div>
           </div>
 
@@ -187,11 +181,6 @@
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Un système complet pour délivrer plus de valeur à vos élèves avec une méthodologie scientifique éprouvée.
             </p>
-            <div class="mt-6 flex justify-center">
-              <div class="px-4 py-2 bg-error/10 text-error rounded-full text-sm font-medium">
-                Méthodologie complète
-              </div>
-            </div>
           </div>
         </div>
       </div>

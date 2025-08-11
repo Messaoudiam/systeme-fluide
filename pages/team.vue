@@ -67,7 +67,7 @@
                 </h3>
 
                 <p
-                  class="text-gray-300 dark:text-gray-300 leading-relaxed mb-8"
+                  class="text-gray-600 dark:text-gray-300 leading-relaxed mb-8"
                 >
                   Expert en transformation physique avec plus de 10 ans
                   d'expérience dans l'optimisation des performances. Spécialiste
@@ -82,7 +82,7 @@
                     href="https://fr.esn.com/instagram/lucasg"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-success to-success/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="Boutique ESN avec code LUCASG"
                   >
                     <svg
@@ -99,7 +99,7 @@
                     href="https://www.instagram.com/lucasgouiffes/"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-success to-success/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="Instagram de Lucas"
                   >
                     <svg
@@ -116,7 +116,7 @@
                     href="https://www.youtube.com/@LucasGouiffes"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-success to-success/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="YouTube de Lucas"
                   >
                     <svg
@@ -132,13 +132,13 @@
                 </div>
 
                 <!-- Code promo Lucas -->
-                <div class="glass-strong p-6 rounded-xl">
-                  <p class="text-sm text-gray-300 dark:text-gray-300 mb-3">
+                <div class="bg-gray-100 dark:bg-gray-dark/70 backdrop-blur-sm border border-gray-200 dark:border-gray-medium/50 p-6 rounded-xl">
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
                     Codes promo exclusifs :
                   </p>
                   <div class="space-y-3">
                     <div
-                      class="flex items-center justify-between bg-gradient-to-r from-success/10 to-success/5 p-3 rounded-lg"
+                      class="flex items-center justify-between bg-gradient-to-r from-success/20 to-success/10 p-3 rounded-lg"
                     >
                       <div class="flex items-center space-x-2">
                         <span
@@ -205,7 +205,7 @@
                 </h3>
 
                 <p
-                  class="text-gray-300 dark:text-gray-300 leading-relaxed mb-8"
+                  class="text-gray-600 dark:text-gray-300 leading-relaxed mb-8"
                 >
                   Passionné de fitness et expert en nutrition sportive. Antoine
                   combine une approche scientifique rigoureuse avec une
@@ -220,7 +220,7 @@
                     href="https://fr.esn.com/instagram/gbz"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-warning to-warning/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="Boutique ESN avec code GBZ"
                   >
                     <svg
@@ -237,7 +237,7 @@
                     href="https://www.instagram.com/antoine_gbz/"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-warning to-warning/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="Instagram d'Antoine"
                   >
                     <svg
@@ -254,7 +254,7 @@
                     href="https://www.youtube.com/@antoine_gbz"
                     target="_blank"
                     rel="noopener"
-                    class="w-12 h-12 bg-gradient-to-br from-warning to-warning/70 rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
+                    class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center hover:scale-110 transition-transform duration-300 group/icon"
                     title="YouTube d'Antoine"
                   >
                     <svg
@@ -270,13 +270,13 @@
                 </div>
 
                 <!-- Codes promo Antoine -->
-                <div class="glass-strong p-6 rounded-xl">
-                  <p class="text-sm text-gray-300 dark:text-gray-300 mb-3">
+                <div class="bg-gray-100 dark:bg-gray-dark/70 backdrop-blur-sm border border-gray-200 dark:border-gray-medium/50 p-6 rounded-xl">
+                  <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
                     Codes promo exclusifs :
                   </p>
                   <div class="space-y-3">
                     <div
-                      class="flex items-center justify-between bg-gradient-to-r from-warning/10 to-warning/5 p-3 rounded-lg"
+                      class="flex items-center justify-between bg-gradient-to-r from-warning/20 to-warning/10 p-3 rounded-lg"
                     >
                       <div class="flex items-center space-x-2">
                         <span
@@ -313,7 +313,7 @@
                       </button>
                     </div>
                     <div
-                      class="flex items-center justify-between bg-gradient-to-r from-error/10 to-error/5 p-3 rounded-lg"
+                      class="flex items-center justify-between bg-gradient-to-r from-error/20 to-error/10 p-3 rounded-lg"
                     >
                       <div class="flex items-center space-x-2">
                         <span
