@@ -237,12 +237,12 @@
           </div>
 
           <div class="card p-8 text-left group hover-lift">
-            <div class="w-12 h-12 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-              <svg class="w-6 h-6 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-black dark:group-hover:text-white transition-colors duration-300">Basé sur la science</h3>
+            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-medium transition-colors duration-300">Basé sur la science</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Méthodologie nourrie par les recherches scientifiques récentes et des dizaines d'années d'expérience de coaching terrain.
             </p>
@@ -307,7 +307,7 @@
                   class="card p-6 hover-lift group"
                 >
                   <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-success to-warning rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                       </svg>
@@ -328,7 +328,7 @@
                   class="card p-6 hover-lift group"
                 >
                   <div class="flex items-center space-x-4">
-                    <div class="w-12 h-12 bg-gradient-to-br from-error to-purple-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <div class="w-12 h-12 bg-gradient-to-br from-gray-medium to-gray-dark rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                       </svg>
@@ -496,20 +496,6 @@
         </div>
         
         <!-- Trust indicators -->
-        <div class="flex justify-center items-center space-x-8 opacity-70">
-          <div class="flex items-center space-x-2">
-            <div class="text-2xl">🌟</div>
-            <div class="text-white dark:text-black text-sm">Système éprouvé</div>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div class="text-2xl">📊</div>
-            <div class="text-white dark:text-black text-sm">Progression garantie</div>
-          </div>
-          <div class="flex items-center space-x-2">
-            <div class="text-2xl">🏆</div>
-            <div class="text-white dark:text-black text-sm">10K+ utilisateurs</div>
-          </div>
-        </div>
       </div>
     </section>
     </div>

@@ -61,7 +61,7 @@
               <div class="space-y-3">
                 <div 
                   v-for="activity in activityBreakdown"
-                  :key="activity.level"
+                  :key="activity.multiplier"
                   :class="[
                     'flex justify-between items-center p-4 rounded-xl transition-all duration-300',
                     activity.multiplier === userProfile?.activityLevel
