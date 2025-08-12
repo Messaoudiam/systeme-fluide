@@ -3,6 +3,7 @@ import { users } from '~/database/schema'
 import type { LoginCredentials } from '~/types/auth'
 import { generateToken, setJWTCookie } from '~/server/utils/jwt'
 import { verifyPassword } from '~/server/utils/password'
+import { checkRateLimit, recordLoginAttempt, getClientIP, formatTimeRemaining } from '~/server/utils/rate-limiter'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<LoginCredentials>(event)
@@ -14,6 +15,23 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+  // Obtenir l'IP du client pour le rate limiting
+  const clientIP = getClientIP(event)
+  
+  // Vérifier le rate limiting AVANT toute opération
+  const rateLimitCheck = checkRateLimit(clientIP, body.email)
+  
+  if (!rateLimitCheck.allowed) {
+    const timeRemaining = rateLimitCheck.blockedUntil 
+      ? formatTimeRemaining(rateLimitCheck.blockedUntil)
+      : 'quelques minutes'
+    
+    throw createError({
+      statusCode: 429,
+      statusMessage: `Trop de tentatives de connexion. Réessayez dans ${timeRemaining}.`
+    })
+  }
+
   try {
     const db = await useDatabase()
     
@@ -21,6 +39,8 @@ export default defineEventHandler(async (event) => {
     const dbUser = await db.select().from(users).where(eq(users.email, body.email)).limit(1)
     
     if (dbUser.length === 0) {
+      // Enregistrer la tentative échouée
+      recordLoginAttempt(clientIP, body.email, false)
       throw createError({
         statusCode: 401,
         statusMessage: 'Identifiants invalides'
@@ -33,6 +53,8 @@ export default defineEventHandler(async (event) => {
     const isPasswordValid = await verifyPassword(body.password, user.password)
     
     if (!isPasswordValid) {
+      // Enregistrer la tentative échouée
+      recordLoginAttempt(clientIP, body.email, false)
       throw createError({
         statusCode: 401,
         statusMessage: 'Identifiants invalides'
@@ -52,6 +74,9 @@ export default defineEventHandler(async (event) => {
     
     // Définir le cookie JWT sécurisé
     setJWTCookie(event, token)
+    
+    // Enregistrer la connexion réussie (reset le compteur)
+    recordLoginAttempt(clientIP, body.email, true)
     
     return {
       user: authUser,
