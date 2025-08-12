@@ -62,6 +62,7 @@ export const useDatabase = () => {
 
   // Sauvegarder les données quotidiennes
   const saveDailyData = async (userId: number, dailyData: {
+    date?: string
     calories?: number
     proteins?: number
     carbs?: number

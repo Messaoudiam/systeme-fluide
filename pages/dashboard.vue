@@ -235,6 +235,19 @@
           </div>
 
           <form @submit.prevent="saveDailyData" class="space-y-8">
+            <!-- Sélecteur de date -->
+            <div class="mb-8">
+              <label class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3">
+                Date de saisie
+              </label>
+              <input
+                v-model="formData.selectedDate"
+                type="date"
+                class="input-modern w-full md:w-auto"
+                @change="onDateChange"
+              />
+            </div>
+
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <!-- Calories et Macros -->
               <div class="space-y-6">
@@ -565,6 +578,7 @@ definePageMeta({
 
 // Data réactive pour le formulaire (sans .value pour éviter les erreurs SSR)
 const formData = reactive<{
+  selectedDate: string;
   calories: number | null;
   proteins: number | null;
   carbs: number | null;
@@ -574,6 +588,7 @@ const formData = reactive<{
   workout: boolean;
   workoutName: string;
 }>({
+  selectedDate: new Date().toISOString().split('T')[0],
   calories: null,
   proteins: null,
   carbs: null,
@@ -615,12 +630,12 @@ onMounted(async () => {
 })
 
 // Fonction pour charger toutes les données du dashboard
-const loadDashboardData = async () => {
+const loadDashboardData = async (date?: string) => {
   isLoading.value = true
   
   try {
-    // Charger les stats quotidiennes
-    const dailyResult = await getDailyStats(user.value!.id)
+    // Charger les stats quotidiennes pour la date spécifiée
+    const dailyResult = await getDailyStats(user.value!.id, date)
     if (dailyResult.success && dailyResult.data) {
       Object.assign(dailyStats, dailyResult.data)
     }
@@ -635,6 +650,11 @@ const loadDashboardData = async () => {
   } finally {
     isLoading.value = false
   }
+}
+
+// Fonction appelée lors du changement de date
+const onDateChange = () => {
+  loadDashboardData(formData.selectedDate)
 }
 
 // Date actuelle
@@ -660,6 +680,7 @@ const saveDailyData = async () => {
 
   try {
     const result = await saveUserDailyData(user.value.id, {
+      date: formData.selectedDate,
       calories: formData.calories || undefined,
       proteins: formData.proteins || undefined,
       carbs: formData.carbs || undefined,
@@ -674,7 +695,7 @@ const saveDailyData = async () => {
       // Recharger les données du dashboard
       await loadDashboardData();
 
-      // Reset du formulaire
+      // Reset du formulaire (sans la date)
       Object.assign(formData, {
         calories: null,
         proteins: null,
@@ -684,6 +705,7 @@ const saveDailyData = async () => {
         steps: null,
         workout: false,
         workoutName: "",
+        selectedDate: formData.selectedDate, // On garde la date sélectionnée
       });
 
       // Feedback utilisateur (client uniquement)
