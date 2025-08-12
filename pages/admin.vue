@@ -213,15 +213,15 @@
           </button>
         </div>
 
-        <!-- Contenu du modal -->
-        <div class="flex-1 overflow-hidden p-6">
+        <!-- Contenu du modal avec scroll -->
+        <div class="flex-1 overflow-y-auto">
           <!-- État de chargement -->
           <div v-if="isLoadingUsers" class="flex justify-center items-center py-12">
             <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"></div>
           </div>
 
           <!-- Erreur -->
-          <div v-else-if="usersError" class="text-center py-12">
+          <div v-else-if="usersError" class="text-center py-12 px-6">
             <div class="text-red-500 mb-4">
               <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -235,72 +235,74 @@
           </div>
 
           <!-- Liste des utilisateurs -->
-          <div v-else class="h-full overflow-hidden flex flex-col">
+          <div v-else class="px-6 pb-6">
             <div class="mb-4 text-sm text-gray-medium dark:text-gray-light">
               {{ users.length }} utilisateurs au total
             </div>
 
-            <div class="flex-1 overflow-auto">
-              <table class="w-full">
-                <thead class="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10 sticky top-0">
-                  <tr>
-                    <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                      Utilisateur
-                    </th>
-                    <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                      Email
-                    </th>
-                    <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                      Rôle
-                    </th>
-                    <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                      Date d'inscription
-                    </th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-gray-light/20 dark:divide-gray-medium/20">
-                  <tr 
-                    v-for="user in users" 
-                    :key="user.id"
-                    class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-200"
-                  >
-                    <td class="p-4">
-                      <div class="flex items-center space-x-3">
-                        <div class="w-10 h-10 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-gray-light rounded-full flex items-center justify-center">
-                          <span class="text-white dark:text-black font-semibold text-sm">
-                            {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
-                          </span>
+            <div class="border border-gray-light/20 dark:border-gray-medium/20 rounded-lg overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[600px]">
+                  <thead class="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10">
+                    <tr>
+                      <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Utilisateur
+                      </th>
+                      <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Email
+                      </th>
+                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Rôle
+                      </th>
+                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Date d'inscription
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-light/20 dark:divide-gray-medium/20 bg-white dark:bg-gray-darkest">
+                    <tr 
+                      v-for="user in users" 
+                      :key="user.id"
+                      class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-200"
+                    >
+                      <td class="p-4">
+                        <div class="flex items-center space-x-3">
+                          <div class="w-10 h-10 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-gray-light rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white dark:text-black font-semibold text-sm">
+                              {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+                            </span>
+                          </div>
+                          <div class="min-w-0">
+                            <p class="font-medium text-black dark:text-white truncate">
+                              {{ user.firstName }} {{ user.lastName }}
+                            </p>
+                            <p v-if="user.gender" class="text-sm text-gray-medium dark:text-gray-light">
+                              {{ user.gender === 'M' ? 'Homme' : 'Femme' }}
+                            </p>
+                          </div>
                         </div>
-                        <div>
-                          <p class="font-medium text-black dark:text-white">
-                            {{ user.firstName }} {{ user.lastName }}
-                          </p>
-                          <p v-if="user.gender" class="text-sm text-gray-medium dark:text-gray-light">
-                            {{ user.gender === 'M' ? 'Homme' : 'Femme' }}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="p-4">
-                      <p class="text-black dark:text-white">{{ user.email }}</p>
-                    </td>
-                    <td class="p-4 text-center">
-                      <span 
-                        :class="user.role === 'admin' 
-                          ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium' 
-                          : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium'"
-                      >
-                        {{ user.role === 'admin' ? 'Admin' : 'Utilisateur' }}
-                      </span>
-                    </td>
-                    <td class="p-4 text-center">
-                      <p class="text-black dark:text-white">
-                        {{ formatDate(user.createdAt) }}
-                      </p>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                      </td>
+                      <td class="p-4">
+                        <p class="text-black dark:text-white truncate">{{ user.email }}</p>
+                      </td>
+                      <td class="p-4 text-center">
+                        <span 
+                          :class="user.role === 'admin' 
+                            ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap' 
+                            : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap'"
+                        >
+                          {{ user.role === 'admin' ? 'Admin' : 'Utilisateur' }}
+                        </span>
+                      </td>
+                      <td class="p-4 text-center">
+                        <p class="text-black dark:text-white text-sm whitespace-nowrap">
+                          {{ formatDate(user.createdAt) }}
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
