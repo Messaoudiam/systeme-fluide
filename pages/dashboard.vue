@@ -626,6 +626,7 @@ const isLoading = ref(true)
 onMounted(async () => {
   if (user.value?.id) {
     await loadDashboardData()
+    await loadFormData(formData.selectedDate)
   }
 })
 
@@ -652,9 +653,44 @@ const loadDashboardData = async (date?: string) => {
   }
 }
 
+// Fonction pour pré-remplir le formulaire avec les données existantes
+const loadFormData = async (date: string) => {
+  try {
+    const dailyResult = await getDailyStats(user.value!.id, date)
+    if (dailyResult.success && dailyResult.data) {
+      const data = dailyResult.data
+      // Pré-remplir le formulaire avec les données existantes
+      formData.calories = data.calories || null
+      formData.weight = data.weight || null  
+      formData.steps = data.steps || null
+      formData.workout = data.workout || false
+      formData.workoutName = data.workoutName || ""
+      
+      // Pour les macros, on les extrait du mealDetails si possible
+      // Sinon on laisse vides pour une nouvelle saisie
+      formData.proteins = null
+      formData.carbs = null  
+      formData.fats = null
+    } else {
+      // Aucune donnée pour cette date - reset du formulaire
+      formData.calories = null
+      formData.proteins = null
+      formData.carbs = null
+      formData.fats = null
+      formData.weight = null
+      formData.steps = null
+      formData.workout = false
+      formData.workoutName = ""
+    }
+  } catch (error) {
+    console.error('Erreur lors du chargement des données du formulaire:', error)
+  }
+}
+
 // Fonction appelée lors du changement de date
 const onDateChange = () => {
   loadDashboardData(formData.selectedDate)
+  loadFormData(formData.selectedDate)
 }
 
 // Date actuelle
@@ -692,21 +728,11 @@ const saveDailyData = async () => {
     });
 
     if (result.success) {
-      // Recharger les données du dashboard
-      await loadDashboardData();
+      // Recharger les données du dashboard pour mettre à jour les statistiques
+      await loadDashboardData(formData.selectedDate);
 
-      // Reset du formulaire (sans la date)
-      Object.assign(formData, {
-        calories: null,
-        proteins: null,
-        carbs: null,
-        fats: null,
-        weight: null,
-        steps: null,
-        workout: false,
-        workoutName: "",
-        selectedDate: formData.selectedDate, // On garde la date sélectionnée
-      });
+      // Ne pas reset le formulaire - garder les données saisies visibles
+      // L'utilisateur peut ainsi voir ce qu'il a saisi et modifier si besoin
 
       // Feedback utilisateur (client uniquement)
       if (process.client) {
