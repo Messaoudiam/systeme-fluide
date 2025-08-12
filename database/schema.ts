@@ -4,8 +4,10 @@ import { relations } from "drizzle-orm";
 export const users = pgTable("users", {
   id: uuid("id").defaultRandom().primaryKey(),
   email: text("email").notNull().unique(),
+  password: text("password").notNull(),
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
+  role: text("role", { enum: ["admin", "user"] }).default("user").notNull(),
   birthDate: date("birth_date"),
   gender: text("gender"),
   heightCm: numeric("height_cm", { precision: 5, scale: 2 }),

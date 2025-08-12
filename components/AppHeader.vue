@@ -58,6 +58,38 @@
 
         <!-- Right actions -->
         <div class="flex items-center space-x-2">
+          <!-- User menu (if authenticated) -->
+          <div v-if="isLoggedIn" class="hidden md:flex items-center space-x-2">
+            <span class="text-sm text-black/70 dark:text-white/70">
+              Bonjour, {{ user?.firstName }}
+            </span>
+            
+            <!-- Admin link -->
+            <NuxtLink
+              v-if="isAdmin"
+              to="/admin"
+              class="px-3 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors"
+            >
+              Admin
+            </NuxtLink>
+            
+            <button
+              @click="handleLogout"
+              class="px-3 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+            >
+              Déconnexion
+            </button>
+          </div>
+          
+          <!-- Login button (if not authenticated) -->
+          <NuxtLink
+            v-else
+            to="/login"
+            class="hidden md:inline-flex px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+          >
+            Connexion
+          </NuxtLink>
+          
           <!-- Theme toggle -->
           <button
             type="button"
@@ -166,6 +198,38 @@
           >
             {{ link.label }}
           </NuxtLink>
+          <!-- Mobile auth buttons -->
+          <div v-if="isLoggedIn" class="pt-2 border-t border-gray-light/30 dark:border-gray-medium/20">
+            <div class="flex flex-col space-y-2">
+              <div class="px-4 py-2 text-sm text-black/70 dark:text-white/70">
+                Bonjour, {{ user?.firstName }} {{ user?.lastName }}
+              </div>
+              
+              <NuxtLink
+                v-if="isAdmin"
+                to="/admin"
+                class="px-4 py-2 text-sm font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors text-center"
+              >
+                Panneau Admin
+              </NuxtLink>
+              
+              <button
+                @click="handleLogout"
+                class="px-4 py-2 text-sm font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+              >
+                Déconnexion
+              </button>
+            </div>
+          </div>
+          
+          <NuxtLink
+            v-else
+            to="/login"
+            class="btn btn-primary px-5 py-3 text-center"
+          >
+            Connexion
+          </NuxtLink>
+          
           <NuxtLink
             to="/dashboard"
             class="btn btn-primary px-5 py-3 text-center"
@@ -182,6 +246,9 @@
 const route = useRoute();
 const isMenuOpen = ref(false);
 
+// Authentication state
+const { user, isLoggedIn, isAdmin, logout } = useAuth();
+
 // Close menu on route change
 const stopWatch = watch(
   () => route.fullPath,
@@ -195,6 +262,12 @@ onBeforeUnmount(() => stopWatch());
 const colorMode = useColorMode();
 const toggleColorMode = () => {
   colorMode.preference = colorMode.value === "dark" ? "light" : "dark";
+};
+
+// Handle logout
+const handleLogout = async () => {
+  await logout();
+  isMenuOpen.value = false;
 };
 
 const navLinks = [

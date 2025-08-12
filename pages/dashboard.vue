@@ -547,6 +547,11 @@
 </template>
 
 <script setup lang="ts">
+// Protection de la page - accès uniquement aux utilisateurs connectés
+definePageMeta({
+  middleware: 'auth'
+})
+
 // Data réactive pour le formulaire (sans .value pour éviter les erreurs SSR)
 const formData = reactive<{
   calories: number | null;
