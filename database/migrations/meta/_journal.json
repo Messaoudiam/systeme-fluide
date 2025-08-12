@@ -22,6 +22,13 @@
       "when": 1754984960311,
       "tag": "0002_married_the_hood",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1755002849898,
+      "tag": "0003_clumsy_mandroid",
+      "breakpoints": true
     }
   ]
 }

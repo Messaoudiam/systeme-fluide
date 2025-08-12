@@ -661,16 +661,13 @@ const loadFormData = async (date: string) => {
       const data = dailyResult.data
       // Pré-remplir le formulaire avec les données existantes
       formData.calories = data.calories || null
+      formData.proteins = data.proteins || null
+      formData.carbs = data.carbs || null  
+      formData.fats = data.fats || null
       formData.weight = data.weight || null  
       formData.steps = data.steps || null
       formData.workout = data.workout || false
       formData.workoutName = data.workoutName || ""
-      
-      // Pour les macros, on les extrait du mealDetails si possible
-      // Sinon on laisse vides pour une nouvelle saisie
-      formData.proteins = null
-      formData.carbs = null  
-      formData.fats = null
     } else {
       // Aucune donnée pour cette date - reset du formulaire
       formData.calories = null

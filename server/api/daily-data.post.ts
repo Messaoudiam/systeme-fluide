@@ -76,6 +76,9 @@ export default defineEventHandler(async (event) => {
         await db.update(dailyCalories)
           .set({ 
             totalCalories: calories,
+            proteinsGrams: proteins,
+            carbsGrams: carbs,
+            fatsGrams: fats,
             mealDetails: `Protéines: ${proteins || 0}g, Glucides: ${carbs || 0}g, Lipides: ${fats || 0}g`,
             updatedAt: new Date()
           })
@@ -89,6 +92,9 @@ export default defineEventHandler(async (event) => {
           userId,
           logDate: targetDate,
           totalCalories: calories,
+          proteinsGrams: proteins,
+          carbsGrams: carbs,
+          fatsGrams: fats,
           mealDetails: `Protéines: ${proteins || 0}g, Glucides: ${carbs || 0}g, Lipides: ${fats || 0}g`
         })
       }

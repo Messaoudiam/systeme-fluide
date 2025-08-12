@@ -93,6 +93,9 @@ export default defineEventHandler(async (event) => {
     // Construire l'objet de réponse
     const response = {
       calories: caloriesData?.totalCalories || 0,
+      proteins: caloriesData?.proteinsGrams || 0,
+      carbs: caloriesData?.carbsGrams || 0,
+      fats: caloriesData?.fatsGrams || 0,
       weight: weightData?.weightKg ? parseFloat(weightData.weightKg) : 0,
       steps: stepsData?.stepCount || 0,
       workout: !!workoutData,
