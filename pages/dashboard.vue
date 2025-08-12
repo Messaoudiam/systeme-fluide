@@ -703,9 +703,7 @@ const currentDate = computed(() => {
 // Fonction pour sauvegarder les données
 const saveDailyData = async () => {
   if (!user.value?.id) {
-    if (process.client) {
-      alert("Erreur: utilisateur non connecté");
-    }
+    console.error("Erreur: utilisateur non connecté");
     return;
   }
 
@@ -730,21 +728,11 @@ const saveDailyData = async () => {
 
       // Ne pas reset le formulaire - garder les données saisies visibles
       // L'utilisateur peut ainsi voir ce qu'il a saisi et modifier si besoin
-
-      // Feedback utilisateur (client uniquement)
-      if (process.client) {
-        alert("Données sauvegardées avec succès !");
-      }
     } else {
-      if (process.client) {
-        alert("Erreur lors de la sauvegarde: " + result.error);
-      }
+      console.error("Erreur lors de la sauvegarde:", result.error);
     }
   } catch (error) {
     console.error("Erreur lors de la sauvegarde:", error);
-    if (process.client) {
-      alert("Erreur lors de la sauvegarde des données");
-    }
   } finally {
     isLoading.value = false;
   }
