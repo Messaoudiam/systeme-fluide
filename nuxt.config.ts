@@ -12,5 +12,11 @@ export default defineNuxtConfig({
   
   colorMode: {
     classSuffix: ''
+  },
+
+  nitro: {
+    imports: {
+      dirs: ['database']
+    }
   }
 })
