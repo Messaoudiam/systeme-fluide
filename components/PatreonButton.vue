@@ -38,12 +38,12 @@ interface Props {
   variant?: "primary" | "outline";
 }
 
-const { href, label, size, variant } = withDefaults(defineProps<Props>(), {
-  href: "https://www.patreon.com/posts/guide-complet-le-134710204?source=storefront",
-  label: "Guide complet du Système Fluide",
-  size: "md",
-  variant: "outline",
-});
+const { 
+  href = "https://www.patreon.com/posts/guide-complet-le-134710204?source=storefront",
+  label = "Guide complet du Système Fluide",
+  size = "md",
+  variant = "outline"
+} = defineProps<Props>();
 
 const sizeClasses = computed(() => {
   if (size === "sm") return "px-4 py-2 text-sm";
