@@ -478,6 +478,178 @@
         </div>
       </div>
     </div>
+
+    <!-- Modal Gestion des Rôles -->
+    <div 
+      v-if="showRolesModal"
+      class="fixed inset-0 bg-black/50 dark:bg-black/70 flex items-center justify-center z-50 p-4"
+      @click="showRolesModal = false"
+    >
+      <div 
+        class="card max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col"
+        @click.stop
+      >
+        <!-- En-tête du modal -->
+        <div class="flex justify-between items-center p-6 border-b border-gray-light/20 dark:border-gray-medium/20">
+          <div>
+            <h3 class="text-2xl font-light text-gradient">
+              Gestion des Rôles
+            </h3>
+            <p class="text-gray-medium dark:text-gray-light mt-1">
+              Modifier les permissions des utilisateurs
+            </p>
+          </div>
+          <button 
+            @click="showRolesModal = false"
+            class="text-gray-medium dark:text-gray-light hover:text-black dark:hover:text-white transition-colors"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Contenu du modal avec scroll -->
+        <div class="flex-1 overflow-y-auto">
+          <!-- État de chargement -->
+          <div v-if="isLoadingRoles" class="flex justify-center items-center py-12">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"></div>
+          </div>
+
+          <!-- Erreur -->
+          <div v-else-if="rolesError" class="text-center py-12 px-6">
+            <div class="text-red-500 mb-4">
+              <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <h4 class="text-xl font-semibold mb-2">Erreur de chargement</h4>
+              <p class="text-gray-medium">{{ rolesError }}</p>
+            </div>
+            <button @click="loadRoleUsers" class="btn btn-primary">
+              Réessayer
+            </button>
+          </div>
+
+          <!-- Liste des utilisateurs pour gestion des rôles -->
+          <div v-else class="px-6 pb-6">
+            <div class="mb-6">
+              <div class="bg-gradient-to-r from-warning/10 to-success/10 dark:from-warning/5 dark:to-success/5 border border-warning/20 dark:border-warning/10 rounded-xl p-4">
+                <div class="flex items-start space-x-3">
+                  <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5l-6.928-12c-.77-.833-2.694-.833-3.464 0L.165 16.5C-.605 17.333.357 19 1.897 19z"></path>
+                  </svg>
+                  <div>
+                    <p class="text-sm font-medium text-warning dark:text-warning mb-1">
+                      Attention
+                    </p>
+                    <p class="text-sm text-gray-dark dark:text-gray-light">
+                      La modification des rôles affecte les permissions d'accès. Les administrateurs ont accès au panneau d'administration.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="border border-gray-light/20 dark:border-gray-medium/20 rounded-lg overflow-hidden">
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[500px]">
+                  <thead class="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10">
+                    <tr>
+                      <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Utilisateur
+                      </th>
+                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Rôle Actuel
+                      </th>
+                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
+                        Actions
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-light/20 dark:divide-gray-medium/20 bg-white dark:bg-gray-darkest">
+                    <tr 
+                      v-for="roleUser in roleUsers" 
+                      :key="roleUser.id"
+                      class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-200"
+                    >
+                      <td class="p-4">
+                        <div class="flex items-center space-x-3">
+                          <div class="w-10 h-10 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-gray-light rounded-full flex items-center justify-center flex-shrink-0">
+                            <span class="text-white dark:text-black font-semibold text-sm">
+                              {{ roleUser.firstName.charAt(0) }}{{ roleUser.lastName.charAt(0) }}
+                            </span>
+                          </div>
+                          <div class="min-w-0">
+                            <p class="font-medium text-black dark:text-white truncate">
+                              {{ roleUser.firstName }} {{ roleUser.lastName }}
+                            </p>
+                            <p class="text-sm text-gray-medium dark:text-gray-light truncate">
+                              {{ roleUser.email }}
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="p-4 text-center">
+                        <span 
+                          :class="roleUser.role === 'admin' 
+                            ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1' 
+                            : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1'"
+                        >
+                          <svg v-if="roleUser.role === 'admin'" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                          </svg>
+                          <svg v-else class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                          </svg>
+                          <span>{{ roleUser.role === 'admin' ? 'Administrateur' : 'Utilisateur' }}</span>
+                        </span>
+                      </td>
+                      <td class="p-4 text-center">
+                        <div class="flex justify-center space-x-2">
+                          <button
+                            v-if="roleUser.role !== 'admin'"
+                            @click="updateUserRole(roleUser.id, 'admin')"
+                            :disabled="isUpdatingRole"
+                            class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-success to-warning text-white text-xs font-medium rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            Promouvoir Admin
+                          </button>
+                          
+                          <button
+                            v-if="roleUser.role === 'admin' && roleUser.id !== user?.id"
+                            @click="updateUserRole(roleUser.id, 'user')"
+                            :disabled="isUpdatingRole"
+                            class="inline-flex items-center px-3 py-1.5 bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light text-xs font-medium rounded-lg hover:bg-gray-light/40 dark:hover:bg-gray-medium/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                          >
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Rétrograder Utilisateur
+                          </button>
+
+                          <span
+                            v-if="roleUser.role === 'admin' && roleUser.id === user?.id"
+                            class="inline-flex items-center px-3 py-1.5 bg-gray-light/10 dark:bg-gray-medium/10 text-gray-medium dark:text-gray-light text-xs font-medium rounded-lg"
+                          >
+                            <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                            Votre compte
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -644,8 +816,71 @@ const createUser = () => {
   alert('Fonctionnalité "Créer un utilisateur" - À implémenter')
 }
 
-const manageRoles = () => {
-  alert('Fonctionnalité "Gérer les rôles" - À implémenter')
+const showRolesModal = ref(false)
+const isLoadingRoles = ref(false)
+const rolesError = ref<string | null>(null)
+const roleUsers = ref<any[]>([])
+const isUpdatingRole = ref(false)
+
+const manageRoles = async () => {
+  showRolesModal.value = true
+  await loadRoleUsers()
+}
+
+// Fonction pour charger les utilisateurs pour la gestion des rôles
+const loadRoleUsers = async () => {
+  isLoadingRoles.value = true
+  rolesError.value = null
+  
+  try {
+    const result = await getAllUsers()
+    if (result.success && result.data) {
+      roleUsers.value = result.data
+    } else {
+      rolesError.value = result.error || 'Erreur lors du chargement des utilisateurs'
+    }
+  } catch (err) {
+    console.error('Erreur lors du chargement des utilisateurs:', err)
+    rolesError.value = 'Erreur lors du chargement des utilisateurs'
+  } finally {
+    isLoadingRoles.value = false
+  }
+}
+
+// Fonction pour mettre à jour le rôle d'un utilisateur
+const updateUserRole = async (userId: string, newRole: 'user' | 'admin') => {
+  isUpdatingRole.value = true
+  rolesError.value = null
+  
+  try {
+    const requestBody = { 
+      userId: userId,
+      role: newRole 
+    }
+    
+    const response = await $fetch('/api/admin/update-user-role', {
+      method: 'PUT',
+      body: requestBody
+    })
+    
+    if (response.success) {
+      // Mettre à jour localement
+      const userIndex = roleUsers.value.findIndex(u => u.id === userId)
+      if (userIndex !== -1) {
+        roleUsers.value[userIndex].role = newRole
+      }
+      
+      // Recharger les stats
+      await loadAdminStats()
+    } else {
+      rolesError.value = response.message || 'Erreur lors de la mise à jour du rôle'
+    }
+  } catch (err: any) {
+    console.error('Erreur lors de la mise à jour du rôle:', err)
+    rolesError.value = err?.data?.message || err?.message || 'Erreur lors de la mise à jour du rôle'
+  } finally {
+    isUpdatingRole.value = false
+  }
 }
 
 const systemSettings = () => {
