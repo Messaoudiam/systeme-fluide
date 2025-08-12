@@ -236,8 +236,105 @@
 
           <!-- Liste des utilisateurs -->
           <div v-else class="px-6 pb-6">
-            <div class="mb-4 text-sm text-gray-medium dark:text-gray-light">
-              {{ users.length }} utilisateurs au total
+            <!-- Barre de recherche et filtres -->
+            <div class="mb-6 space-y-6">
+              <!-- Barre de recherche principale -->
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                  <svg class="w-5 h-5 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                  </svg>
+                </div>
+                <input
+                  v-model="searchTerm"
+                  type="text"
+                  placeholder="Rechercher par nom ou email..."
+                  class="w-full pl-12 pr-12 py-4 bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-xl text-black dark:text-white placeholder-gray-medium dark:placeholder-gray-light focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300"
+                >
+                <button
+                  v-if="searchTerm"
+                  @click="searchTerm = ''"
+                  class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-medium hover:text-black dark:hover:text-white transition-colors"
+                >
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </div>
+
+              <!-- Filtres et contrôles -->
+              <div class="flex flex-col lg:flex-row gap-4 justify-between items-start lg:items-center">
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <!-- Filtre par rôle -->
+                  <div class="relative">
+                    <select 
+                      v-model="roleFilter" 
+                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300 cursor-pointer min-w-[140px]"
+                    >
+                      <option value="">Tous les rôles</option>
+                      <option value="admin">Administrateurs</option>
+                      <option value="user">Utilisateurs</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Tri -->
+                  <div class="relative">
+                    <select 
+                      v-model="sortBy" 
+                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300 cursor-pointer min-w-[160px]"
+                    >
+                      <option value="createdAt">Trier par date</option>
+                      <option value="firstName">Trier par nom</option>
+                      <option value="email">Trier par email</option>
+                      <option value="role">Trier par rôle</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
+                      <svg class="w-4 h-4 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- Bouton ordre de tri -->
+                  <button
+                    @click="toggleSort(sortBy)"
+                    class="flex items-center justify-center w-11 h-11 bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 transition-all duration-300"
+                    :title="sortOrder === 'asc' ? 'Tri croissant' : 'Tri décroissant'"
+                  >
+                    <svg 
+                      class="w-4 h-4 transition-transform duration-300"
+                      :class="sortOrder === 'desc' ? 'rotate-180' : ''"
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                    </svg>
+                  </button>
+                </div>
+                
+                <!-- Compteur et reset -->
+                <div class="flex items-center gap-4">
+                  <div class="text-sm font-medium text-gray-medium dark:text-gray-light">
+                    {{ filteredUsers.length }} / {{ users.length }} utilisateurs
+                  </div>
+                  
+                  <button
+                    @click="resetFilters"
+                    class="flex items-center gap-2 px-4 py-2 bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-all duration-300 text-sm font-medium"
+                  >
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Réinitialiser
+                  </button>
+                </div>
+              </div>
             </div>
 
             <div class="border border-gray-light/20 dark:border-gray-medium/20 rounded-lg overflow-hidden">
@@ -245,23 +342,96 @@
                 <table class="w-full min-w-[600px]">
                   <thead class="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10">
                     <tr>
-                      <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                        Utilisateur
+                      <th 
+                        @click="toggleSort('firstName')"
+                        class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                      >
+                        <div class="flex items-center space-x-1">
+                          <span>Utilisateur</span>
+                          <svg 
+                            v-if="sortBy === 'firstName'"
+                            class="w-3 h-3 transition-transform"
+                            :class="sortOrder === 'desc' ? 'rotate-180' : ''"
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                          </svg>
+                        </div>
                       </th>
-                      <th class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                        Email
+                      <th 
+                        @click="toggleSort('email')"
+                        class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                      >
+                        <div class="flex items-center space-x-1">
+                          <span>Email</span>
+                          <svg 
+                            v-if="sortBy === 'email'"
+                            class="w-3 h-3 transition-transform"
+                            :class="sortOrder === 'desc' ? 'rotate-180' : ''"
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                          </svg>
+                        </div>
                       </th>
-                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                        Rôle
+                      <th 
+                        @click="toggleSort('role')"
+                        class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                      >
+                        <div class="flex items-center justify-center space-x-1">
+                          <span>Rôle</span>
+                          <svg 
+                            v-if="sortBy === 'role'"
+                            class="w-3 h-3 transition-transform"
+                            :class="sortOrder === 'desc' ? 'rotate-180' : ''"
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                          </svg>
+                        </div>
                       </th>
-                      <th class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light">
-                        Date d'inscription
+                      <th 
+                        @click="toggleSort('createdAt')"
+                        class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                      >
+                        <div class="flex items-center justify-center space-x-1">
+                          <span>Date d'inscription</span>
+                          <svg 
+                            v-if="sortBy === 'createdAt'"
+                            class="w-3 h-3 transition-transform"
+                            :class="sortOrder === 'desc' ? 'rotate-180' : ''"
+                            fill="none" 
+                            stroke="currentColor" 
+                            viewBox="0 0 24 24"
+                          >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                          </svg>
+                        </div>
                       </th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-gray-light/20 dark:divide-gray-medium/20 bg-white dark:bg-gray-darkest">
+                    <!-- Message si aucun résultat -->
+                    <tr v-if="filteredUsers.length === 0" class="text-center">
+                      <td colspan="4" class="py-12">
+                        <div class="text-gray-medium dark:text-gray-light">
+                          <svg class="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                          </svg>
+                          <p class="text-lg font-medium mb-2">Aucun utilisateur trouvé</p>
+                          <p class="text-sm">Essayez de modifier vos critères de recherche</p>
+                        </div>
+                      </td>
+                    </tr>
+                    
                     <tr 
-                      v-for="user in users" 
+                      v-for="user in filteredUsers" 
                       :key="user.id"
                       class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-200"
                     >
@@ -343,6 +513,12 @@ const showUsersModal = ref(false)
 const users = ref<any[]>([])
 const usersError = ref<string | null>(null)
 
+// États pour la recherche et les filtres
+const searchTerm = ref('')
+const roleFilter = ref('')
+const sortBy = ref('createdAt')
+const sortOrder = ref('desc')
+
 // Charger les statistiques au montage du composant
 onMounted(async () => {
   await loadAdminStats()
@@ -388,6 +564,70 @@ const loadUsers = async () => {
   } finally {
     isLoadingUsers.value = false
   }
+}
+
+// Utilisateurs filtrés et triés
+const filteredUsers = computed(() => {
+  let filtered = [...users.value]
+
+  // Filtre par recherche
+  if (searchTerm.value) {
+    const term = searchTerm.value.toLowerCase()
+    filtered = filtered.filter(user => 
+      user.firstName.toLowerCase().includes(term) ||
+      user.lastName.toLowerCase().includes(term) ||
+      user.email.toLowerCase().includes(term)
+    )
+  }
+
+  // Filtre par rôle
+  if (roleFilter.value) {
+    filtered = filtered.filter(user => user.role === roleFilter.value)
+  }
+
+  // Tri
+  filtered.sort((a, b) => {
+    let aVal = a[sortBy.value]
+    let bVal = b[sortBy.value]
+
+    // Gestion spéciale pour les dates
+    if (sortBy.value === 'createdAt') {
+      aVal = new Date(aVal).getTime()
+      bVal = new Date(bVal).getTime()
+    }
+    
+    // Gestion des chaînes
+    if (typeof aVal === 'string') {
+      aVal = aVal.toLowerCase()
+      bVal = bVal.toLowerCase()
+    }
+
+    if (sortOrder.value === 'asc') {
+      return aVal > bVal ? 1 : -1
+    } else {
+      return aVal < bVal ? 1 : -1
+    }
+  })
+
+  return filtered
+})
+
+// Fonction pour changer le tri
+const toggleSort = (field: string) => {
+  if (sortBy.value === field) {
+    sortOrder.value = sortOrder.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    sortBy.value = field
+    sortOrder.value = 'asc'
+  }
+}
+
+// Fonction pour réinitialiser les filtres
+const resetFilters = () => {
+  searchTerm.value = ''
+  roleFilter.value = ''
+  sortBy.value = 'createdAt'
+  sortOrder.value = 'desc'
 }
 
 // Fonction pour formater les dates
