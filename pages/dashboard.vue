@@ -56,7 +56,8 @@
                 </div>
               </div>
               <div class="text-4xl font-light text-black dark:text-white mb-2">
-                {{ dailyStats.calories || "0" }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ dailyStats.calories || "0" }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-medium"
@@ -99,7 +100,8 @@
                 </div>
               </div>
               <div class="text-4xl font-light text-black dark:text-white mb-2">
-                {{ dailyStats.weight || "0" }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ dailyStats.weight || "0" }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-medium"
@@ -142,7 +144,8 @@
                 </div>
               </div>
               <div class="text-4xl font-light text-black dark:text-white mb-2">
-                {{ dailyStats.steps?.toLocaleString() || "0" }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ dailyStats.steps?.toLocaleString() || "0" }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-medium"
@@ -185,12 +188,14 @@
                 </div>
               </div>
               <div class="text-4xl font-light text-black dark:text-white mb-2">
-                {{ dailyStats.workout ? "Oui" : "Non" }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ dailyStats.workout ? "Oui" : "Non" }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-medium"
               >
-                {{ dailyStats.workoutName || "Pas d'entraînement" }}
+                <span v-if="isLoading" class="animate-pulse">Chargement...</span>
+                <span v-else>{{ dailyStats.workoutName || "Pas d'entraînement" }}</span>
               </p>
             </div>
           </div>
@@ -489,7 +494,8 @@
               <div
                 class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-success transition-colors duration-300"
               >
-                {{ weeklyAverages.calories }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ weeklyAverages.calories }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-semibold"
@@ -503,7 +509,8 @@
               <div
                 class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-warning transition-colors duration-300"
               >
-                {{ weeklyAverages.weight }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ weeklyAverages.weight }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-semibold"
@@ -517,7 +524,8 @@
               <div
                 class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-error transition-colors duration-300"
               >
-                {{ weeklyAverages.steps?.toLocaleString() }}
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ weeklyAverages.steps?.toLocaleString() }}</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-semibold"
@@ -531,7 +539,8 @@
               <div
                 class="text-3xl font-light text-black dark:text-white mb-3 group-hover:text-black dark:group-hover:text-white transition-colors duration-300"
               >
-                {{ weeklyAverages.workouts }}/7
+                <span v-if="isLoading" class="animate-pulse">--</span>
+                <span v-else>{{ weeklyAverages.workouts }}/7</span>
               </div>
               <p
                 class="text-sm text-gray-medium dark:text-gray-light font-semibold"
@@ -547,6 +556,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref, reactive, computed, onMounted } from 'vue'
+
 // Protection de la page - accès uniquement aux utilisateurs connectés
 definePageMeta({
   middleware: 'auth'
@@ -573,22 +584,58 @@ const formData = reactive<{
   workoutName: "",
 });
 
-// Stats quotidiennes (mock data pour le MVP)
+const { user } = useAuth()
+const { getDailyStats, getWeeklyAverages, saveDailyData: saveUserDailyData } = useDatabase()
+
+// Stats quotidiennes réactives
 const dailyStats = reactive({
-  calories: 1850,
-  weight: 72.3,
-  steps: 8450,
-  workout: true,
-  workoutName: "Push - Pectoraux & Épaules",
+  calories: 0,
+  weight: 0,
+  steps: 0,
+  workout: false,
+  workoutName: "",
 });
 
-// Moyennes hebdomadaires (mock data)
+// Moyennes hebdomadaires réactives
 const weeklyAverages = reactive({
-  calories: 1920,
-  weight: 72.1,
-  steps: 8200,
-  workouts: 4,
+  calories: 0,
+  weight: 0,
+  steps: 0,
+  workouts: 0,
 });
+
+// États de chargement
+const isLoading = ref(true)
+
+// Charger les données au montage du composant
+onMounted(async () => {
+  if (user.value?.id) {
+    await loadDashboardData()
+  }
+})
+
+// Fonction pour charger toutes les données du dashboard
+const loadDashboardData = async () => {
+  isLoading.value = true
+  
+  try {
+    // Charger les stats quotidiennes
+    const dailyResult = await getDailyStats(user.value!.id)
+    if (dailyResult.success && dailyResult.data) {
+      Object.assign(dailyStats, dailyResult.data)
+    }
+
+    // Charger les moyennes hebdomadaires
+    const weeklyResult = await getWeeklyAverages(user.value!.id)
+    if (weeklyResult.success && weeklyResult.data) {
+      Object.assign(weeklyAverages, weeklyResult.data)
+    }
+  } catch (error) {
+    console.error('Erreur lors du chargement des données:', error)
+  } finally {
+    isLoading.value = false
+  }
+}
 
 // Date actuelle
 const currentDate = computed(() => {
@@ -601,32 +648,60 @@ const currentDate = computed(() => {
 });
 
 // Fonction pour sauvegarder les données
-const saveDailyData = () => {
-  // TODO: Intégration avec Supabase
-  console.log("Données sauvegardées:", { ...formData });
+const saveDailyData = async () => {
+  if (!user.value?.id) {
+    if (process.client) {
+      alert("Erreur: utilisateur non connecté");
+    }
+    return;
+  }
 
-  // Mise à jour des stats quotidiennes
-  dailyStats.calories = formData.calories ?? 0;
-  dailyStats.weight = formData.weight ?? 0;
-  dailyStats.steps = formData.steps ?? 0;
-  dailyStats.workout = formData.workout;
-  dailyStats.workoutName = formData.workoutName || "";
+  isLoading.value = true;
 
-  // Reset du formulaire
-  Object.assign(formData, {
-    calories: null,
-    proteins: null,
-    carbs: null,
-    fats: null,
-    weight: null,
-    steps: null,
-    workout: false,
-    workoutName: "",
-  });
+  try {
+    const result = await saveUserDailyData(user.value.id, {
+      calories: formData.calories || undefined,
+      proteins: formData.proteins || undefined,
+      carbs: formData.carbs || undefined,
+      fats: formData.fats || undefined,
+      weight: formData.weight || undefined,
+      steps: formData.steps || undefined,
+      workout: formData.workout,
+      workoutName: formData.workoutName || undefined,
+    });
 
-  // Feedback utilisateur (client uniquement)
-  if (process.client) {
-    alert("Données sauvegardées avec succès !");
+    if (result.success) {
+      // Recharger les données du dashboard
+      await loadDashboardData();
+
+      // Reset du formulaire
+      Object.assign(formData, {
+        calories: null,
+        proteins: null,
+        carbs: null,
+        fats: null,
+        weight: null,
+        steps: null,
+        workout: false,
+        workoutName: "",
+      });
+
+      // Feedback utilisateur (client uniquement)
+      if (process.client) {
+        alert("Données sauvegardées avec succès !");
+      }
+    } else {
+      if (process.client) {
+        alert("Erreur lors de la sauvegarde: " + result.error);
+      }
+    }
+  } catch (error) {
+    console.error("Erreur lors de la sauvegarde:", error);
+    if (process.client) {
+      alert("Erreur lors de la sauvegarde des données");
+    }
+  } finally {
+    isLoading.value = false;
   }
 };
 

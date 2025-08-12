@@ -1,91 +1,110 @@
-import type { AuthUser, UserRole, LoginCredentials, RegisterData } from '~/types/auth'
+import type {
+  AuthUser,
+  UserRole,
+  LoginCredentials,
+  RegisterData,
+} from "~/types/auth";
 
 export const useAuth = () => {
   // État réactif de l'utilisateur connecté
-  const user = useState<AuthUser | null>('auth.user', () => null)
-  const isLoggedIn = computed(() => !!user.value)
-  const isAdmin = computed(() => user.value?.role === 'admin')
-  const isUser = computed(() => user.value?.role === 'user')
+  const user = useState<AuthUser | null>("auth.user", () => null);
+  const isLoggedIn = computed(() => !!user.value);
+  const isAdmin = computed(() => user.value?.role === "admin");
+  const isUser = computed(() => user.value?.role === "user");
 
   // Connexion utilisateur
   const login = async (credentials: LoginCredentials) => {
     try {
-      const response = await $fetch<{ user: AuthUser, token: string }>('/api/auth/login', {
-        method: 'POST',
-        body: credentials
-      })
-      
-      user.value = response.user
-      
+      const response = await $fetch<{ user: AuthUser; token: string }>(
+        "/api/auth/login",
+        {
+          method: "POST",
+          body: credentials,
+        }
+      );
+
+      user.value = response.user;
+
       // Le token JWT est automatiquement stocké dans les cookies côté serveur
       // Pas besoin de le gérer côté client pour la sécurité
-      
-      return { success: true, user: response.user }
-    } catch (error) {
-      console.error('Erreur de connexion:', error)
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Erreur de connexion'
-      }
+
+      return { success: true, user: response.user };
+    } catch (error: any) {
+      console.error("Erreur de connexion:", error);
+      return {
+        success: false,
+        error:
+          error?.data?.message || error?.message || "Identifiants invalides",
+      };
     }
-  }
+  };
 
   // Inscription utilisateur
   const register = async (data: RegisterData) => {
     try {
-      const response = await $fetch<{ user: AuthUser, token: string }>('/api/auth/register', {
-        method: 'POST',
-        body: data
-      })
-      
-      user.value = response.user
-      
+      const response = await $fetch<{ user: AuthUser; token: string }>(
+        "/api/auth/register",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      user.value = response.user;
+
       // Le token JWT est automatiquement stocké dans les cookies côté serveur
       // Pas besoin de le gérer côté client pour la sécurité
-      
-      return { success: true, user: response.user }
-    } catch (error) {
-      console.error('Erreur d\'inscription:', error)
-      return { 
-        success: false, 
-        error: error instanceof Error ? error.message : 'Erreur d\'inscription'
-      }
+
+      return { success: true, user: response.user };
+    } catch (error: any) {
+      console.error("Erreur d'inscription:", error);
+      return {
+        success: false,
+        error: error?.data?.message || error?.message || "Erreur d'inscription",
+      };
     }
-  }
+  };
 
   // Déconnexion
   const logout = async () => {
     try {
-      await $fetch('/api/auth/logout', { method: 'POST' })
+      await $fetch("/api/auth/logout", { method: "POST" });
     } catch (error) {
-      console.error('Erreur de déconnexion:', error)
+      console.error("Erreur de déconnexion:", error);
     } finally {
-      user.value = null
+      user.value = null;
       // Le cookie JWT est automatiquement supprimé côté serveur
-      await navigateTo('/')
+      await navigateTo("/");
     }
-  }
+  };
 
   // Vérifier l'authentification au chargement
   const checkAuth = async () => {
     try {
-      const response = await $fetch<{ user: AuthUser }>('/api/auth/me')
-      user.value = response.user
-      return response.user
+      // En SSR, il faut transférer le cookie entrant vers l'appel $fetch
+      const headers = process.server
+        ? useRequestHeaders(["cookie"])
+        : undefined;
+      const response = await $fetch<{ user: AuthUser }>("/api/auth/me", {
+        headers,
+        credentials: "include",
+      });
+      user.value = response.user;
+      return response.user;
     } catch (error) {
-      user.value = null
-      return null
+      user.value = null;
+      return null;
     }
-  }
+  };
 
   // Vérifier si l'utilisateur a un rôle spécifique
   const hasRole = (role: UserRole) => {
-    return user.value?.role === role
-  }
+    return user.value?.role === role;
+  };
 
   // Vérifier les permissions
-  const canAccessAdmin = () => isAdmin.value
-  const canAccessUserFeatures = () => isLoggedIn.value
+  const canAccessAdmin = () => isAdmin.value;
+  const canAccessUserFeatures = () => isLoggedIn.value;
 
   return {
     // État
@@ -93,7 +112,7 @@ export const useAuth = () => {
     isLoggedIn,
     isAdmin,
     isUser,
-    
+
     // Actions
     login,
     register,
@@ -101,6 +120,6 @@ export const useAuth = () => {
     checkAuth,
     hasRole,
     canAccessAdmin,
-    canAccessUserFeatures
-  }
-}
+    canAccessUserFeatures,
+  };
+};

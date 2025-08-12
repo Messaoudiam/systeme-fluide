@@ -38,30 +38,57 @@ export async function verifyPassword(password: string, hashedPassword: string): 
 }
 
 /**
- * Valide la force d'un mot de passe
+ * Liste des mots de passe les plus couramment compromis à bloquer
+ * Basée sur les recommandations NIST 2025 et les listes HaveIBeenPwned
+ */
+const COMMON_PASSWORDS = new Set([
+  'password', '123456', '123456789', 'qwerty', 'abc123', 'password123',
+  'admin', 'letmein', 'welcome', 'monkey', 'dragon', 'master', 'login',
+  'azerty', 'motdepasse', 'secret', '000000', '111111', '654321',
+  'iloveyou', 'sunshine', 'princess', 'football', 'charlie', 'aa123456',
+  'password1', '123123', '1234567890', 'qwertyuiop', 'trustno1'
+])
+
+/**
+ * Valide la force d'un mot de passe selon les recommandations NIST/OWASP 2025
  * @param password - Le mot de passe à valider
- * @returns true si le mot de passe est valide, false sinon
+ * @returns objet avec valid (boolean) et message optionnel
  */
 export function validatePassword(password: string): { valid: boolean; message?: string } {
   if (!password) {
     return { valid: false, message: 'Le mot de passe est requis' }
   }
 
+  // NIST 2025: Minimum 8 caractères, recommandé 12-15
   if (password.length < 8) {
     return { valid: false, message: 'Le mot de passe doit contenir au moins 8 caractères' }
   }
 
-  if (password.length > 128) {
-    return { valid: false, message: 'Le mot de passe ne peut pas dépasser 128 caractères' }
+  // NIST 2025: Maximum 64 caractères pour les phrases de passe
+  if (password.length > 64) {
+    return { valid: false, message: 'Le mot de passe ne peut pas dépasser 64 caractères' }
   }
 
-  // Vérifier qu'il contient au moins une lettre et un chiffre
-  const hasLetter = /[a-zA-Z]/.test(password)
-  const hasNumber = /\d/.test(password)
-
-  if (!hasLetter || !hasNumber) {
-    return { valid: false, message: 'Le mot de passe doit contenir au moins une lettre et un chiffre' }
+  // NIST 2025: Vérifier contre les mots de passe compromis/communs
+  const passwordLower = password.toLowerCase()
+  if (COMMON_PASSWORDS.has(passwordLower)) {
+    return { 
+      valid: false, 
+      message: 'Ce mot de passe est trop courant. Choisissez un mot de passe plus unique' 
+    }
   }
 
+  // Vérifier les variations évidentes avec des chiffres à la fin
+  const passwordWithoutTrailingNumbers = passwordLower.replace(/\d+$/, '')
+  if (COMMON_PASSWORDS.has(passwordWithoutTrailingNumbers)) {
+    return { 
+      valid: false, 
+      message: 'Ce mot de passe est basé sur un mot courant. Choisissez un mot de passe plus unique' 
+    }
+  }
+
+  // NIST 2025: Ne pas imposer de règles de composition
+  // (pas d'exigence majuscule/minuscule/chiffre/caractères spéciaux)
+  
   return { valid: true }
 }

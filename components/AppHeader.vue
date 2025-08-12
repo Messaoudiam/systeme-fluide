@@ -50,10 +50,6 @@
           >
             {{ link.label }}
           </NuxtLink>
-
-          <NuxtLink to="/dashboard" class="btn btn-primary px-4 py-2 ml-2">
-            <span>Commencer</span>
-          </NuxtLink>
         </nav>
 
         <!-- Right actions -->

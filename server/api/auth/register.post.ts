@@ -3,6 +3,7 @@ import { users } from '~/database/schema'
 import type { RegisterData } from '~/types/auth'
 import { generateToken, setJWTCookie } from '~/server/utils/jwt'
 import { hashPassword, validatePassword } from '~/server/utils/password'
+import { useDatabase } from '~/server/utils/database'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<RegisterData>(event)

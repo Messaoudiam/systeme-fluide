@@ -4,6 +4,7 @@ import type { LoginCredentials } from '~/types/auth'
 import { generateToken, setJWTCookie } from '~/server/utils/jwt'
 import { verifyPassword } from '~/server/utils/password'
 import { checkRateLimit, recordLoginAttempt, getClientIP, formatTimeRemaining } from '~/server/utils/rate-limiter'
+import { useDatabase } from '~/server/utils/database'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody<LoginCredentials>(event)
