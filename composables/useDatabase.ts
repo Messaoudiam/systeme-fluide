@@ -99,12 +99,26 @@ export const useDatabase = () => {
     }
   }
 
+  // Récupérer tous les utilisateurs (admin uniquement)
+  const getAllUsers = async () => {
+    try {
+      const data = await $fetch('/api/admin/users')
+      return { success: true, data }
+    } catch (error) {
+      return { 
+        success: false, 
+        error: error instanceof Error ? error.message : 'Erreur récupération utilisateurs'
+      }
+    }
+  }
+
   return {
     testConnection,
     createUser,
     getDailyStats,
     getWeeklyAverages,
     saveDailyData,
-    getAdminStats
+    getAdminStats,
+    getAllUsers
   }
 }
