@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   
   modules: [
     '@nuxtjs/tailwindcss',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@nuxt/eslint'
   ],
   
   css: ['~/assets/css/main.css'],
