@@ -5,7 +5,7 @@
     <!-- Background pattern -->
     <div
       class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"
-    ></div>
+    />
     <div class="relative z-10">
 
       <main class="max-w-7xl mx-auto px-6 py-8">
@@ -29,7 +29,7 @@
           >
             <div
               class="absolute inset-0 bg-gradient-to-br from-success/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            ></div>
+            />
             <div class="relative z-10">
               <div class="flex items-center justify-between mb-4">
                 <h3
@@ -51,7 +51,7 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                    ></path>
+                    />
                   </svg>
                 </div>
               </div>
@@ -73,7 +73,7 @@
           >
             <div
               class="absolute inset-0 bg-gradient-to-br from-warning/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            ></div>
+            />
             <div class="relative z-10">
               <div class="flex items-center justify-between mb-4">
                 <h3
@@ -95,7 +95,7 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                    ></path>
+                    />
                   </svg>
                 </div>
               </div>
@@ -117,7 +117,7 @@
           >
             <div
               class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            ></div>
+            />
             <div class="relative z-10">
               <div class="flex items-center justify-between mb-4">
                 <h3
@@ -139,7 +139,7 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
-                    ></path>
+                    />
                   </svg>
                 </div>
               </div>
@@ -161,7 +161,7 @@
           >
             <div
               class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            ></div>
+            />
             <div class="relative z-10">
               <div class="flex items-center justify-between mb-4">
                 <h3
@@ -183,7 +183,7 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    ></path>
+                    />
                   </svg>
                 </div>
               </div>
@@ -205,7 +205,7 @@
         <div class="card p-8 mb-12 relative overflow-hidden animate-fade-in delay-500">
           <div
             class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-error"
-          ></div>
+          />
           <div class="flex items-center justify-between mb-8">
             <div>
               <h2 class="text-2xl font-light text-gradient mb-2">
@@ -229,12 +229,12 @@
                   stroke-linejoin="round"
                   stroke-width="2"
                   d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                ></path>
+                />
               </svg>
             </div>
           </div>
 
-          <form @submit.prevent="saveDailyData" class="space-y-8">
+          <form class="space-y-8" @submit.prevent="saveDailyData">
             <!-- Sélecteur de date -->
             <div class="mb-8">
               <label class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3">
@@ -245,7 +245,7 @@
                 type="date"
                 class="input-modern w-full md:w-auto"
                 @change="onDateChange"
-              />
+              >
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -266,7 +266,7 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                      ></path>
+                      />
                     </svg>
                   </div>
                   <h3 class="text-lg font-medium text-black dark:text-white">
@@ -284,7 +284,7 @@
                       type="number"
                       placeholder="2000"
                       class="input-modern"
-                    />
+                    >
                   </div>
                   <div>
                     <label
@@ -296,7 +296,7 @@
                       type="number"
                       placeholder="150"
                       class="input-modern"
-                    />
+                    >
                   </div>
                   <div>
                     <label
@@ -308,7 +308,7 @@
                       type="number"
                       placeholder="200"
                       class="input-modern"
-                    />
+                    >
                   </div>
                   <div>
                     <label
@@ -320,7 +320,7 @@
                       type="number"
                       placeholder="80"
                       class="input-modern"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -342,7 +342,7 @@
                         stroke-linejoin="round"
                         stroke-width="2"
                         d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"
-                      ></path>
+                      />
                     </svg>
                   </div>
                   <h3 class="text-lg font-medium text-black dark:text-white">
@@ -361,7 +361,7 @@
                       step="0.1"
                       placeholder="70.5"
                       class="input-modern"
-                    />
+                    >
                   </div>
                   <div>
                     <label
@@ -373,7 +373,7 @@
                       type="number"
                       placeholder="8000"
                       class="input-modern"
-                    />
+                    >
                   </div>
                 </div>
               </div>
@@ -396,7 +396,7 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    ></path>
+                    />
                   </svg>
                 </div>
                 <h3 class="text-lg font-medium text-black dark:text-white">
@@ -411,10 +411,10 @@
                       v-model="formData.workout"
                       type="checkbox"
                       class="w-6 h-6 text-success border-2 border-gray-light dark:border-gray-medium rounded-lg focus:ring-2 focus:ring-success/20 transition-all duration-300"
-                    />
+                    >
                     <div
                       class="absolute inset-0 bg-success/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                    ></div>
+                    />
                   </div>
                   <span
                     class="text-black dark:text-white font-medium group-hover:text-success transition-colors duration-300"
@@ -432,7 +432,7 @@
                     type="text"
                     placeholder="Push (Pectoraux, Épaules, Triceps)"
                     class="input-modern"
-                  />
+                  >
                 </div>
               </div>
             </div>
@@ -454,13 +454,13 @@
                       stroke-linejoin="round"
                       stroke-width="2"
                       d="M5 13l4 4L19 7"
-                    ></path>
+                    />
                   </svg>
                   <span>Sauvegarder la journée</span>
                 </span>
                 <div
                   class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                ></div>
+                />
               </button>
             </div>
           </form>
@@ -470,7 +470,7 @@
         <div class="card p-8 relative overflow-hidden animate-fade-in delay-700">
           <div
             class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning via-error to-success"
-          ></div>
+          />
 
           <div class="flex items-center justify-between mb-8">
             <div>
@@ -495,7 +495,7 @@
                   stroke-linejoin="round"
                   stroke-width="2"
                   d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                ></path>
+                />
               </svg>
             </div>
           </div>

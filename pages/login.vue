@@ -1,7 +1,7 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-white via-off-white to-white dark:from-gray-darkest dark:via-gray-dark dark:to-gray-darkest flex items-center justify-center px-4 transition-all duration-500 relative overflow-hidden">
     <!-- Background pattern -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"/>
     
     <div class="max-w-md w-full relative z-10">
       <div class="card p-8">
@@ -10,7 +10,7 @@
           <p class="text-gray-medium dark:text-gray-light mt-2">Connectez-vous à votre compte</p>
         </div>
 
-        <form @submit.prevent="handleLogin" class="space-y-6">
+        <form class="space-y-6" @submit.prevent="handleLogin">
           <div>
             <label for="email" class="block text-sm font-semibold text-gray-medium dark:text-gray-light mb-3">
               Email
@@ -22,7 +22,7 @@
               required
               class="input-modern"
               placeholder="votre@email.com"
-            />
+            >
           </div>
 
           <div>
@@ -37,12 +37,12 @@
                 required
                 class="input-modern pr-12"
                 placeholder="••••••••"
-              />
+              >
               <button
                 type="button"
-                @click="togglePasswordVisibility"
                 class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-medium dark:text-gray-light hover:text-black dark:hover:text-white transition-colors duration-200"
                 tabindex="-1"
+                @click="togglePasswordVisibility"
               >
                 <svg
                   v-if="showPassword"
@@ -89,12 +89,12 @@
           >
             <span class="relative z-10 flex items-center justify-center space-x-2">
               <svg v-if="!isLoading" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
               </svg>
               <span v-if="!isLoading">Se connecter</span>
               <span v-else>Connexion...</span>
             </span>
-            <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
           </button>
 
           <div v-if="error" class="glass-strong p-4 rounded-lg border border-error/20">

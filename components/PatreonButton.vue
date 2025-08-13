@@ -17,14 +17,14 @@
         fill="currentColor"
         aria-hidden="true"
       >
-        <circle cx="14" cy="8" r="5"></circle>
-        <rect x="3" y="4" width="4" height="16" rx="2"></rect>
+        <circle cx="14" cy="8" r="5"/>
+        <rect x="3" y="4" width="4" height="16" rx="2"/>
       </svg>
       <span>{{ label }}</span>
     </span>
     <div
       class="absolute inset-0 bg-gradient-to-r from-success/10 to-warning/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-    ></div>
+    />
   </a>
 </template>
 

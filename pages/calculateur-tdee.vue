@@ -5,7 +5,7 @@
     <!-- Background pattern -->
     <div
       class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:32px_32px]"
-    ></div>
+    />
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 py-12">
       <!-- Header Section -->
@@ -20,7 +20,7 @@
 
       <!-- Main Calculator Form -->
       <div class="card p-8 mb-8 animate-fade-in delay-300">
-        <form @submit.prevent="calculateTDEE" class="space-y-8">
+        <form class="space-y-8" @submit.prevent="calculateTDEE">
           <!-- Gender Selection -->
           <div class="space-y-3">
             <label class="block text-lg font-medium text-black dark:text-white">
@@ -29,25 +29,25 @@
             <div class="grid grid-cols-2 gap-4">
               <button
                 type="button"
-                @click="formData.gender = 'male'"
                 :class="[
                   'btn p-4 text-lg transition-all duration-300',
                   formData.gender === 'male' 
                     ? 'btn-primary shadow-lg' 
                     : 'btn-outline'
                 ]"
+                @click="formData.gender = 'male'"
               >
                 Homme
               </button>
               <button
                 type="button"
-                @click="formData.gender = 'female'"
                 :class="[
                   'btn p-4 text-lg transition-all duration-300',
                   formData.gender === 'female' 
                     ? 'btn-primary shadow-lg' 
                     : 'btn-outline'
                 ]"
+                @click="formData.gender = 'female'"
               >
                 Femme
               </button>
@@ -68,7 +68,7 @@
               required
               class="input-modern text-lg"
               placeholder="Ex: 25"
-            />
+            >
           </div>
 
           <!-- Weight Input -->
@@ -86,7 +86,7 @@
               required
               class="input-modern text-lg"
               placeholder="Ex: 70.5"
-            />
+            >
           </div>
 
           <!-- Height Input -->
@@ -103,7 +103,7 @@
               required
               class="input-modern text-lg"
               placeholder="Ex: 175"
-            />
+            >
           </div>
 
           <!-- Activity Level Selection -->
@@ -113,16 +113,16 @@
             </label>
             <div class="space-y-3">
               <button
-                type="button"
                 v-for="activity in activityLevels"
                 :key="activity.multiplier"
-                @click="formData.activityLevel = activity.multiplier"
+                type="button"
                 :class="[
                   'w-full p-4 text-left rounded-xl transition-all duration-300 border-2',
                   formData.activityLevel === activity.multiplier
                     ? 'bg-gradient-to-r from-black/10 to-gray-darkest/10 dark:from-white/10 dark:to-white/5 border-black dark:border-white shadow-md'
                     : 'bg-white/50 dark:bg-gray-dark/50 border-gray-light/50 dark:border-gray-medium/50 hover:border-gray-medium dark:hover:border-gray-light'
                 ]"
+                @click="formData.activityLevel = activity.multiplier"
               >
                 <div class="font-medium text-black dark:text-white mb-1">
                   {{ activity.label }}
@@ -148,7 +148,7 @@
               step="0.1"
               class="input-modern text-lg"
               placeholder="Ex: 15.5"
-            />
+            >
             <p class="text-sm text-gray-medium dark:text-gray-light">
               Si fourni, la formule Katch-McArdle sera utilisée pour plus de précision
             </p>

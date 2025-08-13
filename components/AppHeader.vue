@@ -70,8 +70,8 @@
             </NuxtLink>
             
             <button
-              @click="handleLogout"
               class="px-3 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+              @click="handleLogout"
             >
               Déconnexion
             </button>
@@ -189,8 +189,8 @@
     <!-- Mobile nav panel -->
     <div
       v-show="isMenuOpen"
-      @keydown.esc="isMenuOpen = false"
       class="md:hidden border-t border-gray-light/30 dark:border-gray-medium/20"
+      @keydown.esc="isMenuOpen = false"
     >
       <nav
         id="primary-navigation"
@@ -227,8 +227,8 @@
               </NuxtLink>
               
               <button
-                @click="handleLogout"
                 class="px-4 py-2 text-sm font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+                @click="handleLogout"
               >
                 Déconnexion
               </button>
@@ -292,5 +292,6 @@ const navLinks = [
   { to: "/dashboard", label: "Dashboard" },
 ];
 </script>
+
 
 

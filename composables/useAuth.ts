@@ -82,7 +82,7 @@ export const useAuth = () => {
   const checkAuth = async () => {
     try {
       // En SSR, il faut transférer le cookie entrant vers l'appel $fetch
-      const headers = process.server
+      const headers = import.meta.server
         ? useRequestHeaders(["cookie"])
         : undefined;
       const response = await $fetch<{ user: AuthUser }>("/api/auth/me", {

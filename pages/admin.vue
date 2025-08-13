@@ -1,7 +1,7 @@
 <template>
   <div class="bg-gradient-to-br from-white via-off-white to-white dark:from-gray-darkest dark:via-gray-dark dark:to-gray-darkest transition-all duration-500 relative overflow-hidden">
     <!-- Background pattern -->
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:24px_24px]"/>
     
     <div class="max-w-7xl mx-auto px-6 py-8 relative z-10">
       <div class="mb-8 text-center animate-fade-in">
@@ -16,13 +16,13 @@
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 animate-fade-in delay-300">
         <!-- Statistiques -->
         <div class="card-metric p-6 group cursor-pointer relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
           <div class="relative z-10">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider">Utilisateurs</h3>
               <div class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-5 h-5 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                 </svg>
               </div>
             </div>
@@ -35,13 +35,13 @@
         </div>
 
         <div class="card-metric p-6 group cursor-pointer relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
           <div class="relative z-10">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider">Admins</h3>
               <div class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-5 h-5 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
               </div>
             </div>
@@ -54,13 +54,13 @@
         </div>
 
         <div class="card-metric p-6 group cursor-pointer relative overflow-hidden">
-          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-black/5 to-transparent dark:from-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"/>
           <div class="relative z-10">
             <div class="flex items-center justify-between mb-4">
               <h3 class="text-xs font-semibold text-gray-medium dark:text-gray-light uppercase tracking-wider">Activité</h3>
               <div class="w-10 h-10 bg-gradient-to-br from-black/20 to-black/10 dark:from-white/20 dark:to-white/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-5 h-5 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
               </div>
             </div>
@@ -77,7 +77,7 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 animate-fade-in delay-500">
         <!-- Gestion des utilisateurs -->
         <div class="card p-8 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black via-gray-medium to-black dark:from-white dark:via-gray-light dark:to-white"></div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black via-gray-medium to-black dark:from-white dark:via-gray-light dark:to-white"/>
           <div class="flex items-center justify-between mb-8">
             <div>
               <h2 class="text-2xl font-light text-gradient mb-2">Gestion des Utilisateurs</h2>
@@ -85,45 +85,45 @@
             </div>
             <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-2xl flex items-center justify-center shadow-lg">
               <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
               </svg>
             </div>
           </div>
           
           <div class="space-y-4">
             <button 
-              @click="viewUsers"
               class="btn btn-primary w-full py-4 text-lg relative overflow-hidden group"
+              @click="viewUsers"
             >
               <span class="relative z-10 flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
                 </svg>
                 <span>Voir tous les utilisateurs</span>
               </span>
-              <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
             </button>
             
             <button 
-              @click="createUser"
               class="btn btn-outline w-full py-4 text-lg group"
+              @click="createUser"
             >
               <span class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
                 </svg>
                 <span>Créer un nouvel utilisateur</span>
               </span>
             </button>
             
             <button 
-              @click="manageRoles"
               class="btn btn-outline w-full py-4 text-lg group"
+              @click="manageRoles"
             >
               <span class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
                 <span>Gérer les rôles</span>
               </span>
@@ -133,7 +133,7 @@
 
         <!-- Configuration système -->
         <div class="card p-8 relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black via-gray-medium to-black dark:from-white dark:via-gray-light dark:to-white"></div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black via-gray-medium to-black dark:from-white dark:via-gray-light dark:to-white"/>
           <div class="flex items-center justify-between mb-8">
             <div>
               <h2 class="text-2xl font-light text-gradient mb-2">Configuration Système</h2>
@@ -141,44 +141,44 @@
             </div>
             <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-2xl flex items-center justify-center shadow-lg">
               <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
               </svg>
             </div>
           </div>
           
           <div class="space-y-4">
             <button 
-              @click="systemSettings"
               class="btn btn-outline w-full py-4 text-lg group"
+              @click="systemSettings"
             >
               <span class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4"/>
                 </svg>
                 <span>Paramètres système</span>
               </span>
             </button>
             
             <button 
-              @click="databaseBackup"
               class="btn btn-outline w-full py-4 text-lg group"
+              @click="databaseBackup"
             >
               <span class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
                 <span>Sauvegarde de la base de données</span>
               </span>
             </button>
             
             <button 
-              @click="viewLogs"
               class="btn btn-outline w-full py-4 text-lg group"
+              @click="viewLogs"
             >
               <span class="flex items-center justify-center space-x-2">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                 </svg>
                 <span>Consulter les logs</span>
               </span>
@@ -204,11 +204,11 @@
             Gestion des Utilisateurs
           </h3>
           <button 
-            @click="showUsersModal = false"
             class="text-gray-medium dark:text-gray-light hover:text-black dark:hover:text-white transition-colors"
+            @click="showUsersModal = false"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
@@ -217,19 +217,19 @@
         <div class="flex-1 overflow-y-auto">
           <!-- État de chargement -->
           <div v-if="isLoadingUsers" class="flex justify-center items-center py-12">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"></div>
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"/>
           </div>
 
           <!-- Erreur -->
           <div v-else-if="usersError" class="text-center py-12 px-6">
             <div class="text-red-500 mb-4">
               <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               <h4 class="text-xl font-semibold mb-2">Erreur de chargement</h4>
               <p class="text-gray-medium">{{ usersError }}</p>
             </div>
-            <button @click="loadUsers" class="btn btn-primary">
+            <button class="btn btn-primary" @click="loadUsers">
               Réessayer
             </button>
           </div>
@@ -242,7 +242,7 @@
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                   <svg class="w-5 h-5 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                   </svg>
                 </div>
                 <input
@@ -253,11 +253,11 @@
                 >
                 <button
                   v-if="searchTerm"
-                  @click="searchTerm = ''"
                   class="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-medium hover:text-black dark:hover:text-white transition-colors"
+                  @click="searchTerm = ''"
                 >
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                   </svg>
                 </button>
               </div>
@@ -277,7 +277,7 @@
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
                       <svg class="w-4 h-4 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                       </svg>
                     </div>
                   </div>
@@ -295,16 +295,16 @@
                     </select>
                     <div class="absolute inset-y-0 right-0 flex items-center px-3 pointer-events-none">
                       <svg class="w-4 h-4 text-gray-medium dark:text-gray-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
                       </svg>
                     </div>
                   </div>
 
                   <!-- Bouton ordre de tri -->
                   <button
-                    @click="toggleSort(sortBy)"
                     class="flex items-center justify-center w-11 h-11 bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 transition-all duration-300"
                     :title="sortOrder === 'asc' ? 'Tri croissant' : 'Tri décroissant'"
+                    @click="toggleSort(sortBy)"
                   >
                     <svg 
                       class="w-4 h-4 transition-transform duration-300"
@@ -313,7 +313,7 @@
                       stroke="currentColor" 
                       viewBox="0 0 24 24"
                     >
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
                     </svg>
                   </button>
                 </div>
@@ -325,11 +325,11 @@
                   </div>
                   
                   <button
-                    @click="resetFilters"
                     class="flex items-center gap-2 px-4 py-2 bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-all duration-300 text-sm font-medium"
+                    @click="resetFilters"
                   >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
                     </svg>
                     Réinitialiser
                   </button>
@@ -343,8 +343,8 @@
                   <thead class="bg-gradient-to-r from-black/5 to-black/10 dark:from-white/5 dark:to-white/10">
                     <tr>
                       <th 
-                        @click="toggleSort('firstName')"
                         class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                        @click="toggleSort('firstName')"
                       >
                         <div class="flex items-center space-x-1">
                           <span>Utilisateur</span>
@@ -356,13 +356,13 @@
                             stroke="currentColor" 
                             viewBox="0 0 24 24"
                           >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
                           </svg>
                         </div>
                       </th>
                       <th 
-                        @click="toggleSort('email')"
                         class="text-left p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                        @click="toggleSort('email')"
                       >
                         <div class="flex items-center space-x-1">
                           <span>Email</span>
@@ -374,13 +374,13 @@
                             stroke="currentColor" 
                             viewBox="0 0 24 24"
                           >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
                           </svg>
                         </div>
                       </th>
                       <th 
-                        @click="toggleSort('role')"
                         class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                        @click="toggleSort('role')"
                       >
                         <div class="flex items-center justify-center space-x-1">
                           <span>Rôle</span>
@@ -392,13 +392,13 @@
                             stroke="currentColor" 
                             viewBox="0 0 24 24"
                           >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
                           </svg>
                         </div>
                       </th>
                       <th 
-                        @click="toggleSort('createdAt')"
                         class="text-center p-4 font-semibold text-sm uppercase tracking-wider text-gray-medium dark:text-gray-light cursor-pointer hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                        @click="toggleSort('createdAt')"
                       >
                         <div class="flex items-center justify-center space-x-1">
                           <span>Date d'inscription</span>
@@ -410,7 +410,7 @@
                             stroke="currentColor" 
                             viewBox="0 0 24 24"
                           >
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"/>
                           </svg>
                         </div>
                       </th>
@@ -422,7 +422,7 @@
                       <td colspan="4" class="py-12">
                         <div class="text-gray-medium dark:text-gray-light">
                           <svg class="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
                           </svg>
                           <p class="text-lg font-medium mb-2">Aucun utilisateur trouvé</p>
                           <p class="text-sm">Essayez de modifier vos critères de recherche</p>
@@ -500,11 +500,11 @@
             </p>
           </div>
           <button 
-            @click="showRolesModal = false"
             class="text-gray-medium dark:text-gray-light hover:text-black dark:hover:text-white transition-colors"
+            @click="showRolesModal = false"
           >
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
             </svg>
           </button>
         </div>
@@ -513,19 +513,19 @@
         <div class="flex-1 overflow-y-auto">
           <!-- État de chargement -->
           <div v-if="isLoadingRoles" class="flex justify-center items-center py-12">
-            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"></div>
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white"/>
           </div>
 
           <!-- Erreur -->
           <div v-else-if="rolesError" class="text-center py-12 px-6">
             <div class="text-red-500 mb-4">
               <svg class="w-16 h-16 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
               <h4 class="text-xl font-semibold mb-2">Erreur de chargement</h4>
               <p class="text-gray-medium">{{ rolesError }}</p>
             </div>
-            <button @click="loadRoleUsers" class="btn btn-primary">
+            <button class="btn btn-primary" @click="loadRoleUsers">
               Réessayer
             </button>
           </div>
@@ -536,7 +536,7 @@
               <div class="bg-gradient-to-r from-warning/10 to-success/10 dark:from-warning/5 dark:to-success/5 border border-warning/20 dark:border-warning/10 rounded-xl p-4">
                 <div class="flex items-start space-x-3">
                   <svg class="w-5 h-5 text-warning flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5l-6.928-12c-.77-.833-2.694-.833-3.464 0L.165 16.5C-.605 17.333.357 19 1.897 19z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5l-6.928-12c-.77-.833-2.694-.833-3.464 0L.165 16.5C-.605 17.333.357 19 1.897 19z"/>
                   </svg>
                   <div>
                     <p class="text-sm font-medium text-warning dark:text-warning mb-1">
@@ -596,10 +596,10 @@
                             : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1'"
                         >
                           <svg v-if="roleUser.role === 'admin'" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                           </svg>
                           <svg v-else class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                           </svg>
                           <span>{{ roleUser.role === 'admin' ? 'Administrateur' : 'Utilisateur' }}</span>
                         </span>
@@ -608,24 +608,24 @@
                         <div class="flex justify-center space-x-2">
                           <button
                             v-if="roleUser.role !== 'admin'"
-                            @click="updateUserRole(roleUser.id, 'admin')"
                             :disabled="isUpdatingRole"
                             class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-success to-warning text-white text-xs font-medium rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            @click="updateUserRole(roleUser.id, 'admin')"
                           >
                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                             </svg>
                             Promouvoir Admin
                           </button>
                           
                           <button
                             v-if="roleUser.role === 'admin' && roleUser.id !== user?.id"
-                            @click="updateUserRole(roleUser.id, 'user')"
                             :disabled="isUpdatingRole"
                             class="inline-flex items-center px-3 py-1.5 bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light text-xs font-medium rounded-lg hover:bg-gray-light/40 dark:hover:bg-gray-medium/40 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            @click="updateUserRole(roleUser.id, 'user')"
                           >
                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
                             </svg>
                             Rétrograder Utilisateur
                           </button>
@@ -635,7 +635,7 @@
                             class="inline-flex items-center px-3 py-1.5 bg-gray-light/10 dark:bg-gray-medium/10 text-gray-medium dark:text-gray-light text-xs font-medium rounded-lg"
                           >
                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
                             </svg>
                             Votre compte
                           </span>
