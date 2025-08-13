@@ -43,7 +43,7 @@ export function useValidation() {
       let firstError = 'Données invalides'
       
       if (error instanceof ZodError) {
-        error.errors.forEach((err, index) => {
+        (error.issues || []).forEach((err, index) => {
           const field = err.path.join('.') || 'root'
           errors[field] = err.message
           if (index === 0) {
@@ -75,7 +75,7 @@ export function useValidation() {
       return { isValid: true }
     } catch (error) {
       if (error instanceof ZodError) {
-        const fieldError = error.errors.find(err => 
+        const fieldError = (error.issues || []).find(err => 
           err.path.includes(fieldName as string)
         )
         if (fieldError) {
