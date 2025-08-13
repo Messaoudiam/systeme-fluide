@@ -37,7 +37,7 @@ describe('JWT Utils', () => {
     updatedAt: new Date()
   }
 
-  const mockEvent = {} as any
+  const mockEvent = {} as unknown
 
   beforeEach(() => {
     vi.clearAllMocks()

@@ -63,7 +63,7 @@ describe('Login API', () => {
         }
       }
     }
-  } as any
+  } as unknown
 
   const mockUser = {
     id: '123',
@@ -315,7 +315,7 @@ describe('Login API', () => {
 
       try {
         await loginHandler.default(mockEvent)
-      } catch (error) {
+      } catch {
         // Expected error
       }
 

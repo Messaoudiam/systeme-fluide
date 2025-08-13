@@ -10,7 +10,10 @@ vi.mock('bcrypt', () => ({
   }
 }))
 
-const mockBcrypt = bcrypt as any
+const mockBcrypt = bcrypt as {
+  hash: ReturnType<typeof vi.fn>
+  compare: ReturnType<typeof vi.fn>
+}
 
 describe('Password Utils', () => {
   describe('hashPassword', () => {
@@ -83,8 +86,8 @@ describe('Password Utils', () => {
       })
 
       it('devrait rejeter un mot de passe null ou undefined', () => {
-        const resultNull = validatePassword(null as any)
-        const resultUndefined = validatePassword(undefined as any)
+        const resultNull = validatePassword(null as unknown as string)
+        const resultUndefined = validatePassword(undefined as unknown as string)
         
         expect(resultNull.valid).toBe(false)
         expect(resultUndefined.valid).toBe(false)
