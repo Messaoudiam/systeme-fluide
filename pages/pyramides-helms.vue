@@ -697,11 +697,6 @@ useHead({
   transition: all 0.3s ease;
 }
 
-<style scoped>
-.pyramid-level {
-  transition: all 0.3s ease;
-}
-
 .pyramid-level.active .pyramid-bar {
   transform: scale(1.02);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -709,20 +704,5 @@ useHead({
 
 .pyramid-bar {
   transition: all 0.3s ease;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
 }
 </style>

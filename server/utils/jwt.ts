@@ -101,3 +101,15 @@ export function clearJWTCookie(event: H3Event) {
       process.env.NODE_ENV === "production" ? process.env.DOMAIN : undefined,
   });
 }
+
+/**
+ * Vérifie l'authentification depuis une requête H3Event
+ */
+export function verifyJWT(event: H3Event): JWTPayload | null {
+  const token = extractTokenFromRequest(event);
+  if (!token) {
+    return null;
+  }
+  
+  return verifyToken(token);
+}

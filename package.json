@@ -31,7 +31,8 @@
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^4.0.1",
     "pinia": "^3.0.3",
-    "postgres": "^3.4.7"
+    "postgres": "^3.4.7",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.7.4",
