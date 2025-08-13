@@ -635,14 +635,14 @@ const loadDashboardData = async (date?: string) => {
   isLoading.value = true
   
   try {
-    // Charger les stats quotidiennes pour la date spécifiée
-    const dailyResult = await getDailyStats(Number(user.value!.id), date)
+    // Charger les stats quotidiennes pour la date spécifiée  
+    const dailyResult = await getDailyStats(user.value!.id, date)
     if (dailyResult.success && dailyResult.data) {
       Object.assign(dailyStats, dailyResult.data)
     }
 
     // Charger les moyennes hebdomadaires
-    const weeklyResult = await getWeeklyAverages(Number(user.value!.id))
+    const weeklyResult = await getWeeklyAverages(user.value!.id)
     if (weeklyResult.success && weeklyResult.data) {
       Object.assign(weeklyAverages, weeklyResult.data)
     }
@@ -656,7 +656,7 @@ const loadDashboardData = async (date?: string) => {
 // Fonction pour pré-remplir le formulaire avec les données existantes
 const loadFormData = async (date: string) => {
   try {
-    const dailyResult = await getDailyStats(Number(user.value!.id), date)
+    const dailyResult = await getDailyStats(user.value!.id, date)
     if (dailyResult.success && dailyResult.data) {
       const data = dailyResult.data
       // Pré-remplir le formulaire avec les données existantes
@@ -710,7 +710,7 @@ const saveDailyData = async () => {
   isLoading.value = true;
 
   try {
-    const result = await saveUserDailyData(Number(user.value.id), {
+    const result = await saveUserDailyData(user.value.id, {
       date: formData.selectedDate,
       calories: formData.calories || undefined,
       proteins: formData.proteins || undefined,

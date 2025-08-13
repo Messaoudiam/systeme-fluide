@@ -34,7 +34,7 @@ export const useDatabase = () => {
   }
 
   // Récupérer les statistiques quotidiennes d'un utilisateur
-  const getDailyStats = async (userId: number, date?: string) => {
+  const getDailyStats = async (userId: string, date?: string) => {
     try {
       const targetDate = date || new Date().toISOString().split('T')[0]
       const data = await $fetch(`/api/stats/daily/${userId}?date=${targetDate}`)
@@ -48,7 +48,7 @@ export const useDatabase = () => {
   }
 
   // Récupérer les moyennes hebdomadaires d'un utilisateur
-  const getWeeklyAverages = async (userId: number) => {
+  const getWeeklyAverages = async (userId: string) => {
     try {
       const data = await $fetch(`/api/stats/weekly/${userId}`)
       return { success: true, data }
@@ -61,7 +61,7 @@ export const useDatabase = () => {
   }
 
   // Sauvegarder les données quotidiennes
-  const saveDailyData = async (userId: number, dailyData: {
+  const saveDailyData = async (userId: string, dailyData: {
     date?: string
     calories?: number
     proteins?: number

@@ -23,9 +23,9 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    let decoded: { userId: string; email: string }
+    let decoded: { id: string; email: string }
     try {
-      decoded = jwt.verify(token, secret) as { userId: string; email: string }
+      decoded = jwt.verify(token, secret) as { id: string; email: string }
     } catch {
       throw createError({
         statusCode: 401,
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Vérification que l'utilisateur peut accéder à ses propres données
-    if (decoded.userId !== userId) {
+    if (decoded.id !== userId) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Accès refusé'
