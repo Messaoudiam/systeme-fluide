@@ -1,4 +1,4 @@
-export default defineNuxtRouteMiddleware(async (to, from) => {
+export default defineNuxtRouteMiddleware(async (to, _from) => {
   const { checkAuth } = useAuth()
   
   // Vérifier l'authentification et les permissions admin
@@ -19,7 +19,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       })
     }
   } catch (error) {
-    if (error.statusCode === 403) {
+    if ((error as { statusCode?: number }).statusCode === 403) {
       throw error // Re-lancer les erreurs 403
     }
     

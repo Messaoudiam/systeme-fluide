@@ -70,8 +70,8 @@
             </NuxtLink>
             
             <button
-              @click="handleLogout"
               class="px-3 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+              @click="handleLogout"
             >
               Déconnexion
             </button>
@@ -97,34 +97,51 @@
             "
             @click="toggleColorMode"
           >
-            <svg
-              v-if="colorMode.value === 'dark'"
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 13.435l-.707.707M12 20v1m7-4a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-            <svg
-              v-else
-              class="w-5 h-5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
-              />
-            </svg>
+            <ClientOnly>
+              <svg
+                v-if="colorMode.value === 'dark'"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 13.435l-.707.707M12 20v1m7-4a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
+              </svg>
+              <svg
+                v-else
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+                />
+              </svg>
+              <template #fallback>
+                <svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"
+                  />
+                </svg>
+              </template>
+            </ClientOnly>
           </button>
 
           <!-- Mobile menu button -->
@@ -172,8 +189,8 @@
     <!-- Mobile nav panel -->
     <div
       v-show="isMenuOpen"
-      @keydown.esc="isMenuOpen = false"
       class="md:hidden border-t border-gray-light/30 dark:border-gray-medium/20"
+      @keydown.esc="isMenuOpen = false"
     >
       <nav
         id="primary-navigation"
@@ -210,8 +227,8 @@
               </NuxtLink>
               
               <button
-                @click="handleLogout"
                 class="px-4 py-2 text-sm font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+                @click="handleLogout"
               >
                 Déconnexion
               </button>
@@ -275,5 +292,6 @@ const navLinks = [
   { to: "/dashboard", label: "Dashboard" },
 ];
 </script>
+
 
 

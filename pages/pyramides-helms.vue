@@ -5,7 +5,7 @@
     <!-- Background pattern -->
     <div
       class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.02)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[length:32px_32px]"
-    ></div>
+    />
     
     <div class="relative z-10">
       <main class="max-w-7xl mx-auto px-6 py-12">
@@ -19,13 +19,13 @@
             démocratisée par Lucas Gouiffes dans le monde francophone
           </p>
           <div class="flex justify-center">
-            <div class="w-24 h-1 bg-gradient-to-r from-success via-warning to-error rounded-full"></div>
+            <div class="w-24 h-1 bg-gradient-to-r from-success via-warning to-error rounded-full"/>
           </div>
         </div>
 
         <!-- Video Section -->
         <div class="card p-8 mb-16 relative overflow-hidden animate-fade-in delay-300">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-error"></div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-error"/>
           
           <div class="text-center mb-8">
             <h2 class="text-2xl md:text-3xl font-light text-gradient mb-4">
@@ -44,13 +44,13 @@
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen
-            ></iframe>
+            />
           </div>
         </div>
 
         <!-- Pyramid Tabs -->
         <div class="card p-8 mb-16 relative overflow-hidden animate-fade-in delay-500">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error via-warning to-success"></div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-error via-warning to-success"/>
           
           <div class="text-center mb-8">
             <h2 class="text-2xl md:text-3xl font-light text-gradient mb-4">
@@ -65,25 +65,25 @@
           <div class="flex justify-center mb-12">
             <div class="glass-strong rounded-2xl p-2 flex space-x-2">
               <button
-                @click="activePyramid = 'nutrition'"
                 :class="activePyramid === 'nutrition' ? 'btn btn-primary' : 'btn btn-ghost'"
                 class="px-6 py-3 rounded-xl transition-all duration-300"
+                @click="activePyramid = 'nutrition'"
               >
                 <div class="flex items-center space-x-2">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                   </svg>
                   <span>Nutrition</span>
                 </div>
               </button>
               <button
-                @click="activePyramid = 'training'"
                 :class="activePyramid === 'training' ? 'btn btn-primary' : 'btn btn-ghost'"
                 class="px-6 py-3 rounded-xl transition-all duration-300"
+                @click="activePyramid = 'training'"
               >
                 <div class="flex items-center space-x-2">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                   </svg>
                   <span>Entraînement</span>
                 </div>
@@ -92,7 +92,7 @@
           </div>
 
           <!-- Nutrition Pyramid -->
-          <div v-if="activePyramid === 'nutrition'" class="max-w-4xl mx-auto" key="nutrition">
+          <div v-if="activePyramid === 'nutrition'" key="nutrition" class="max-w-4xl mx-auto">
             <div class="text-center mb-8">
               <h3 class="text-xl font-medium text-gradient mb-2">Pyramide Nutritionnelle</h3>
               <p class="text-gray-medium dark:text-gray-light text-sm">Cliquez sur chaque niveau pour plus de détails</p>
@@ -168,7 +168,7 @@
           </div>
 
           <!-- Training Pyramid -->
-          <div v-else-if="activePyramid === 'training'" class="max-w-4xl mx-auto" key="training">
+          <div v-else-if="activePyramid === 'training'" key="training" class="max-w-4xl mx-auto">
             <div class="text-center mb-8">
               <h3 class="text-xl font-medium text-gradient mb-2">Pyramide d'Entraînement</h3>
               <p class="text-gray-medium dark:text-gray-light text-sm">Cliquez sur chaque niveau pour plus de détails</p>
@@ -259,15 +259,15 @@
                     </p>
                     <ul class="space-y-2 text-gray-medium dark:text-gray-light">
                       <li class="flex items-center space-x-2">
-                        <div class="w-2 h-2 bg-success rounded-full"></div>
+                        <div class="w-2 h-2 bg-success rounded-full"/>
                         <span>Déficit = Perte de poids</span>
                       </li>
                       <li class="flex items-center space-x-2">
-                        <div class="w-2 h-2 bg-warning rounded-full"></div>
+                        <div class="w-2 h-2 bg-warning rounded-full"/>
                         <span>Maintenance = Stabilité</span>
                       </li>
                       <li class="flex items-center space-x-2">
-                        <div class="w-2 h-2 bg-error rounded-full"></div>
+                        <div class="w-2 h-2 bg-error rounded-full"/>
                         <span>Surplus = Prise de poids</span>
                       </li>
                     </ul>
@@ -571,7 +571,7 @@
 
         <!-- Application dans Système Fluide -->
         <div class="card p-8 relative overflow-hidden animate-fade-in delay-700">
-          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-success"></div>
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-success"/>
           
           <div class="text-center mb-8">
             <h2 class="text-2xl md:text-3xl font-light text-gradient mb-4">
@@ -586,7 +586,7 @@
             <div class="text-center group">
               <div class="w-16 h-16 bg-gradient-to-br from-success to-success/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
                 </svg>
               </div>
               <h3 class="text-lg font-medium text-black dark:text-white mb-2">Calories</h3>
@@ -596,7 +596,7 @@
             <div class="text-center group">
               <div class="w-16 h-16 bg-gradient-to-br from-warning to-warning/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.871 4A17.926 17.926 0 003 12c0 2.874.673 5.59 1.871 8m14.13 0a17.926 17.926 0 001.87-8 17.926 17.926 0 00-1.87-8M9 9h1.246a1 1 0 01.736.327l1.04 1.147a1 1 0 00.736.326H15M9 15h6"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.871 4A17.926 17.926 0 003 12c0 2.874.673 5.59 1.871 8m14.13 0a17.926 17.926 0 001.87-8 17.926 17.926 0 00-1.87-8M9 9h1.246a1 1 0 01.736.327l1.04 1.147a1 1 0 00.736.326H15M9 15h6"/>
                 </svg>
               </div>
               <h3 class="text-lg font-medium text-black dark:text-white mb-2">Macros</h3>
@@ -606,7 +606,7 @@
             <div class="text-center group">
               <div class="w-16 h-16 bg-gradient-to-br from-error to-error/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/>
                 </svg>
               </div>
               <h3 class="text-lg font-medium text-black dark:text-white mb-2">Poids</h3>
@@ -616,7 +616,7 @@
             <div class="text-center group">
               <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                 </svg>
               </div>
               <h3 class="text-lg font-medium text-black dark:text-white mb-2">Entraînement</h3>
@@ -697,11 +697,6 @@ useHead({
   transition: all 0.3s ease;
 }
 
-<style scoped>
-.pyramid-level {
-  transition: all 0.3s ease;
-}
-
 .pyramid-level.active .pyramid-bar {
   transform: scale(1.02);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -709,20 +704,5 @@ useHead({
 
 .pyramid-bar {
   transition: all 0.3s ease;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 0.5s ease-out forwards;
 }
 </style>

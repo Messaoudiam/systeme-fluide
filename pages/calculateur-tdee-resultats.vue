@@ -2,16 +2,17 @@
   <div v-if="pending" class="min-h-screen flex items-center justify-center">
     <div class="text-center">
       <div class="text-2xl font-light text-gradient mb-4">Calcul en cours...</div>
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white mx-auto"></div>
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-black dark:border-white mx-auto"/>
     </div>
   </div>
-  <div v-else-if="results && userProfile"
+  <div
+v-else-if="results && userProfile"
     class="min-h-screen bg-gradient-to-br from-white via-off-white to-white dark:from-gray-darkest dark:via-gray-dark dark:to-gray-darkest transition-all duration-500 relative overflow-hidden"
   >
     <!-- Background pattern -->
     <div
       class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.03)_1px,transparent_1px)] dark:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[length:32px_32px]"
-    ></div>
+    />
 
     <div class="relative z-10 max-w-7xl mx-auto px-6 py-12">
       <!-- Header -->

@@ -86,9 +86,9 @@
 
         <!-- Newsletter - Mobile -->
         <form
-          @submit.prevent
           class="space-y-3"
           aria-labelledby="newsletter-title-mobile"
+          @submit.prevent
         >
           <h3
             id="newsletter-title-mobile"
@@ -111,7 +111,7 @@
               placeholder="votre@email"
               class="input-modern !py-2.5"
               aria-required="true"
-            />
+            >
             <button type="submit" class="btn btn-primary px-4 py-2 w-full">
               S'inscrire
             </button>
@@ -206,9 +206,9 @@
 
         <!-- Newsletter - Desktop -->
         <form
-          @submit.prevent
           class="space-y-3"
           aria-labelledby="newsletter-title-desktop"
+          @submit.prevent
         >
           <h3
             id="newsletter-title-desktop"
@@ -231,7 +231,7 @@
               placeholder="votre@email"
               class="input-modern !py-2.5"
               aria-required="true"
-            />
+            >
             <button type="submit" class="btn btn-primary px-4 py-2">
               S'inscrire
             </button>

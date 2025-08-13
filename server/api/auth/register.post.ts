@@ -1,28 +1,13 @@
 import { eq } from 'drizzle-orm'
 import { users } from '~/database/schema'
-import type { RegisterData } from '~/types/auth'
 import { generateToken, setJWTCookie } from '~/server/utils/jwt'
-import { hashPassword, validatePassword } from '~/server/utils/password'
+import { hashPassword } from '~/server/utils/password'
 import { useDatabase } from '~/server/utils/database'
+import { registerSchema } from '~/server/utils/validation/schemas'
+import { validateRequestBody } from '~/server/utils/validation/validator'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<RegisterData>(event)
-  
-  if (!body.email || !body.password || !body.firstName || !body.lastName) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Tous les champs requis doivent être remplis'
-    })
-  }
-
-  // Valider la force du mot de passe
-  const passwordValidation = validatePassword(body.password)
-  if (!passwordValidation.valid) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: passwordValidation.message
-    })
-  }
+  const body = await validateRequestBody(registerSchema)(event)
 
   try {
     const db = await useDatabase()
@@ -71,7 +56,7 @@ export default defineEventHandler(async (event) => {
     }
   } catch (error) {
     console.error('Erreur d\'inscription:', error)
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
     throw createError({

@@ -1,20 +1,14 @@
 import { eq } from 'drizzle-orm'
 import { users } from '~/database/schema'
-import type { LoginCredentials } from '~/types/auth'
 import { generateToken, setJWTCookie } from '~/server/utils/jwt'
 import { verifyPassword } from '~/server/utils/password'
 import { checkRateLimit, recordLoginAttempt, getClientIP, formatTimeRemaining } from '~/server/utils/rate-limiter'
 import { useDatabase } from '~/server/utils/database'
+import { loginSchema } from '~/server/utils/validation/schemas'
+import { validateRequestBody } from '~/server/utils/validation/validator'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody<LoginCredentials>(event)
-  
-  if (!body.email || !body.password) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Email et mot de passe requis'
-    })
-  }
+  const body = await validateRequestBody(loginSchema)(event)
 
   // Obtenir l'IP du client pour le rate limiting
   const clientIP = getClientIP(event)
@@ -85,7 +79,7 @@ export default defineEventHandler(async (event) => {
     }
   } catch (error) {
     console.error('Erreur de connexion:', error)
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
     throw createError({

@@ -1,0 +1,164 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION_LATEST: '22.x'
+  NODE_VERSION_LTS: '20.x'
+  JWT_SECRET: ${{ secrets.JWT_SECRET || 'test-secret-key-for-ci-only-minimum-32-chars-required' }}
+  SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF || 'test-ref' }}
+  SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD || 'test-password' }}
+
+jobs:
+  lint-and-typecheck:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION_LATEST }}
+        cache: 'npm'
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ env.NODE_VERSION_LATEST }}-${{ hashFiles('package-lock.json') }}
+        
+    - name: Install dependencies
+      run: npm ci --prefer-offline
+      
+    - name: Prepare Nuxt
+      run: npm run postinstall
+      
+    - name: Run ESLint
+      run: npx eslint .
+      
+    - name: Run TypeScript check
+      run: npx vue-tsc --noEmit
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION_LATEST }}
+        cache: 'npm'
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ env.NODE_VERSION_LATEST }}-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      run: npm ci --prefer-offline
+
+    - name: Run security audit
+      if: github.ref != 'refs/heads/main'
+      run: npm audit --audit-level=moderate
+      continue-on-error: true
+
+    - name: Run strict security audit on main
+      if: github.ref == 'refs/heads/main'
+      run: npm audit --audit-level=high
+
+  build:
+    name: Build & Generate
+    runs-on: ubuntu-latest
+    needs: [lint-and-typecheck, security-audit, vitest]
+    timeout-minutes: 15
+    
+    strategy:
+      matrix:
+        node-version: ['20.x', '22.x']
+      fail-fast: false
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
+        
+    - name: Install dependencies
+      run: npm ci --prefer-offline
+      
+    - name: Prepare Nuxt
+      run: npm run postinstall
+      
+    - name: Build application
+      run: npm run build
+        
+    - name: Generate static site
+      run: npm run generate
+        
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      if: matrix.node-version == '22.x'
+      with:
+        name: build-output
+        path: |
+          .output/
+          dist/
+        retention-days: 7
+
+  vitest:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    needs: [lint-and-typecheck]
+    timeout-minutes: 10
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION_LATEST }}
+        cache: 'npm'
+
+    - name: Cache node_modules
+      uses: actions/cache@v4
+      with:
+        path: node_modules
+        key: ${{ runner.os }}-node-${{ env.NODE_VERSION_LATEST }}-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      run: npm ci --prefer-offline
+
+    - name: Run functional tests
+      run: npm run test:functional

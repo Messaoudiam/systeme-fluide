@@ -1,5 +1,5 @@
-export default defineNuxtRouteMiddleware(async (to, from) => {
-  const { isLoggedIn, checkAuth } = useAuth();
+export default defineNuxtRouteMiddleware(async (to, _from) => {
+  const { checkAuth } = useAuth();
 
   // Toujours vérifier l'authentification en appelant l'API
   try {

@@ -67,14 +67,57 @@ npm run preview
 
 ## 📝 Available Scripts
 
+### Development
 | Command | Description |
 |---------|-------------|
 | `npm run dev` | Start development server |
 | `npm run build` | Build for production |
 | `npm run generate` | Generate static site |
 | `npm run preview` | Preview production build |
-| `npx eslint .` | Run ESLint code quality checks |
-| `npx vue-tsc --noEmit` | Run TypeScript type checking |
+
+### Database
+| Command | Description |
+|---------|-------------|
+| `npm run db:generate` | Generate new Drizzle migrations |
+| `npm run db:migrate` | Apply database migrations |
+| `npm run db:studio` | Open Drizzle Studio for database management |
+
+### Code Quality
+| Command | Description |
+|---------|-------------|
+| `npm run lint` | Run ESLint code quality checks |
+| `npm run lint:fix` | Run ESLint and fix auto-fixable issues |
+| `npm run typecheck` | Run TypeScript type checking |
+
+## 🔧 Configuration
+
+### Required Environment Variables
+- `JWT_SECRET` - JWT secret key (minimum 32 characters)
+- `SUPABASE_PROJECT_REF` - Supabase project reference
+- `SUPABASE_DB_PASSWORD` - Supabase database password
+
+### Setup
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Generate secure JWT secret
+openssl rand -base64 64
+
+# Run database migrations
+npm run db:migrate
+```
+
+## 🚀 CI/CD
+
+This project includes GitHub Actions for automated testing and deployment:
+- ✅ ESLint code quality checks
+- ✅ TypeScript type validation
+- ✅ Build verification for production
+- ✅ Static site generation
+- ✅ Tests on Node.js 18 & 20
+
+All Pull Requests automatically trigger the CI pipeline.
 
 ## 🛠 Tech Stack
 

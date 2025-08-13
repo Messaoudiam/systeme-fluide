@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken'
 import { eq, and } from "drizzle-orm"
 import { useDatabase } from "~/server/utils/database"
 import { dailyCalories, dailySteps, weightLogs, workouts } from "~/database/schema"
+import { dailyDataSchema, transformToDbFormat } from "~/server/utils/validation/daily-data-schemas"
 
 export default defineEventHandler(async (event) => {
   if (event.node.req.method !== 'POST') {
@@ -30,35 +31,49 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    let decoded: any
+    let decoded: { id: string; email: string }
     try {
-      decoded = jwt.verify(token, secret)
-    } catch (err) {
+      decoded = jwt.verify(token, secret) as { id: string; email: string }
+    } catch {
       throw createError({
         statusCode: 401,
         statusMessage: 'Token invalide'
       })
     }
 
-    // Récupération des données du corps de la requête
-    const body = await readBody(event)
-    const { userId, date, calories, proteins, carbs, fats, weight, steps, workout, workoutName } = body
+    // Récupération et validation des données du corps de la requête
+    const rawBody = await readBody(event)
+    
+    // Validation avec Zod
+    let validatedData
+    try {
+      validatedData = dailyDataSchema.parse(rawBody)
+    } catch (validationError) {
+      console.error('Erreur de validation:', validationError)
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Données invalides'
+      })
+    }
 
     // Vérification que l'utilisateur peut modifier ses propres données
-    if (decoded.id !== userId) {
+    if (decoded.id !== validatedData.userId) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Accès refusé'
       })
     }
 
-    const targetDate = date || new Date().toISOString().split('T')[0] // Format YYYY-MM-DD
+    // Transformation des données pour la DB
+    const dbData = transformToDbFormat(validatedData)
+    const { userId, logDate: targetDate, totalCalories: calories, proteinsGrams: proteins, carbsGrams: carbs, fatsGrams: fats, weightKg: weight, stepCount: steps, workout, workoutName } = dbData
+
 
     // Obtenir l'instance de la base de données
     const db = await useDatabase()
 
     // Transaction pour sauvegarder toutes les données
-    const results: any[] = []
+    const results: unknown[] = []
 
     // Sauvegarder les calories si fournies
     if (calories !== undefined && calories !== null) {
@@ -114,7 +129,7 @@ export default defineEventHandler(async (event) => {
       if (existingWeight.length > 0) {
         await db.update(weightLogs)
           .set({ 
-            weightKg: weight.toString(),
+            weightKg: weight,
             updatedAt: new Date()
           })
           .where(and(
@@ -125,7 +140,7 @@ export default defineEventHandler(async (event) => {
         await db.insert(weightLogs).values({
           userId,
           logDate: targetDate,
-          weightKg: weight.toString()
+          weightKg: weight
         })
       }
       results.push({ type: 'weight', success: true })
@@ -210,7 +225,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.error('Erreur lors de la sauvegarde des données quotidiennes:', error)
     
-    if (error.statusCode) {
+    if ((error as { statusCode?: number }).statusCode) {
       throw error
     }
     
