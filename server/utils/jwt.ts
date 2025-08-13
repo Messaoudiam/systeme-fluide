@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import type { H3Event } from "h3";
 import type { AuthUser } from "~/types/auth";
 
 // Clé secrète pour signer les tokens (en production, utilisez une variable d'environnement)
@@ -56,7 +57,7 @@ export function verifyToken(token: string): JWTPayload | null {
 /**
  * Extrait le token JWT d'une requête (cookie ou header Authorization)
  */
-export function extractTokenFromRequest(event: any): string | null {
+export function extractTokenFromRequest(event: H3Event): string | null {
   // Vérifier d'abord dans les cookies
   const cookieToken = getCookie(event, "auth-token");
   if (cookieToken) {
@@ -75,7 +76,7 @@ export function extractTokenFromRequest(event: any): string | null {
 /**
  * Définit le cookie JWT sécurisé
  */
-export function setJWTCookie(event: any, token: string) {
+export function setJWTCookie(event: H3Event, token: string) {
   setCookie(event, "auth-token", token, {
     maxAge: 60 * 60 * 24 * 7, // 7 jours
     httpOnly: true,
@@ -90,7 +91,7 @@ export function setJWTCookie(event: any, token: string) {
 /**
  * Supprime le cookie JWT
  */
-export function clearJWTCookie(event: any) {
+export function clearJWTCookie(event: H3Event) {
   deleteCookie(event, "auth-token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

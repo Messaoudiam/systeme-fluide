@@ -1,3 +1,5 @@
+import type { H3Event } from "h3";
+
 interface RateLimitEntry {
   count: number
   lastAttempt: number
@@ -154,7 +156,7 @@ export function recordLoginAttempt(ip: string, email: string, success: boolean):
 /**
  * Obtient l'adresse IP réelle du client (gère les proxies/CDN)
  */
-export function getClientIP(event: any): string {
+export function getClientIP(event: H3Event): string {
   // Vérifier les headers communs pour l'IP réelle
   const forwardedFor = getHeader(event, 'x-forwarded-for')
   const realIP = getHeader(event, 'x-real-ip')

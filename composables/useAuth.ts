@@ -29,12 +29,12 @@ export const useAuth = () => {
       // Pas besoin de le gérer côté client pour la sécurité
 
       return { success: true, user: response.user };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Erreur de connexion:", error);
       return {
         success: false,
         error:
-          error?.data?.message || error?.message || "Identifiants invalides",
+          (error as { data?: { message?: string }; message?: string })?.data?.message || (error as { message?: string })?.message || "Identifiants invalides",
       };
     }
   };
@@ -56,11 +56,11 @@ export const useAuth = () => {
       // Pas besoin de le gérer côté client pour la sécurité
 
       return { success: true, user: response.user };
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Erreur d'inscription:", error);
       return {
         success: false,
-        error: error?.data?.message || error?.message || "Erreur d'inscription",
+        error: (error as { data?: { message?: string }; message?: string })?.data?.message || (error as { message?: string })?.message || "Erreur d'inscription",
       };
     }
   };
@@ -91,7 +91,7 @@ export const useAuth = () => {
       });
       user.value = response.user;
       return response.user;
-    } catch (error) {
+    } catch {
       user.value = null;
       return null;
     }

@@ -30,10 +30,10 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    let decoded: any
+    let decoded: { userId: string; email: string }
     try {
-      decoded = jwt.verify(token, secret)
-    } catch (err) {
+      decoded = jwt.verify(token, secret) as { userId: string; email: string }
+    } catch {
       throw createError({
         statusCode: 401,
         statusMessage: 'Token invalide'
@@ -45,7 +45,7 @@ export default defineEventHandler(async (event) => {
     const { userId, date, calories, proteins, carbs, fats, weight, steps, workout, workoutName } = body
 
     // Vérification que l'utilisateur peut modifier ses propres données
-    if (decoded.id !== userId) {
+    if (decoded.userId !== userId) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Accès refusé'
@@ -58,7 +58,7 @@ export default defineEventHandler(async (event) => {
     const db = await useDatabase()
 
     // Transaction pour sauvegarder toutes les données
-    const results: any[] = []
+    const results: unknown[] = []
 
     // Sauvegarder les calories si fournies
     if (calories !== undefined && calories !== null) {
@@ -210,7 +210,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.error('Erreur lors de la sauvegarde des données quotidiennes:', error)
     
-    if (error.statusCode) {
+    if ((error as { statusCode?: number }).statusCode) {
       throw error
     }
     

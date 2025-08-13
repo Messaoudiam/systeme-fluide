@@ -23,10 +23,10 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    let decoded: any
+    let decoded: { userId: string; email: string }
     try {
-      decoded = jwt.verify(token, secret)
-    } catch (err) {
+      decoded = jwt.verify(token, secret) as { userId: string; email: string }
+    } catch {
       throw createError({
         statusCode: 401,
         statusMessage: 'Token invalide'
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Vérification que l'utilisateur peut accéder à ses propres données
-    if (decoded.id !== userId) {
+    if (decoded.userId !== userId) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Accès refusé'
@@ -104,10 +104,10 @@ export default defineEventHandler(async (event) => {
 
     return response
 
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Erreur lors de la récupération des stats quotidiennes:', error)
     
-    if (error.statusCode) {
+    if ((error as { statusCode?: number }).statusCode) {
       throw error
     }
     

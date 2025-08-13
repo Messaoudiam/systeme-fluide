@@ -1,6 +1,6 @@
 import { seedTestUsers } from '~/server/utils/seed-users'
 
-export default defineEventHandler(async (event) => {
+export default defineEventHandler(async (_event) => {
   // Limiter cette route au développement seulement
   if (process.env.NODE_ENV === 'production') {
     throw createError({

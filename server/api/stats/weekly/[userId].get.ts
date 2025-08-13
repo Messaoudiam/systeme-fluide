@@ -23,10 +23,10 @@ export default defineEventHandler(async (event) => {
       })
     }
 
-    let decoded: any
+    let decoded: { userId: string; email: string }
     try {
-      decoded = jwt.verify(token, secret)
-    } catch (err) {
+      decoded = jwt.verify(token, secret) as { userId: string; email: string }
+    } catch {
       throw createError({
         statusCode: 401,
         statusMessage: 'Token invalide'
@@ -43,7 +43,7 @@ export default defineEventHandler(async (event) => {
     }
 
     // Vérification que l'utilisateur peut accéder à ses propres données
-    if (decoded.id !== userId) {
+    if (decoded.userId !== userId) {
       throw createError({
         statusCode: 403,
         statusMessage: 'Accès refusé'
@@ -101,9 +101,9 @@ export default defineEventHandler(async (event) => {
     // Construire l'objet de réponse
     const response = {
       calories: avgCalories[0]?.avg || 0,
-      weight: parseFloat(avgWeight[0]?.avg || '0'),
+      weight: parseFloat(String(avgWeight[0]?.avg || '0')),
       steps: avgSteps[0]?.avg || 0,
-      workouts: parseInt(workoutCount[0]?.count || '0')
+      workouts: parseInt(String(workoutCount[0]?.count || '0'))
     }
 
     return response
@@ -111,7 +111,7 @@ export default defineEventHandler(async (event) => {
   } catch (error) {
     console.error('Erreur lors de la récupération des moyennes hebdomadaires:', error)
     
-    if (error.statusCode) {
+    if (error && typeof error === 'object' && 'statusCode' in error) {
       throw error
     }
     

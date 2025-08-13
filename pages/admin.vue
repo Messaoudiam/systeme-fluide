@@ -431,42 +431,42 @@
                     </tr>
                     
                     <tr 
-                      v-for="user in filteredUsers" 
-                      :key="user.id"
+                      v-for="adminUser in filteredUsers" 
+                      :key="adminUser.id"
                       class="hover:bg-black/5 dark:hover:bg-white/5 transition-colors duration-200"
                     >
                       <td class="p-4">
                         <div class="flex items-center space-x-3">
                           <div class="w-10 h-10 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-gray-light rounded-full flex items-center justify-center flex-shrink-0">
                             <span class="text-white dark:text-black font-semibold text-sm">
-                              {{ user.firstName.charAt(0) }}{{ user.lastName.charAt(0) }}
+                              {{ adminUser.firstName.charAt(0) }}{{ adminUser.lastName.charAt(0) }}
                             </span>
                           </div>
                           <div class="min-w-0">
                             <p class="font-medium text-black dark:text-white truncate">
-                              {{ user.firstName }} {{ user.lastName }}
+                              {{ adminUser.firstName }} {{ adminUser.lastName }}
                             </p>
-                            <p v-if="user.gender" class="text-sm text-gray-medium dark:text-gray-light">
-                              {{ user.gender === 'M' ? 'Homme' : 'Femme' }}
+                            <p v-if="adminUser.gender" class="text-sm text-gray-medium dark:text-gray-light">
+                              {{ adminUser.gender === 'M' ? 'Homme' : 'Femme' }}
                             </p>
                           </div>
                         </div>
                       </td>
                       <td class="p-4">
-                        <p class="text-black dark:text-white truncate">{{ user.email }}</p>
+                        <p class="text-black dark:text-white truncate">{{ adminUser.email }}</p>
                       </td>
                       <td class="p-4 text-center">
                         <span 
-                          :class="user.role === 'admin' 
+                          :class="adminUser.role === 'admin' 
                             ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap' 
                             : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap'"
                         >
-                          {{ user.role === 'admin' ? 'Admin' : 'Utilisateur' }}
+                          {{ adminUser.role === 'admin' ? 'Admin' : 'Utilisateur' }}
                         </span>
                       </td>
                       <td class="p-4 text-center">
                         <p class="text-black dark:text-white text-sm whitespace-nowrap">
-                          {{ formatDate(user.createdAt) }}
+                          {{ formatDate(adminUser.createdAt) }}
                         </p>
                       </td>
                     </tr>
@@ -654,7 +654,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, computed, onMounted } from 'vue'
+import type { AuthUser } from '~/types/auth'
 
 // Protection de la route avec middleware admin
 definePageMeta({
@@ -682,7 +683,7 @@ const stats = reactive({
 const isLoading = ref(true)
 const isLoadingUsers = ref(false)
 const showUsersModal = ref(false)
-const users = ref<any[]>([])
+const users = ref<(AuthUser & { createdAt: string; gender?: string })[]>([])
 const usersError = ref<string | null>(null)
 
 // États pour la recherche et les filtres
@@ -726,7 +727,7 @@ const loadUsers = async () => {
   try {
     const result = await getAllUsers()
     if (result.success && result.data) {
-      users.value = result.data
+      users.value = result.data as (AuthUser & { createdAt: string; gender?: string })[]
     } else {
       usersError.value = result.error || 'Erreur lors du chargement des utilisateurs'
     }
@@ -759,17 +760,15 @@ const filteredUsers = computed(() => {
 
   // Tri
   filtered.sort((a, b) => {
-    let aVal = a[sortBy.value]
-    let bVal = b[sortBy.value]
+    let aVal: string | number = String(a[sortBy.value as keyof typeof a] || '')
+    let bVal: string | number = String(b[sortBy.value as keyof typeof b] || '')
 
     // Gestion spéciale pour les dates
     if (sortBy.value === 'createdAt') {
-      aVal = new Date(aVal).getTime()
-      bVal = new Date(bVal).getTime()
-    }
-    
-    // Gestion des chaînes
-    if (typeof aVal === 'string') {
+      aVal = new Date(aVal || '').getTime()
+      bVal = new Date(bVal || '').getTime()
+    } else if (typeof aVal === 'string' && typeof bVal === 'string') {
+      // Gestion des chaînes
       aVal = aVal.toLowerCase()
       bVal = bVal.toLowerCase()
     }
@@ -819,7 +818,7 @@ const createUser = () => {
 const showRolesModal = ref(false)
 const isLoadingRoles = ref(false)
 const rolesError = ref<string | null>(null)
-const roleUsers = ref<any[]>([])
+const roleUsers = ref<AuthUser[]>([])
 const isUpdatingRole = ref(false)
 
 const manageRoles = async () => {
@@ -865,9 +864,9 @@ const updateUserRole = async (userId: string, newRole: 'user' | 'admin') => {
     
     if (response.success) {
       // Mettre à jour localement
-      const userIndex = roleUsers.value.findIndex(u => u.id === userId)
+      const userIndex = roleUsers.value.findIndex((u: AuthUser) => u.id === userId)
       if (userIndex !== -1) {
-        roleUsers.value[userIndex].role = newRole
+        (roleUsers.value[userIndex] as AuthUser).role = newRole
       }
       
       // Recharger les stats
@@ -875,9 +874,9 @@ const updateUserRole = async (userId: string, newRole: 'user' | 'admin') => {
     } else {
       rolesError.value = response.message || 'Erreur lors de la mise à jour du rôle'
     }
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Erreur lors de la mise à jour du rôle:', err)
-    rolesError.value = err?.data?.message || err?.message || 'Erreur lors de la mise à jour du rôle'
+    rolesError.value = (err as { data?: { message?: string }; message?: string })?.data?.message || (err as { message?: string })?.message || 'Erreur lors de la mise à jour du rôle'
   } finally {
     isUpdatingRole.value = false
   }
