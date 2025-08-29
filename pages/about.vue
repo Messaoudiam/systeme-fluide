@@ -6,16 +6,16 @@
     <!-- Hero Section -->
     <section class="py-24 relative overflow-hidden">
       <!-- Floating elements -->
-      <div class="absolute top-10 left-1/4 w-40 h-40 bg-gradient-to-br from-success/10 to-transparent rounded-full blur-3xl animate-pulse"/>
-      <div class="absolute top-32 right-1/3 w-60 h-60 bg-gradient-to-br from-warning/10 to-transparent rounded-full blur-3xl animate-pulse delay-700"/>
-      <div class="absolute bottom-20 left-1/3 w-32 h-32 bg-gradient-to-br from-error/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"/>
+      <div class="absolute top-10 left-1/4 w-40 h-40 bg-gradient-to-br from-black/10 dark:from-white/10 to-transparent rounded-full blur-3xl animate-pulse"/>
+      <div class="absolute top-32 right-1/3 w-60 h-60 bg-gradient-to-br from-gray-dark/10 dark:from-gray-light/10 to-transparent rounded-full blur-3xl animate-pulse delay-700"/>
+      <div class="absolute bottom-20 left-1/3 w-32 h-32 bg-gradient-to-br from-gray-medium/10 to-transparent rounded-full blur-3xl animate-pulse delay-1000"/>
       
       <div class="max-w-5xl mx-auto px-6 text-center relative">
         <div class="inline-block mb-8">
           <h1 class="text-4xl md:text-7xl font-light text-gradient mb-6 animate-fade-in">
             À propos du Système Fluide
           </h1>
-          <div class="h-1 bg-gradient-to-r from-transparent via-success via-warning via-error to-transparent rounded-full animate-fade-in delay-300"/>
+          <div class="h-1 bg-gradient-to-r from-transparent via-black dark:via-white to-transparent rounded-full animate-fade-in delay-300"/>
         </div>
         
         <p class="text-xl md:text-2xl text-gray-medium dark:text-gray-light max-w-4xl mx-auto leading-relaxed animate-fade-in delay-500">
@@ -25,8 +25,8 @@
         <!-- Mission statement highlight -->
         <div class="mt-12 glass-strong p-8 rounded-2xl max-w-2xl mx-auto animate-fade-in delay-700">
           <div class="flex items-center justify-center mb-4">
-            <div class="w-12 h-12 bg-gradient-to-br from-success to-warning rounded-xl flex items-center justify-center">
-              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="w-12 h-12 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-xl flex items-center justify-center">
+              <svg class="w-6 h-6 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
             </div>
@@ -44,14 +44,14 @@
           <div class="space-y-8">
             <div>
               <h2 class="text-3xl md:text-5xl font-light text-gradient mb-8">Notre Mission</h2>
-              <div class="w-20 h-1 bg-gradient-to-r from-success to-warning rounded-full mb-8"/>
+              <div class="w-20 h-1 bg-gradient-to-r from-black to-gray-darkest dark:from-white dark:to-off-white rounded-full mb-8"/>
             </div>
             
             <div class="space-y-6">
-              <div class="card p-6 hover-lift">
+              <div class="card p-8 hover-lift">
                 <div class="flex items-start space-x-4">
-                  <div class="w-8 h-8 bg-gradient-to-br from-success to-success/70 rounded-lg flex items-center justify-center mt-1">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-2xl flex items-center justify-center mt-1">
+                    <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
                     </svg>
                   </div>
@@ -64,10 +64,10 @@
                 </div>
               </div>
               
-              <div class="card p-6 hover-lift">
+              <div class="card p-8 hover-lift">
                 <div class="flex items-start space-x-4">
-                  <div class="w-8 h-8 bg-gradient-to-br from-warning to-warning/70 rounded-lg flex items-center justify-center mt-1">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 bg-gradient-to-br from-gray-dark to-gray-medium dark:from-gray-light dark:to-gray-medium rounded-2xl flex items-center justify-center mt-1">
+                    <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                     </svg>
                   </div>
@@ -80,10 +80,10 @@
                 </div>
               </div>
               
-              <div class="card p-6 hover-lift">
+              <div class="card p-8 hover-lift">
                 <div class="flex items-start space-x-4">
-                  <div class="w-8 h-8 bg-gradient-to-br from-error to-error/70 rounded-lg flex items-center justify-center mt-1">
-                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="w-16 h-16 bg-gradient-to-br from-gray-medium to-gray-light dark:from-gray-medium dark:to-gray-light rounded-2xl flex items-center justify-center mt-1">
+                    <svg class="w-8 h-8 text-white dark:text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/>
                     </svg>
                   </div>
@@ -100,12 +100,12 @@
           
           <div class="card-metric p-10 relative overflow-hidden group">
             <div class="absolute inset-0 bg-gradient-to-br from-black/90 via-gray-darkest/90 to-black/90 dark:from-white/90 dark:via-off-white/90 dark:to-white/90"/>
-            <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-success/20 to-warning/20 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"/>
+            <div class="absolute top-4 right-4 w-20 h-20 bg-gradient-to-br from-black/20 dark:from-white/20 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500"/>
             
             <div class="relative z-10">
               <div class="flex items-center mb-8">
-                <div class="w-16 h-16 bg-gradient-to-br from-success to-warning rounded-2xl flex items-center justify-center mr-4">
-                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-16 h-16 bg-gradient-to-br from-white to-off-white dark:from-black dark:to-gray-darkest rounded-2xl flex items-center justify-center mr-4">
+                  <svg class="w-8 h-8 text-black dark:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                   </svg>
                 </div>
@@ -118,7 +118,7 @@
               
               <div class="glass p-4 rounded-xl">
                 <p class="text-white dark:text-black font-medium">
-                  <span class="text-success">→</span> Clarté absolue sur les prochaines étapes à appliquer
+                  <span class="text-black dark:text-white">→</span> Clarté absolue sur les prochaines étapes à appliquer
                 </p>
               </div>
             </div>
@@ -149,7 +149,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
             </div>
-            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-success transition-colors duration-300">Débutants</h3>
+            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Débutants</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               La feuille de route complète pour progresser à vie, tout en évitant les erreurs classiques. Vous gagnez des années de tâtonnements.
             </p>
@@ -162,7 +162,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
             </div>
-            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-warning transition-colors duration-300">Expérimentés</h3>
+            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Expérimentés</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Des directions claires et un système de progression illimité. Débloquez enfin votre progression et maintenez vos résultats durablement.
             </p>
@@ -175,7 +175,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
               </svg>
             </div>
-            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-error transition-colors duration-300">Coachs</h3>
+            <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Coachs</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Un système complet pour délivrer plus de valeur à vos élèves avec une méthodologie scientifique éprouvée.
             </p>
@@ -194,7 +194,7 @@
           <h2 class="text-3xl md:text-5xl font-light text-gradient mb-8">
             Principes Fondamentaux
           </h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-success via-warning to-error rounded-full mx-auto"/>
+          <div class="w-32 h-1 bg-gradient-to-r from-black via-gray-darkest to-gray-medium dark:from-white dark:via-off-white dark:to-gray-light rounded-full mx-auto"/>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -204,7 +204,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
               </svg>
             </div>
-            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-success transition-colors duration-300">Autonomie totale</h3>
+            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Autonomie totale</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Pas de programmes figés. Le système s'adapte toujours en fonction de votre contexte de vie et les contraintes sont prises en compte à tous les niveaux.
             </p>
@@ -216,7 +216,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
             </div>
-            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-warning transition-colors duration-300">Progression infinie</h3>
+            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Progression infinie</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Un système de progression illimité et adaptable qui évolue avec vous, que vous ayez peu ou beaucoup de temps pour la musculation.
             </p>
@@ -228,7 +228,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
               </svg>
             </div>
-            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-error transition-colors duration-300">Clarté absolue</h3>
+            <h3 class="text-2xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">Clarté absolue</h3>
             <p class="text-gray-medium dark:text-gray-light leading-relaxed">
               Vous saurez toujours exactement quoi faire pour progresser. Fini les tâtonnements et les programmes inadaptés.
             </p>
@@ -252,18 +252,18 @@
     <!-- Podcast Section -->
     <section class="py-24 relative overflow-hidden">
       <!-- Gradient background -->
-      <div class="absolute inset-0 bg-gradient-to-br from-success/5 via-warning/5 to-error/5 dark:from-success/10 dark:via-warning/10 dark:to-error/10"/>
+      <div class="absolute inset-0 bg-gradient-to-br from-black/5 via-gray-dark/5 to-gray-medium/5 dark:from-white/10 dark:via-gray-light/10 dark:to-gray-medium/10"/>
       
       <!-- Floating elements -->
-      <div class="absolute top-10 right-1/4 w-48 h-48 bg-gradient-to-br from-success/20 to-transparent rounded-full blur-3xl animate-pulse"/>
-      <div class="absolute bottom-10 left-1/3 w-32 h-32 bg-gradient-to-br from-warning/20 to-transparent rounded-full blur-3xl animate-pulse delay-500"/>
+      <div class="absolute top-10 right-1/4 w-48 h-48 bg-gradient-to-br from-black/20 dark:from-white/20 to-transparent rounded-full blur-3xl animate-pulse"/>
+      <div class="absolute bottom-10 left-1/3 w-32 h-32 bg-gradient-to-br from-gray-dark/20 dark:from-gray-light/20 to-transparent rounded-full blur-3xl animate-pulse delay-500"/>
       
       <div class="max-w-6xl mx-auto px-6 relative">
         <div class="text-center mb-16">
           <h2 class="text-3xl md:text-5xl font-light text-gradient mb-8">
             Podcasts Référence
           </h2>
-          <div class="w-32 h-1 bg-gradient-to-r from-success via-warning to-error rounded-full mx-auto mb-8"/>
+          <div class="w-32 h-1 bg-gradient-to-r from-black via-gray-darkest to-gray-medium dark:from-white dark:via-off-white dark:to-gray-light rounded-full mx-auto mb-8"/>
           <p class="text-xl text-gray-medium dark:text-gray-light max-w-4xl mx-auto leading-relaxed">
             Plongez dans l'univers du <strong class="text-gradient">Système Fluide</strong>
             avec les podcasts <strong class="text-black dark:text-white">NRJTRO & TOXICITY</strong>
@@ -291,7 +291,7 @@
                     </svg>
                     <span>Écouter sur Spotify</span>
                   </span>
-                  <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+                  <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-gray-dark/20 dark:from-white/20 dark:to-gray-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
                 </a>
               </div>
               
@@ -311,7 +311,7 @@
                       </svg>
                     </div>
                     <div>
-                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-success transition-colors duration-300">NRJTRO</h5>
+                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">NRJTRO</h5>
                       <p class="text-sm text-gray-medium dark:text-gray-light">Conversations intimes & vraies</p>
                       <p class="text-xs text-gray-medium dark:text-gray-light mt-1">Transformation personnelle</p>
                     </div>
@@ -332,7 +332,7 @@
                       </svg>
                     </div>
                     <div>
-                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-error transition-colors duration-300">TOXICITY</h5>
+                      <h5 class="text-lg font-medium text-black dark:text-white group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">TOXICITY</h5>
                       <p class="text-sm text-gray-medium dark:text-gray-light">Critique moderne du fitness</p>
                       <p class="text-xs text-gray-medium dark:text-gray-light mt-1">Philosophie & méthodes</p>
                     </div>
@@ -382,13 +382,13 @@
         <div class="space-y-6">
           <div class="card p-8 hover-lift group">
             <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-gradient-to-br from-success to-success/70 rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
+              <div class="w-8 h-8 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-success transition-colors duration-300">
+                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">
                   Est-ce que le Système fonctionne pour les femmes comme pour les hommes ?
                 </h3>
                 <p class="text-gray-medium dark:text-gray-light leading-relaxed">
@@ -400,13 +400,13 @@
 
           <div class="card p-8 hover-lift group">
             <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-gradient-to-br from-warning to-warning/70 rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
+              <div class="w-8 h-8 bg-gradient-to-br from-gray-dark to-gray-medium dark:from-gray-light dark:to-gray-medium rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-warning transition-colors duration-300">
+                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">
                   J'ai beaucoup de poids à perdre, est-ce que le Système fonctionne pour moi ?
                 </h3>
                 <p class="text-gray-medium dark:text-gray-light leading-relaxed">
@@ -418,13 +418,13 @@
 
           <div class="card p-8 hover-lift group">
             <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-gradient-to-br from-error to-error/70 rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
+              <div class="w-8 h-8 bg-gradient-to-br from-gray-medium to-gray-light dark:from-gray-medium dark:to-gray-light rounded-lg flex items-center justify-center mt-1 group-hover:scale-110 transition-transform duration-300">
                 <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
               </div>
               <div class="flex-1">
-                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-error transition-colors duration-300">
+                <h3 class="text-xl font-medium text-black dark:text-white mb-4 group-hover:text-gray-darkest dark:group-hover:text-gray-light transition-colors duration-300">
                   Je me sens maigre, est-ce que le Système va m'apporter une aide pour le muscle ?
                 </h3>
                 <p class="text-gray-medium dark:text-gray-light leading-relaxed">
@@ -462,9 +462,9 @@
       <div class="absolute inset-0 bg-gradient-to-r from-black via-gray-darkest to-black dark:from-white dark:via-off-white dark:to-white"/>
       
       <!-- Animated background elements -->
-      <div class="absolute top-10 left-1/4 w-64 h-64 bg-success/10 rounded-full blur-3xl animate-pulse"/>
-      <div class="absolute bottom-10 right-1/4 w-48 h-48 bg-warning/10 rounded-full blur-3xl animate-pulse delay-1000"/>
-      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-error/10 rounded-full blur-3xl animate-pulse delay-500"/>
+      <div class="absolute top-10 left-1/4 w-64 h-64 bg-black/10 dark:bg-white/10 rounded-full blur-3xl animate-pulse"/>
+      <div class="absolute bottom-10 right-1/4 w-48 h-48 bg-gray-dark/10 dark:bg-gray-light/10 rounded-full blur-3xl animate-pulse delay-1000"/>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-gray-medium/10 rounded-full blur-3xl animate-pulse delay-500"/>
       
       <div class="max-w-4xl mx-auto text-center px-6 relative z-10">
         <h2 class="text-3xl md:text-5xl font-light text-white dark:text-black mb-8">
@@ -482,7 +482,7 @@
               </svg>
               <span>Accéder au Dashboard</span>
             </span>
-            <div class="absolute inset-0 bg-gradient-to-r from-success/20 to-warning/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/20 to-gray-dark/20 dark:from-white/20 dark:to-gray-light/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"/>
           </NuxtLink>
           
           <NuxtLink to="/" class="text-white dark:text-black hover:text-gray-light dark:hover:text-gray-medium transition-colors duration-300 underline underline-offset-4 decoration-2 hover:decoration-success flex items-center space-x-2">

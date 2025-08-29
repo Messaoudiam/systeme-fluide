@@ -7,7 +7,7 @@
         <!-- Brand -->
         <NuxtLink
           to="/"
-          class="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white rounded-xl"
+          class="flex items-center space-x-3 focus:outline-none rounded-xl"
         >
           <span
             class="inline-flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white"
@@ -41,7 +41,7 @@
             v-for="link in navLinks"
             :key="link.to"
             :to="link.to"
-            class="px-4 py-2 rounded-xl text-sm font-medium text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
+            class="px-4 py-2 rounded-xl text-sm font-medium text-black/80 dark:text-white/80 hover:text-black dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none"
             :aria-current="route.path === link.to ? 'page' : undefined"
             :class="{
               'bg-black/10 dark:bg-white/10 text-black dark:text-white':
@@ -55,33 +55,59 @@
         <!-- Right actions -->
         <div class="flex items-center space-x-2">
           <!-- User menu (if authenticated) -->
-          <div v-if="isLoggedIn" class="hidden md:flex items-center space-x-2">
-            <span class="text-sm text-black/70 dark:text-white/70">
-              Bonjour, {{ user?.firstName }}
-            </span>
-            
-            <!-- Admin link -->
-            <NuxtLink
-              v-if="isAdmin"
-              to="/admin"
-              class="px-3 py-1 text-xs font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors"
-            >
-              Admin
-            </NuxtLink>
-            
+          <div v-if="isLoggedIn" class="hidden md:block relative group">
             <button
-              class="px-3 py-1 text-xs font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
-              @click="handleLogout"
+              class="flex items-center space-x-2 px-3 py-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/5 transition-colors focus:outline-none"
             >
-              Déconnexion
+              <div class="w-8 h-8 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-full flex items-center justify-center">
+                <span class="text-xs font-medium text-white dark:text-black">
+                  {{ user?.firstName?.charAt(0) }}{{ user?.lastName?.charAt(0) }}
+                </span>
+              </div>
+              <span class="text-sm text-black dark:text-white">{{ user?.firstName }}</span>
+              <svg class="w-4 h-4 text-black/60 dark:text-white/60 group-hover:text-black dark:group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
             </button>
+            
+            <!-- Dropdown menu -->
+            <div class="absolute right-0 top-full mt-2 w-48 bg-white/90 dark:bg-gray-dark/90 backdrop-blur-md border border-gray-light/50 dark:border-gray-medium/50 rounded-xl shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <div class="p-3 border-b border-gray-light/30 dark:border-gray-medium/30">
+                <p class="text-sm font-medium text-black dark:text-white">{{ user?.firstName }} {{ user?.lastName }}</p>
+                <p class="text-xs text-gray-medium dark:text-gray-light">{{ user?.email }}</p>
+              </div>
+              
+              <div class="py-2">
+                <NuxtLink
+                  v-if="isAdmin"
+                  to="/admin"
+                  class="flex items-center px-3 py-2 text-sm text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                >
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                  Administration
+                </NuxtLink>
+                
+                <button
+                  class="flex items-center w-full px-3 py-2 text-sm text-black dark:text-white hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+                  @click="handleLogout"
+                >
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                  </svg>
+                  Déconnexion
+                </button>
+              </div>
+            </div>
           </div>
           
           <!-- Login button (if not authenticated) -->
           <NuxtLink
             v-else
             to="/login"
-            class="hidden md:inline-flex px-4 py-2 text-sm font-medium bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-300"
+            class="hidden md:inline-flex btn btn-primary px-4 py-2 text-sm"
           >
             Connexion
           </NuxtLink>
@@ -89,7 +115,7 @@
           <!-- Theme toggle -->
           <button
             type="button"
-            class="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
+            class="p-2 rounded-xl hover:bg-black/5 dark:hover:bg-white/10 text-black dark:text-white focus:outline-none"
             :aria-label="
               colorMode.value === 'dark'
                 ? 'Activer le mode clair'
@@ -105,12 +131,15 @@
                 fill="none"
                 stroke="currentColor"
               >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 13.435l-.707.707M12 20v1m7-4a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
+                <circle cx="12" cy="12" r="5" stroke-width="2"/>
+                <line x1="12" y1="1" x2="12" y2="3" stroke-width="2"/>
+                <line x1="12" y1="21" x2="12" y2="23" stroke-width="2"/>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" stroke-width="2"/>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" stroke-width="2"/>
+                <line x1="1" y1="12" x2="3" y2="12" stroke-width="2"/>
+                <line x1="21" y1="12" x2="23" y2="12" stroke-width="2"/>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" stroke-width="2"/>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" stroke-width="2"/>
               </svg>
               <svg
                 v-else
@@ -202,7 +231,7 @@
             v-for="link in navLinks"
             :key="link.to + '-mobile'"
             :to="link.to"
-            class="px-4 py-3 rounded-xl text-base font-medium text-black/90 dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black dark:focus:ring-white"
+            class="px-4 py-3 rounded-xl text-base font-medium text-black/90 dark:text-white/90 hover:bg-black/5 dark:hover:bg-white/10 focus:outline-none"
             :aria-current="route.path === link.to ? 'page' : undefined"
             :class="{
               'bg-black/10 dark:bg-white/10 text-black dark:text-white':
@@ -221,13 +250,13 @@
               <NuxtLink
                 v-if="isAdmin"
                 to="/admin"
-                class="px-4 py-2 text-sm font-medium bg-purple-100 dark:bg-purple-900/20 text-purple-700 dark:text-purple-300 rounded-lg hover:bg-purple-200 dark:hover:bg-purple-900/40 transition-colors text-center"
+                class="px-4 py-2 text-sm font-medium bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-colors text-center"
               >
                 Panneau Admin
               </NuxtLink>
               
               <button
-                class="px-4 py-2 text-sm font-medium bg-red-100 dark:bg-red-900/20 text-red-700 dark:text-red-300 rounded-lg hover:bg-red-200 dark:hover:bg-red-900/40 transition-colors"
+                class="px-4 py-2 text-sm font-medium bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-colors"
                 @click="handleLogout"
               >
                 Déconnexion

@@ -21,7 +21,7 @@
           <div class="text-center">
             <div class="inline-block">
               <img
-                src="/ban.png"
+                :src="$colorMode.value === 'dark' ? '/ban.png' : '/systeme_fluide_inverted.png'"
                 alt="Système Fluide"
                 class="mx-auto mb-6 animate-fade-in max-h-20 md:max-h-28"
               >

@@ -933,7 +933,7 @@
           class="card p-8 relative overflow-hidden animate-fade-in delay-700"
         >
           <div
-            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-success via-warning to-success"
+            class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-black via-gray-darkest to-black dark:from-white dark:via-off-white dark:to-white"
           />
 
           <div class="text-center mb-8">
@@ -948,10 +948,10 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div class="text-center group">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-success to-success/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                class="w-16 h-16 bg-gradient-to-br from-black to-gray-darkest dark:from-white dark:to-off-white rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
               >
                 <svg
-                  class="w-8 h-8 text-white"
+                  class="w-8 h-8 text-white dark:text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -974,10 +974,10 @@
 
             <div class="text-center group">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-warning to-warning/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                class="w-16 h-16 bg-gradient-to-br from-gray-darkest to-gray-dark dark:from-off-white dark:to-gray-light rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
               >
                 <svg
-                  class="w-8 h-8 text-white"
+                  class="w-8 h-8 text-white dark:text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -1000,10 +1000,10 @@
 
             <div class="text-center group">
               <div
-                class="w-16 h-16 bg-gradient-to-br from-error to-error/80 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+                class="w-16 h-16 bg-gradient-to-br from-gray-dark to-gray-medium dark:from-gray-light dark:to-gray-medium rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
               >
                 <svg
-                  class="w-8 h-8 text-white"
+                  class="w-8 h-8 text-white dark:text-black"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
