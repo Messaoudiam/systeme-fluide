@@ -23,7 +23,7 @@ export async function useDatabase() {
     
     // Créer la connexion postgres
     connection = postgres(connectionString, {
-      ssl: { rejectUnauthorized: false },
+      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: true } : { rejectUnauthorized: false },
       max: 10, // Pool de connexions
     })
     

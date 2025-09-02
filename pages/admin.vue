@@ -249,7 +249,7 @@
                   v-model="searchTerm"
                   type="text"
                   placeholder="Rechercher par nom ou email..."
-                  class="w-full pl-12 pr-12 py-4 bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-xl text-black dark:text-white placeholder-gray-medium dark:placeholder-gray-light focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300"
+                  class="w-full pl-12 pr-12 py-4 bg-white dark:bg-gray-darkest border border-gray-dark/50 dark:border-gray-medium/50 rounded-xl text-black dark:text-white placeholder-gray-medium dark:placeholder-gray-light focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-black dark:focus:border-white transition-all duration-300 modal-element-light"
                 >
                 <button
                   v-if="searchTerm"
@@ -269,7 +269,7 @@
                   <div class="relative">
                     <select 
                       v-model="roleFilter" 
-                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300 cursor-pointer min-w-[140px]"
+                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-dark/50 dark:border-gray-medium/50 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-black dark:focus:border-white transition-all duration-300 cursor-pointer min-w-[140px] modal-element-light"
                     >
                       <option value="">Tous les rôles</option>
                       <option value="admin">Administrateurs</option>
@@ -286,7 +286,7 @@
                   <div class="relative">
                     <select 
                       v-model="sortBy" 
-                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-transparent transition-all duration-300 cursor-pointer min-w-[160px]"
+                      class="appearance-none bg-white dark:bg-gray-darkest border border-gray-dark/50 dark:border-gray-medium/50 rounded-lg px-4 py-2.5 pr-10 text-black dark:text-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 focus:border-black dark:focus:border-white transition-all duration-300 cursor-pointer min-w-[160px] modal-element-light"
                     >
                       <option value="createdAt">Trier par date</option>
                       <option value="firstName">Trier par nom</option>
@@ -302,7 +302,7 @@
 
                   <!-- Bouton ordre de tri -->
                   <button
-                    class="flex items-center justify-center w-11 h-11 bg-white dark:bg-gray-darkest border border-gray-light/30 dark:border-gray-medium/30 rounded-lg text-black dark:text-white hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 transition-all duration-300"
+                    class="flex items-center justify-center w-11 h-11 bg-white dark:bg-gray-darkest border border-gray-dark/50 dark:border-gray-medium/50 rounded-lg text-black dark:text-white hover:bg-gray-light/50 dark:hover:bg-white/5 hover:border-black dark:hover:border-white focus:outline-none focus:ring-2 focus:ring-black/20 dark:focus:ring-white/20 transition-all duration-300 modal-element-light"
                     :title="sortOrder === 'asc' ? 'Tri croissant' : 'Tri décroissant'"
                     @click="toggleSort(sortBy)"
                   >
@@ -325,7 +325,7 @@
                   </div>
                   
                   <button
-                    class="flex items-center gap-2 px-4 py-2 bg-black/10 dark:bg-white/10 text-black dark:text-white rounded-lg hover:bg-black/20 dark:hover:bg-white/20 transition-all duration-300 text-sm font-medium"
+                    class="flex items-center gap-2 px-4 py-2 bg-gray-light/50 dark:bg-white/10 text-black dark:text-white border border-gray-dark/30 dark:border-gray-medium/30 rounded-lg hover:bg-gray-medium/30 dark:hover:bg-white/20 hover:border-gray-darkest dark:hover:border-gray-light transition-all duration-300 text-sm font-medium modal-element-light"
                     @click="resetFilters"
                   >
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -458,7 +458,7 @@
                       <td class="p-4 text-center">
                         <span 
                           :class="adminUser.role === 'admin' 
-                            ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap' 
+                            ? 'bg-gradient-to-r from-black to-gray-darkest dark:from-white dark:to-off-white text-white dark:text-black px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap shadow-md' 
                             : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap'"
                         >
                           {{ adminUser.role === 'admin' ? 'Admin' : 'Utilisateur' }}
@@ -592,7 +592,7 @@
                       <td class="p-4 text-center">
                         <span 
                           :class="roleUser.role === 'admin' 
-                            ? 'bg-gradient-to-r from-success to-warning text-white px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1' 
+                            ? 'bg-gradient-to-r from-black to-gray-darkest dark:from-white dark:to-off-white text-white dark:text-black px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1' 
                             : 'bg-gray-light/20 dark:bg-gray-medium/20 text-gray-dark dark:text-gray-light px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap inline-flex items-center space-x-1'"
                         >
                           <svg v-if="roleUser.role === 'admin'" class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -609,7 +609,7 @@
                           <button
                             v-if="roleUser.role !== 'admin'"
                             :disabled="isUpdatingRole"
-                            class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-success to-warning text-white text-xs font-medium rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            class="inline-flex items-center px-3 py-1.5 bg-gradient-to-r from-black to-gray-darkest dark:from-white dark:to-off-white text-white dark:text-black text-xs font-medium rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                             @click="updateUserRole(roleUser.id, 'admin')"
                           >
                             <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -29,7 +29,7 @@
   }
 
   .btn-outline {
-    @apply border-2 border-gray-light dark:border-gray-medium text-black dark:text-white hover:bg-gradient-to-r hover:from-off-white hover:to-gray-light dark:hover:from-gray-dark dark:hover:to-gray-medium hover:shadow-md focus:ring-gray-medium backdrop-blur-sm;
+    @apply border-2 border-gray-dark dark:border-gray-medium text-gray-darkest dark:text-white hover:bg-gradient-to-r hover:from-gray-light/50 hover:to-gray-medium/30 dark:hover:from-gray-dark dark:hover:to-gray-medium hover:shadow-md focus:ring-gray-dark dark:focus:ring-gray-medium backdrop-blur-sm hover:border-black dark:hover:border-gray-light;
   }
 
   .btn-ghost {
@@ -71,5 +71,22 @@
 
   .hover-glow {
     @apply transition-all duration-300 hover:shadow-2xl hover:shadow-black/10 dark:hover:shadow-white/10;
+  }
+
+  /* Force visibility for light mode modal elements */
+  .modal-element-light {
+    border-color: #2D2D2D !important; /* gray-dark */
+    color: #1A1A1A !important; /* gray-darkest */
+  }
+  
+  .modal-element-light:hover {
+    border-color: #000000 !important; /* black */
+    background-color: rgba(200, 200, 200, 0.3) !important; /* gray-light/30 */
+  }
+  
+  .modal-element-light:focus {
+    border-color: #000000 !important; /* black */
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2) !important;
   }
 }

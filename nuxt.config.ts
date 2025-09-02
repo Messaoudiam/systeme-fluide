@@ -19,5 +19,19 @@ export default defineNuxtConfig({
     imports: {
       dirs: ['database']
     }
+  },
+
+  // Headers de sécurité - Configuration progressive pour éviter de casser l'app
+  routeRules: {
+    '/**': {
+      headers: {
+        'X-Frame-Options': 'DENY',
+        'X-Content-Type-Options': 'nosniff',
+        'Referrer-Policy': 'strict-origin-when-cross-origin',
+        ...(process.env.NODE_ENV === 'production' && {
+          'Strict-Transport-Security': 'max-age=31536000; includeSubDomains'
+        })
+      }
+    }
   }
 })

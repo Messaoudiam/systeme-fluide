@@ -30,7 +30,7 @@
     "@vite-pwa/nuxt": "^0.10.6",
     "@vueuse/nuxt": "^13.6.0",
     "bcrypt": "^6.0.0",
-    "drizzle-kit": "^0.31.4",
+    "drizzle-kit": "^0.18.1",
     "drizzle-orm": "^0.44.4",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^4.0.1",
