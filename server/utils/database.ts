@@ -14,16 +14,16 @@ let db: ReturnType<typeof drizzle> | null = null
  */
 export async function useDatabase() {
   if (!db) {
-    // Configuration de la connexion PostgreSQL
-    const connectionString = `postgresql://postgres.${process.env.SUPABASE_PROJECT_REF}:${process.env.SUPABASE_DB_PASSWORD}@aws-0-eu-west-3.pooler.supabase.com:6543/postgres?sslmode=require`
+    // Utiliser l'URL complète de Supabase
+    const connectionString = process.env.SUPABASE_DATABASE_URL
     
-    if (!process.env.SUPABASE_PROJECT_REF || !process.env.SUPABASE_DB_PASSWORD) {
-      throw new Error('Variables d\'environnement Supabase manquantes')
+    if (!connectionString) {
+      throw new Error('SUPABASE_DATABASE_URL manquante')
     }
     
     // Créer la connexion postgres
     connection = postgres(connectionString, {
-      ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: true } : { rejectUnauthorized: false },
+      ssl: { rejectUnauthorized: false }, // Temporairement pour diagnostiquer
       max: 10, // Pool de connexions
     })
     
